@@ -1,7 +1,7 @@
 {
   "name": "@axetroy/gpmx",
   "version": "1.0.0",
-  "description": "",
+  "description": "Git Package Manager, make you manage the project easier",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
