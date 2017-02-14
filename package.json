@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/axetroy/gpm/issues"
   },
-  "bin": "./bin/gpm",
+  "bin": "./bin/gpmx",
   "homepage": "https://github.com/axetroy/gpm#readme",
   "dependencies": {
     "bluebird": "^3.4.7",
