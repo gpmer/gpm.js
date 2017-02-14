@@ -4,10 +4,10 @@ Git Package Manager, make you manage the project easier
 
 ## Features
 
-- [ ] Support Github, gitlab, etc
-- [ ] add, remove, clean, cache, list
-- [ ] score, humanize, easier to manager
-- [x] add repository in multi directories
+- [x] Support Github, gitlab, etc
+- [x] add, remove, clean, cache, list
+- [x] score, humanize, easier to manager
+- [ ] add repository in multi directories
 
 ## Usage
 
