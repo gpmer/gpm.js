@@ -27,7 +27,6 @@ gpmx -h
 
     add|a <repo>     clone repo into local dir
     remove|rm        remove a repo
-    init|i           init the GPM config, when you install or update, run this command first
     list|ls          display the all repo
     reset|rs         reset the GPM config to default
     clean|cl         clear the cache
