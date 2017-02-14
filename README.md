@@ -11,11 +11,8 @@ gpmx init # init the program first
 
 gpmx -h
 
-```
+# print out
 
-print out
-
-```
   Usage: gpmx <command> [options]
 
 
@@ -34,6 +31,7 @@ print out
 
     -h, --help     output usage information
     -V, --version  output the version number
+
 ```
 
 ### Config
@@ -45,6 +43,23 @@ const config = {
   "name": "gpmx",   // user name
   "base": "gpmx"    // the repositories base dir, all repository will be install in this dir
 }
+```
+
+## Example
+
+```bash
+gpmx add https://github.com/zeit/release.git
+gpmx add https://github.com/axetroy/gpm.git
+
+gpmx ls
+
+# print out
+github.com: 
+  axetroy: 
+    gpm:  /home/axetroy/gpmx/github.com/axetroy/gpm
+    ymli: /home/axetroy/gpmx/github.com/axetroy/ymli
+  zeit: 
+    release: /home/axetroy/gpmx/github.com/zeit/release
 ```
 
 ## Contribute
