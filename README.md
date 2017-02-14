@@ -2,6 +2,13 @@
 
 Git Package Manager, make you manage the project easier
 
+## Features
+
+- [ ] Support Github, gitlab, etc
+- [ ] add, remove, clean, cache, list
+- [ ] score, humanize, easier to manager
+- [x] add repository in multi directories
+
 ## Usage
 
 ```bash
