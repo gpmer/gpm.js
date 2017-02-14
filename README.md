@@ -58,6 +58,7 @@ const config = {
 ```bash
 gpmx add https://github.com/zeit/release.git
 gpmx add https://github.com/axetroy/gpm.git
+gpmx add https://github.com/axetroy/ymli.git
 
 gpmx ls
 
