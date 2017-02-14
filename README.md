@@ -11,6 +11,9 @@ gpmx init
 
 gpmx -h
 
+```
+
+```
   Usage: gpmx <command> [options]
 
 
@@ -29,7 +32,6 @@ gpmx -h
 
     -h, --help     output usage information
     -V, --version  output the version number
-
 ```
 
 ## License
