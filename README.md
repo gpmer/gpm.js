@@ -46,6 +46,7 @@ gpmx -h
 this is a default config, it will be generated in ``~/.gpmx`` by default
 
 ```javascript
+// ~/.gpmx/gpmx.config.json
 const config = {
   "name": "gpmx",   // user name
   "base": "gpmx"    // the repositories base dir, all repository will be install in this dir
