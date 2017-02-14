@@ -20,6 +20,7 @@
   "bin": "./bin/gpmx",
   "homepage": "https://github.com/axetroy/gpm#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "bluebird": "^3.4.7",
     "co": "^4.6.0",
     "colors": "^1.1.2",
@@ -31,6 +32,7 @@
     "lodash": "^4.17.4",
     "log4js": "^1.1.0",
     "ora": "^1.1.0",
-    "prettyjson": "^1.2.1"
+    "prettyjson": "^1.2.1",
+    "semver": "^5.3.0"
   }
 }
