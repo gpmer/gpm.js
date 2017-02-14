@@ -7,11 +7,13 @@ Git Package Manager, make you manage the project easier
 ```bash
 npm install @axetroy/gpmx -g
 
-gpmx init
+gpmx init # init the program first
 
 gpmx -h
 
 ```
+
+print out
 
 ```
   Usage: gpmx <command> [options]
@@ -26,12 +28,34 @@ gpmx -h
     reset       reset the GPM config to default
     clean       clear the cache
 
-  Git Package Manager, make you manage the project easier
+  Git Package Manager, make you manage the repository easier
 
   Options:
 
     -h, --help     output usage information
     -V, --version  output the version number
+```
+
+### Config
+
+this is a default config, it will be generated in ``~/.gpmx`` by default
+
+```json
+{
+  "name": "gpmx",   // user name
+  "base": "gpmx"    // the repositories base dir, all repository will be install in this dir
+}
+```
+
+## Contribute
+
+Welcome every PR.
+
+```bash
+git clone https://github.com/axetroy/gpm.git
+cd ./gpm
+yarn
+./bin/gpmx
 ```
 
 ## License
