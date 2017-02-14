@@ -40,8 +40,8 @@ print out
 
 this is a default config, it will be generated in ``~/.gpmx`` by default
 
-```json
-{
+```javascript
+const config = {
   "name": "gpmx",   // user name
   "base": "gpmx"    // the repositories base dir, all repository will be install in this dir
 }
