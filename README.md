@@ -76,14 +76,14 @@ github.com:
 
 ## Contribute
 
-Welcome every PR.
-
 ```bash
 git clone https://github.com/axetroy/gpm.git
 cd ./gpm
 yarn
 ./bin/gpmx
 ```
+
+You can flow [Contribute Guide](https://github.com/axetroy/gpm/blob/master/contributing.md)
 
 ## License
 
