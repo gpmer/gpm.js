@@ -1,3 +1,24 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/axetroy/gpm/compare/v4.0.1...v4.1.0) (2017-02-15)
+
+
+### Bug Fixes
+
+* **relink:** if delete repository manually, run relink can't remove it ([895c588](https://github.com/axetroy/gpm/commit/895c588))
+
+
+### Features
+
+* add [gpmx import <path>] to import repositories thoes was been clone ([eda4f6d](https://github.com/axetroy/gpm/commit/eda4f6d))
+* init [gpmx import xxx] command ([a3f764d](https://github.com/axetroy/gpm/commit/a3f764d))
+
+
+
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/axetroy/gpm/compare/v4.0.0...v4.0.1) (2017-02-15)
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/axetroy/gpm/compare/v3.3.0...v4.0.0) (2017-02-15)
 
