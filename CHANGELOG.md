@@ -1,3 +1,13 @@
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/axetroy/gpm/compare/v4.1.0...v4.2.0) (2017-02-15)
+
+
+### Features
+
+* support gpmx import --hard ([b60b044](https://github.com/axetroy/gpm/commit/b60b044))
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/axetroy/gpm/compare/v4.0.1...v4.1.0) (2017-02-15)
 
