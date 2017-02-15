@@ -12,8 +12,6 @@ Git Package Manager, make you manage the project easier
 ## Installation
 ```bash
 npm install @axetroy/gpmx -g
-
-gpmx init # init the program first
 ```
 
 ## Usage
@@ -28,13 +26,14 @@ gpmx -h
 
   Commands:
 
-    add|a <repo>     clone repo into local dir
-    remove|rm        remove a repo
-    list|ls          display the all repo
-    reset|rs         reset the GPM config to default
-    clean|cl         clear the cache
-    search|sr <key>  search repository witch add by gpm
-    relink|rl        relink the base dir which contain repositories if you delete repository manually
+    add|a <repo>                      clone repo into local dir
+    remove|rm                         remove a repo
+    list|ls                           display the all repo
+    reset|rs                          reset the GPM config to default
+    clean|cl                          clear the cache
+    search|sr <key>                   search repository witch add by gpm
+    relink|rl                         relink the base dir which contain repositories if you delete repository manually
+    config|cf <action> [key] [value]  handle the config, read and set
 
   Git Package Manager, make you manage the repository easier
 
