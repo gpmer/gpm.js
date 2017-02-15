@@ -13,6 +13,17 @@
     "git"
   ],
   "author": "axetroy",
+  "contributors": [
+    {
+      "name": "Axetroy",
+      "email": "troy450409405@gmail.com",
+      "url": "https://axetroy.github.io/"
+    },
+    {
+      "name": "WindomZ",
+      "url": "https://github.com/WindomZ"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/axetroy/gpm/issues"
