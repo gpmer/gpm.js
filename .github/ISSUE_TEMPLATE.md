@@ -15,7 +15,6 @@
 <!-- Please tell us more detail info, like error or -->
 
 **Please tell us about your environment:**
-
 <!-- You can run [gpmx runtime] then get this info -->
 
 ```yaml
