@@ -34,6 +34,7 @@ gpmx -h
     search|sr <key>                   search repository witch add by gpm
     relink|rl                         relink the base dir which contain repositories if you delete repository manually
     config|cf <action> [key] [value]  handle the config, read and set
+    runtime|rt                        print the program runtime, useful for submit a issue
 
   Git Package Manager, make you manage the repository easier
 
