@@ -1,5 +1,11 @@
 language: node_js
 sudo: false
+
+os:
+  - linux
+  - osx
+  - windows
+
 node_js:
   - '6.9.5'
   - '7.0.0'
