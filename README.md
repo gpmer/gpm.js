@@ -6,11 +6,11 @@
 
 
 
-Git Package Manager, make you manage the project easier
+Git Package Manager, make you manage the repository easier
 
 ## Features
 
-- [x] support Github, gitlab, etc
+- [x] support Github, Gitlab, etc
 - [x] add, remove, clean, cache, list commands
 - [x] score, humanize, easier to manager
 - [ ] add repository in multi directories
