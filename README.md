@@ -1,4 +1,10 @@
-# gpmx
+# gpmx 
+[![Build Status](https://travis-ci.org/axetroy/gpm.svg?branch=master)](https://travis-ci.org/axetroy/gpm)
+[![Dependency](https://david-dm.org/axetroy/gpm.svg)](https://david-dm.org/axetroy/gpm)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Node](https://img.shields.io/badge/node-%3E=6.9-blue.svg?style=flat-square)
+
+
 
 Git Package Manager, make you manage the project easier
 
