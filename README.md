@@ -29,7 +29,6 @@ gpmx -h
     add|a <repo>                      clone repo into local dir
     remove|rm                         remove a repo
     list|ls                           display the all repo
-    reset|rs                          reset the GPM config to default
     clean|cl                          clear the cache
     search|sr <key>                   search repository witch add by gpm
     relink|rl                         relink the base dir which contain repositories if you delete repository manually
