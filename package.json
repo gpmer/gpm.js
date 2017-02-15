@@ -1,5 +1,8 @@
 {
   "name": "@axetroy/gpmx",
+  "engines": {
+    "node": ">=6.9.0"
+  },
   "version": "3.2.0",
   "description": "Git Package Manager, make you manage the repository easier",
   "scripts": {
@@ -10,7 +13,11 @@
     "url": "git+https://github.com/axetroy/gpm.git"
   },
   "keywords": [
-    "git"
+    "git",
+    "gpm",
+    "gpmx",
+    "github",
+    "manager"
   ],
   "author": "axetroy",
   "contributors": [
@@ -29,6 +36,7 @@
     "url": "https://github.com/axetroy/gpm/issues"
   },
   "bin": "./bin/gpmx",
+  "preferGlobal": true,
   "homepage": "https://github.com/axetroy/gpm#readme",
   "dependencies": {
     "axios": "^0.15.3",
