@@ -5,7 +5,7 @@ const checkUpdate = require('../lib/check-update');
 const prepare = require('../lib/prepare');
 
 co(function *() {
-  // yield checkUpdate();
+  yield checkUpdate();
   yield prepare();
   require('../lib/gpmx');
 }).catch(function (err) {
