@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - '6.9.5'
   - '7.0.0'
-  - '7.7.0'
+  - '7.5.0'
 
 cache:
   directories
