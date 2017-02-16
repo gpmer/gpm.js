@@ -81,6 +81,13 @@ github.com:
     release: /home/axetroy/gpmx/github.com/zeit/release
 ```
 
+## Uninstall
+
+```bash
+npm uninstall @axetroy/gpmx -g
+rm -rf ~/.gpmx      # all file, cache, contain in this dir
+```
+
 ## Contribute
 
 ```bash
