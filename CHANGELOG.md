@@ -1,3 +1,28 @@
+<a name="5.0.1"></a>
+## [5.0.1](https://github.com/axetroy/gpm/compare/v5.0.0...v5.0.1) (2017-02-16)
+
+
+### Bug Fixes
+
+* **relink:** fix it will recover the other config before ([2e069f0](https://github.com/axetroy/gpm/commit/2e069f0))
+
+
+
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/axetroy/gpm/compare/v4.3.0...v5.0.0) (2017-02-16)
+
+
+
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/axetroy/gpm/compare/v4.2.0...v4.3.0) (2017-02-16)
+
+
+### Features
+
+* **import:** add [gpmx import] -f --all support ([b678710](https://github.com/axetroy/gpm/commit/b678710))
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/axetroy/gpm/compare/v4.1.0...v4.2.0) (2017-02-15)
 
