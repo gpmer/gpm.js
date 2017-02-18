@@ -1,3 +1,13 @@
+<a name="5.0.2"></a>
+## [5.0.2](https://github.com/axetroy/gpm/compare/v5.0.1...v5.0.2) (2017-02-18)
+
+
+### Features
+
+* **add:** add [gpmx add -f] options to skip to question ([ec883d3](https://github.com/axetroy/gpm/commit/ec883d3))
+
+
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://github.com/axetroy/gpm/compare/v5.0.0...v5.0.1) (2017-02-16)
 
