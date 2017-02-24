@@ -24,6 +24,7 @@ npm install @axetroy/gpmx -g
 
 - nodejs>=6.9
 - npm || yarn
+- Git
 
 ## Supports
 
