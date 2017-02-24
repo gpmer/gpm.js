@@ -20,6 +20,17 @@ Git Package Manager, make you manage the repository easier
 npm install @axetroy/gpmx -g
 ```
 
+## Requirement
+
+- nodejs>=6.9
+- npm || yarn
+
+## Supports
+
+- [x] Windows
+- [x] Linux
+- [x] MacOS
+
 ## Usage
 
 ```bash
@@ -57,11 +68,14 @@ this is a default config, it will be generated in ``~/.gpmx`` by default
 
 ```javascript
 // ~/.gpmx/gpmx.config.json
-const config = {
-  "name": "gpmx",   // user name
-  "base": "gpmx"    // the repositories base dir, all repository will be install in this dir
+{
+  "name": "gpmx"
+  "base": "gpmx"
 }
 ```
+
+- name: user name
+- base: the repositories base dir, all repository will be install in this dir
 
 ## Example
 
