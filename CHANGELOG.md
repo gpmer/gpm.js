@@ -1,3 +1,71 @@
+<a name="5.1.5"></a>
+## [5.1.5](https://github.com/axetroy/gpm/compare/v5.1.4...v5.1.5) (2017-02-26)
+
+
+### Bug Fixes
+
+* fix remove command in window platform ([77313ca](https://github.com/axetroy/gpm/commit/77313ca))
+
+
+
+<a name="5.1.4"></a>
+## [5.1.4](https://github.com/axetroy/gpm/compare/v5.1.3...v5.1.4) (2017-02-26)
+
+
+### Bug Fixes
+
+* can't found home path from process.env.home in window platform ([f9f7f05](https://github.com/axetroy/gpm/commit/f9f7f05))
+
+
+
+<a name="5.1.3"></a>
+## [5.1.3](https://github.com/axetroy/gpm/compare/v5.1.2...v5.1.3) (2017-02-26)
+
+
+### Bug Fixes
+
+* can't found home path from process.env.home in window platform ([a5eb5dc](https://github.com/axetroy/gpm/commit/a5eb5dc))
+
+
+
+<a name="5.1.2"></a>
+## [5.1.2](https://github.com/axetroy/gpm/compare/v5.1.1...v5.1.2) (2017-02-26)
+
+
+### Bug Fixes
+
+* can't found home path from process.env.home in window platform ([6f3fb3b](https://github.com/axetroy/gpm/commit/6f3fb3b))
+
+
+
+<a name="5.1.1"></a>
+## [5.1.1](https://github.com/axetroy/gpm/compare/v5.1.0...v5.1.1) (2017-02-26)
+
+
+### Bug Fixes
+
+* fix the root dir is not '.gpmx' ([44acced](https://github.com/axetroy/gpm/commit/44acced))
+* **relink:** check the path is a dir or a file when loop the base dir ([0c9c76b](https://github.com/axetroy/gpm/commit/0c9c76b))
+
+
+### Features
+
+* ignore the vscode config ([2e51d54](https://github.com/axetroy/gpm/commit/2e51d54))
+
+
+
+<a name="5.1.0"></a>
+# [5.1.0](https://github.com/axetroy/gpm/compare/v5.0.2...v5.1.0) (2017-02-25)
+
+
+### Bug Fixes
+
+* fix can't get home dir in window platform ([4bb41de](https://github.com/axetroy/gpm/commit/4bb41de))
+* fix some bugs in window platform ([12b79ac](https://github.com/axetroy/gpm/commit/12b79ac))
+* make sure has install git before run command ([8ca6f27](https://github.com/axetroy/gpm/commit/8ca6f27))
+
+
+
 <a name="5.0.2"></a>
 ## [5.0.2](https://github.com/axetroy/gpm/compare/v5.0.1...v5.0.2) (2017-02-18)
 
