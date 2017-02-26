@@ -51,3 +51,5 @@ jspm_packages
 # idea
 .idea
 
+# vscode
+.vscode
