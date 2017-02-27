@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 require('colors');
 const co = require('co');
 const checkUpdate = require('../lib/check-update');
