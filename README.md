@@ -1,6 +1,6 @@
 # gpmx 
-[![Build Status](https://travis-ci.org/axetroy/gpm.svg?branch=master)](https://travis-ci.org/axetroy/gpm)
-[![Dependency](https://david-dm.org/axetroy/gpm.svg)](https://david-dm.org/axetroy/gpm)
+[![Build Status](https://travis-ci.org/gpmer/gpm.js.svg?branch=master)](https://travis-ci.org/gpmer/gpm.js)
+[![Dependency](https://david-dm.org/gpmer/gpm.js.svg)](https://david-dm.org/gpmer/gpm.js)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E=6.9-blue.svg?style=flat-square)
 
@@ -46,7 +46,7 @@ gpmx -h
 
     add|a [options] <repo>            clone repo into local dir
     remove|rm [key]                   remove a repo
-    list|ls [key]                     display the all repo
+    list|ls [key]                     display the all re po
     clean|cl                          clear the cache
     search|sr <key>                   @Deprecated, search repository by a key
     find|fd <key>                     find repository by a key
@@ -107,14 +107,14 @@ rm -rf ~/.gpmx      # all file, cache, contain in this dir
 ## Contribute
 
 ```bash
-git clone https://github.com/axetroy/gpm.git
+git clone https://github.com/gpmer/gpm.js.git
 cd ./gpm
 yarn
 ./bin/gpmx
 ```
 
-You can flow [Contribute Guide](https://github.com/axetroy/gpm/blob/master/contributing.md)
+You can flow [Contribute Guide](https://github.com/gpmer/gpm.js/blob/master/contributing.md)
 
 ## License
 
-The [MIT License](https://github.com/axetroy/gpm/blob/master/LICENSE)
+The [MIT License](https://github.com/gpmer/gpm.js/blob/master/LICENSE)
