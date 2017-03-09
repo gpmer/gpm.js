@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@axetroy/gpm - Git Package Manager, make you manage the repository easier</title>
+    <meta name="description" content="Git Package Manager, make you manage the repository easier">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+</head>
+<body>
+<nav>
+    <a href="#/">EN</a>
+    <a href="#/zh-cn/">中文</a>
+</nav>
+<div id="app">
+    Loading...
+</div>
+</body>
+<script>
+  if (typeof navigator.serviceWorker !== 'undefined') {
+    navigator.serviceWorker.register('sw.js')
+  }
+</script>
+<script>
+  window.$docsify = {
+//    name: "gpm documentation",
+    themeColor: '#3F51B5',
+    loadSidebar: true,
+    autoHeader: true,
+    subMaxLevel: 2,
+    coverpage: true,
+    repo: 'https://github.com/gpmer/gpm.js',
+
+
+    // 完整配置参数
+    search: {
+      maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+      paths: [], // or 'auto'
+
+      // 支持本地化
+      placeholder: {
+        '/zh-cn/': '搜索',
+        '/': 'Type to search'
+      },
+
+      // 支持本地化
+      noData: {
+        '/zh-cn/': '找不到结果',
+        '/': 'No Results'
+      }
+    }
+
+  }
+</script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+</html>
