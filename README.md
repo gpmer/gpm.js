@@ -4,9 +4,12 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E=6.9-blue.svg?style=flat-square)
 
-
-
 Git Package Manager, make you manage the repository easier
+
+## Documentation
+
+[简体中文]()
+[English]()
 
 ## Features
 
