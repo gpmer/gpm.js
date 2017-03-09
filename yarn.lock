@@ -2235,6 +2235,13 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
+node-persist@^2.0.10:
+  version "2.0.10"
+  resolved "http://registry.npm.taobao.org/node-persist/download/node-persist-2.0.10.tgz#78f5a44b267fa9146ab297048e942cb4b9c1a32a"
+  dependencies:
+    mkdirp "~0.5.1"
+    q "~1.1.1"
+
 node-pre-gyp@^0.6.29:
   version "0.6.33"
   resolved "https://registry.npmjs.org/node-pre-gyp/-/node-pre-gyp-0.6.33.tgz#640ac55198f6a925972e0c16c4ac26a034d5ecc9"
@@ -2581,6 +2588,10 @@ punycode@^1.4.1:
 q@^1.4.1:
   version "1.4.1"
   resolved "https://registry.npmjs.org/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
+
+q@~1.1.1:
+  version "1.1.2"
+  resolved "http://registry.npm.taobao.org/q/download/q-1.1.2.tgz#6357e291206701d99f197ab84e57e8ad196f2a89"
 
 qs@~6.3.0:
   version "6.3.0"
