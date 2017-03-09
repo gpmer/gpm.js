@@ -1,3 +1,48 @@
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/axetroy/gpm/compare/v5.1.9...v5.2.0) (2017-03-09)
+
+
+### Features
+
+* support show list/remove by a valid key, search owner and repo name. & refactor some code ([5a6aa2e](https://github.com/axetroy/gpm/commit/5a6aa2e))
+
+
+
+<a name="5.1.9"></a>
+## [5.1.9](https://github.com/axetroy/gpm/compare/v5.1.8...v5.1.9) (2017-03-02)
+
+
+### Bug Fixes
+
+* fix run link command, if there are one dir isn't git repo, then it will return not continue loop next one. ([896d541](https://github.com/axetroy/gpm/commit/896d541))
+
+
+
+<a name="5.1.8"></a>
+## [5.1.8](https://github.com/axetroy/gpm/compare/v5.1.7...v5.1.8) (2017-03-02)
+
+
+### Bug Fixes
+
+* fix run link command, if there are one dir isn't git repo, then it will return not continue loop next one. ([f116d0e](https://github.com/axetroy/gpm/commit/f116d0e))
+
+
+
+<a name="5.1.7"></a>
+## [5.1.7](https://github.com/axetroy/gpm/compare/v5.1.6...v5.1.7) (2017-02-28)
+
+
+### Bug Fixes
+
+* fix check git env in $PATH, it's not invalid in linux and macOS ([ba4ecc6](https://github.com/axetroy/gpm/commit/ba4ecc6))
+
+
+
+<a name="5.1.6"></a>
+## [5.1.6](https://github.com/axetroy/gpm/compare/v5.1.5...v5.1.6) (2017-02-27)
+
+
+
 <a name="5.1.5"></a>
 ## [5.1.5](https://github.com/axetroy/gpm/compare/v5.1.4...v5.1.5) (2017-02-26)
 
