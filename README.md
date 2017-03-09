@@ -68,10 +68,11 @@ gpmx -h
 
 this is a default config, it will be generated in ``~/.gpmx`` by default
 
-```javascript
-// ~/.gpmx/gpmx.config.json
+**~/.gpmx/gpmx.config.json**
+
+```json
 {
-  "name": "gpmx"
+  "name": "gpmx",
   "base": "gpmx"
 }
 ```
