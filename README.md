@@ -81,6 +81,67 @@ this is a default config, it will be generated in ``~/.gpm`` by default
 - name: user name
 - base: the repositories base dir, all repository will be install in this dir
 
+## Structure
+
+```bash
+.
+├── github.com
+│   ├── axetroy
+│   │   ├── aabbcc
+│   │   ├── build-cli -> /home/axetroy/develop/build-cli
+│   │   ├── commander.dart
+│   │   ├── contributors-stat
+│   │   ├── event-emitter.dart
+│   │   ├── event-emitter.js
+│   │   ├── git-url-parse
+│   │   ├── gpm.dart
+│   │   ├── gpm.go
+│   │   ├── labrador-cli
+│   │   ├── labrador-demo
+│   │   ├── ng-promise -> /home/axetroy/develop/ng-promise
+│   │   ├── nmr
+│   │   ├── protocols
+│   │   ├── songojs -> /home/axetroy/develop/songojs
+│   │   ├── url-parser
+│   │   ├── wechatapp-dev-tool-linux
+│   │   ├── wxapp-socket
+│   │   └── ymli
+│   ├── chentsulin
+│   │   └── electron-react-boilerplate
+│   ├── electron
+│   │   └── electron-quick-start -> /home/axetroy/develop/electron-quick-start
+│   ├── fenivana
+│   │   └── wx-mina-html-view
+│   ├── geeeeeeeeek
+│   │   └── electronic-wechat -> /home/axetroy/develop/electronic-wechat
+│   ├── gpmer
+│   │   ├── gpm.js
+│   │   └── gpm.ruby
+│   ├── lidong1665
+│   │   └── WeiXinProject
+│   ├── maichong
+│   │   └── labrador-demo
+│   ├── zarknight
+│   │   └── wx-falls-layout
+│   └── zeit
+│       └── nextgram
+└── xxx.net(private git server)
+    ├── axetroy
+    │   ├── xxx
+    │   ├── xxx -> /home/axetroy/develop/xxx
+    │   ├── xxx -> /home/axetroy/develop/xxx
+    │   ├── xxx
+    │   ├── xxx -> /home/axetroy/develop/xxx
+    │   ├── xxx -> /home/axetroy/develop/xxx
+    │   └── xxx
+    ├── xxx
+    │   └── xxx
+    └── xxx
+        ├── xxx -> /home/axetroy/develop/xxx
+        ├── xxx -> /home/axetroy/develop/xxx
+        └── xxx -> /home/axetroy/develop/xxx
+```
+
 ## Example
 
 ```bash
