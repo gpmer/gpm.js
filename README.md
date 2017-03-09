@@ -45,16 +45,16 @@ gpm -h
 
   Commands:
 
-    add|a [options] <repo>            clone repo into local dir
-    remove|rm [key]                   remove a repo
-    list|ls [key]                     display the all re po
-    clean|cl                          clear the cache
-    search|sr <key>                   @Deprecated, search repository by a key
-    find|fd <key>                     find repository by a key
-    relink|rl                         relink the base dir which contain repositories if you delete repository manually
-    config|cf <action> [key] [value]  handle the config, read and set
-    runtime|rt                        print the program runtime, useful for submit a issue
-    import|ip [options] <dir>         register a local repository to GPM
+    add|a [options] <repo>            add a repository to gpm
+    remove|rm [key]                   Remove a repository from registry and disk, optional [key] to filter
+    list|ls [key]                     Display the all repositories in registry
+    clean|cl                          Clear the cache, usually is /home/axetroy/.gpm/temp
+    search|sr <key>                   @Deprecated, Search repository by a key, You can get all about the repository info
+    find|fd <key>                     Find repository by a key, You can get all about the repository info
+    relink|rl [options]               Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
+    config|cf <action> [key] [value]  Config　handler, <list|get|set|delete|reset> [key] [value]
+    runtime|rt                        Print the program runtime, useful for submit issue
+    import|ip [options] <dir>         Import local repository into gpm registry
 
   Git Package Manager, make you manage the repository easier
 
