@@ -3,7 +3,7 @@
   "engines": {
     "node": ">=6.9.0"
   },
-  "version": "5.2.1",
+  "version": "5.3.0-0",
   "description": "Git Package Manager, make you manage the repository easier",
   "scripts": {
     "test": "ava",
