@@ -1,4 +1,4 @@
-# gpmx 
+# gpm.js 
 [![Build Status](https://travis-ci.org/gpmer/gpm.js.svg?branch=master)](https://travis-ci.org/gpmer/gpm.js)
 [![Dependency](https://david-dm.org/gpmer/gpm.js.svg)](https://david-dm.org/gpmer/gpm.js)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -17,7 +17,7 @@ Git Package Manager, make you manage the repository easier
 
 ## Installation
 ```bash
-npm install @axetroy/gpmx -g
+npm install @axetroy/gpm -g
 ```
 
 ## Requirement
@@ -35,11 +35,12 @@ npm install @axetroy/gpmx -g
 ## Usage
 
 ```bash
-gpmx -h
+gpm -h
+# or gpmx -h
 
 # print out
 
-  Usage: gpmx <command> [options]
+  Usage: gpm <command> [options]
 
 
   Commands:
@@ -66,14 +67,14 @@ gpmx -h
 
 ### Config
 
-this is a default config, it will be generated in ``~/.gpmx`` by default
+this is a default config, it will be generated in ``~/.gpm`` by default
 
-**~/.gpmx/gpmx.config.json**
+**~/.gpm/gpm.config.json**
 
 ```json
 {
-  "name": "gpmx",
-  "base": "gpmx"
+  "name": "gpm",
+  "base": "gpm"
 }
 ```
 
@@ -83,26 +84,26 @@ this is a default config, it will be generated in ``~/.gpmx`` by default
 ## Example
 
 ```bash
-gpmx add https://github.com/zeit/release.git
-gpmx add https://github.com/axetroy/gpm.git
-gpmx add https://github.com/axetroy/ymli.git
+gpm add https://github.com/zeit/release.git
+gpm add https://github.com/axetroy/gpm.git
+gpm add https://github.com/axetroy/ymli.git
 
-gpmx ls
+gpm ls
 
 # print out
 github.com: 
   axetroy: 
-    gpm:  /home/axetroy/gpmx/github.com/axetroy/gpm
-    ymli: /home/axetroy/gpmx/github.com/axetroy/ymli
+    gpm:  /home/axetroy/gpm/github.com/axetroy/gpm
+    ymli: /home/axetroy/gpm/github.com/axetroy/ymli
   zeit: 
-    release: /home/axetroy/gpmx/github.com/zeit/release
+    release: /home/axetroy/gpm/github.com/zeit/release
 ```
 
 ## Uninstall
 
 ```bash
-npm uninstall @axetroy/gpmx -g
-rm -rf ~/.gpmx      # all file, cache, contain in this dir
+npm uninstall @axetroy/gpm -g
+rm -rf ~/.gpm      # all file, cache, contain in this dir
 ```
 
 ## Contribute
@@ -111,7 +112,7 @@ rm -rf ~/.gpmx      # all file, cache, contain in this dir
 git clone https://github.com/gpmer/gpm.js.git
 cd ./gpm
 yarn
-./bin/gpmx
+./bin/gpm
 ```
 
 You can flow [Contribute Guide](https://github.com/gpmer/gpm.js/blob/master/contributing.md)
