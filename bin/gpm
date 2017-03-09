@@ -8,7 +8,7 @@ const prepare = require('../lib/prepare');
 co(function *() {
   yield checkUpdate();
   yield prepare();
-  require('../lib/gpmx');
+  require('../lib/gpm');
 }).catch(function (err) {
   console.error(err);
 });

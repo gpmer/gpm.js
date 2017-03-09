@@ -37,7 +37,10 @@
   "bugs": {
     "url": "https://github.com/axetroy/gpm/issues"
   },
-  "bin": "./bin/gpmx",
+  "bin": {
+    "gpm": "./bin/gpm",
+    "gpmx": "./bin/gpm"
+  },
   "preferGlobal": true,
   "homepage": "https://github.com/axetroy/gpm#readme",
   "dependencies": {
