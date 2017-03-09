@@ -8,8 +8,8 @@ Git Package Manager, make you manage the repository easier
 
 ## Documentation
 
-[简体中文]()
-[English]()
+[简体中文](https://gpmer.github.io/gpm.js/#/zh-cn/)
+[English](https://gpmer.github.io/gpm.js)
 
 ## Features
 
