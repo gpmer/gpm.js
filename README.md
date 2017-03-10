@@ -17,6 +17,7 @@ Git Package Manager, make you manage the repository easier
 - [x] support Github, Gitlab, etc
 - [x] add, remove, clean, cache, list commands
 - [x] score, humanize, easier to manager
+- [x] plugin support, more hook, it can help you do more thing
 - [ ] add repository in multi directories
 
 ## Installation
@@ -84,6 +85,20 @@ this is a default config, it will be generated in ``~/.gpm`` by default
 
 - name: user name
 - base: the repositories base dir, all repository will be install in this dir
+
+### Plugin
+
+```bash
+npm install gpm-plugin-npmi -g
+
+gpm add https://github.com/zeit/release.git --plugin npmi
+
+# it will run 'npm install' in the dist directory
+```
+
+Plugin list
+
+- [npmi](https://github.com/gpmer/gpm-plugin-npmi)
 
 ## Structure
 
