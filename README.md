@@ -102,7 +102,9 @@ gpm add https://github.com/zeit/release.git --plugin npmi
 
 Plugin List
 
-- [npmi](https://github.com/gpmer/gpm-plugin-npmi)
+- add
+    - [npmi](https://github.com/gpmer/gpm-plugin-npmi)
+    - [pub](https://github.com/gpmer/gpm-plugin-pub)
 
 ## Structure
 
