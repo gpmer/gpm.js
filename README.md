@@ -51,11 +51,11 @@ gpm -h
   Commands:
 
     add|a [options] <repo>            add a repository to gpm
-    remove|rm [key]                   Remove a repository from registry and disk, optional [key] to filter
-    list|ls [key]                     Display the all repositories in registry
-    clean|cl                          Clear the cache, usually is /home/axetroy/.gpm/temp
-    search|sr <key>                   @Deprecated, Search repository by a key, You can get all about the repository info
-    find|fd <key>                     Find repository by a key, You can get all about the repository info
+    remove|rm [options]               Remove a repository from registry and disk
+    list|ls [options] [key]           Display the all repositories in registry
+    clean|cl                          Clear the cache, usually is C:\Users\axetroy\.gpm\temp
+    search|sr [options]               @Deprecated, Search repository by a key, You can get all about the repository info
+    find|fd [options]                 Find repository by a key, You can get all about the repository info
     relink|rl [options]               Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
     config|cf <action> [key] [value]  Config　handler, <list|get|set|delete|reset> [key] [value]
     runtime|rt                        Print the program runtime, useful for submit issue
