@@ -88,6 +88,8 @@ this is a default config, it will be generated in ``~/.gpm`` by default
 
 ### Plugin
 
+load plugin with option '-p, --plugin <name>'
+
 ```bash
 npm install gpm-plugin-npmi -g
 
@@ -96,7 +98,7 @@ gpm add https://github.com/zeit/release.git --plugin npmi
 # it will run 'npm install' in the dist directory
 ```
 
-Plugin list
+Plugin List
 
 - [npmi](https://github.com/gpmer/gpm-plugin-npmi)
 
