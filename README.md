@@ -88,9 +88,11 @@ this is a default config, it will be generated in ``~/.gpm`` by default
 
 ### Plugin
 
-load plugin with option '-p, --plugin <name>'
+load plugin with option ``'-p, --plugin name'``
 
-only support **gpm add**, more hooks are coming soon.
+only support ``gpm add```, more hooks are coming soon.
+
+plugin's name should match this pattern: ``gpm-plugin-${name}``
 
 ```bash
 npm install gpm-plugin-npmi -g
