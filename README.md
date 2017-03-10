@@ -102,11 +102,10 @@ gpm add https://github.com/zeit/release.git --plugin npmi
 # it will run 'npm install' in the dist directory
 ```
 
-Plugin List
-
-- add
-    - [npmi](https://github.com/gpmer/gpm-plugin-npmi)
-    - [pub](https://github.com/gpmer/gpm-plugin-pub)
+plugin | description
+------------ | -------------
+[npmi](https://github.com/gpmer/gpm-plugin-npmi) | gpm plugin for run npm install after add repository
+[pub](https://github.com/gpmer/gpm-plugin-pub) | gpm plugin for Dart project, run <pub get> after add repository
 
 ## Structure
 
