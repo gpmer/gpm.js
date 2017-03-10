@@ -1,3 +1,38 @@
+<a name="5.4.1"></a>
+## [5.4.1](https://github.com/gpmer/gpm.js/compare/v5.4.0...v5.4.1) (2017-03-10)
+
+
+### Bug Fixes
+
+* will register many time when install from a same repo ([b401128](https://github.com/gpmer/gpm.js/commit/b401128))
+
+
+
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/gpmer/gpm.js/compare/v5.3.1...v5.4.0) (2017-03-10)
+
+
+### Features
+
+* support the plugin for add command, other command coming soon. plugin name with 'gpm-plugin-${name}', use it with -p, --plugin flag ([926514e](https://github.com/gpmer/gpm.js/commit/926514e))
+
+
+
+<a name="5.3.1"></a>
+## [5.3.1](https://github.com/gpmer/gpm.js/compare/v5.3.0...v5.3.1) (2017-03-09)
+
+
+### Bug Fixes
+
+* fix can't registry multi repo with diff name ([eff0789](https://github.com/gpmer/gpm.js/commit/eff0789))
+
+
+### Features
+
+* record the gpm version in config ([315e12f](https://github.com/gpmer/gpm.js/commit/315e12f))
+
+
+
 <a name="5.3.0"></a>
 # [5.3.0](https://github.com/gpmer/gpm.js/compare/v5.3.0-0...v5.3.0) (2017-03-09)
 
