@@ -62,7 +62,6 @@
     "ora": "^1.1.0",
     "parse-git-config": "^1.1.1",
     "prettyjson": "^1.2.1",
-    "robotjs": "^0.4.5",
     "semver": "^5.3.0"
   },
   "devDependencies": {
