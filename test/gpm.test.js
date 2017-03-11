@@ -22,6 +22,7 @@ test.beforeEach(async function (t) {
 });
 
 test.afterEach(async function (t) {
+  await fs.emptydirAsync(home);
   await fs.removeAsync(home);
   t.pass();
 });
