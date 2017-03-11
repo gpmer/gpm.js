@@ -45,28 +45,32 @@ gpm -h
 
 # print out
 
-  Usage: gpm <command> [options]
+   gpm 5.4.1 - Git Package Manager, make you manage the repository easier
+     
+   USAGE
 
+     gpm <command> [options] 
 
-  Commands:
+   COMMANDS
 
-    add|a [options] <repo>            add a repository to gpm
-    remove|rm [options]               Remove a repository from registry and disk
-    list|ls [options] [key]           Display the all repositories in registry
-    clean|cl                          Clear the cache, usually is C:\Users\axetroy\.gpm\temp
-    search|sr [options]               @Deprecated, Search repository by a key, You can get all about the repository info
-    find|fd [options]                 Find repository by a key, You can get all about the repository info
-    relink|rl [options]               Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
-    config|cf <action> [key] [value]  Config　handler, <list|get|set|delete|reset> [key] [value]
-    runtime|rt                        Print the program runtime, useful for submit issue
-    import|ip [options] <dir>         Import local repository into gpm registry
+     add <repo>                          add a repository to gpm                                                                
+     remove                              Remove a repository from registry and disk                                             
+     list [key]                          Display the all repositories in registry                                               
+     clean                               Clear the cache, usually is /home/axetroy/.gpm/temp                                    
+     find                                Find repository by a key, You can get all about the repository info                    
+     relink                              Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
+     config <action> [key] [value]       Config　handler, <list|get|set|delete|reset> [key] [value]                             
+     runtime                             Print the program runtime, useful for submit issue                                     
+     import <div>                        Import local repository into gpm registry                                              
+     help <command>                      Display help for a specific command                                                    
 
-  Git Package Manager, make you manage the repository easier
+   GLOBAL OPTIONS
 
-  Options:
-
-    -h, --help     output usage information
-    -V, --version  output the version number
+     -h, --help         Display help                                      
+     -V, --version      Display version                                   
+     --no-color         Disable colors                                    
+     --quiet            Quiet mode - only displays warn and error messages
+     -v, --verbose      Verbose mode - will also output debug messages    
 
 ```
 
