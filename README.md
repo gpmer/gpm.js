@@ -197,7 +197,7 @@ rm -rf ~/.gpm      # all file, cache, contain in this dir
 
 ```bash
 git clone https://github.com/gpmer/gpm.js.git
-cd ./gpm
+cd ./gpm.js
 yarn
 ./bin/gpm
 ```
