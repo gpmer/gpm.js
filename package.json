@@ -46,9 +46,9 @@
   "dependencies": {
     "axios": "^0.15.3",
     "bluebird": "^3.4.7",
+    "caporal": "^0.3.0",
     "co": "^4.6.0",
     "colors": "^1.1.2",
-    "commander": "^2.9.0",
     "cross-spawn": "^5.0.1",
     "fs-extra": "^2.0.0",
     "fuzzy": "^0.1.3",
