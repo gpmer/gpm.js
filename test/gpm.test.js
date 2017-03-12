@@ -47,7 +47,7 @@ test.serial('prepare', async(t) => {
 
 test.serial('add & list', async(t) => {
   const url = 'https://github.com/gpmer/gpm-empty-repository-for-test.git';
-  const argv = {repo: url}, options = {force: true, quiet: true};
+  const argv = {repo: url}, options = {force: true, nolog: true};
   const gitInfo = gitUrlParse(url);
 
   const gpmConfig = await fs.readJsonAsync(config);
