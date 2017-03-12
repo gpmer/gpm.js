@@ -1,3 +1,37 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/gpmer/gpm.js/compare/v5.4.1...v6.0.0) (2017-03-12)
+
+
+### Bug Fixes
+
+* compatible with last Caporal.js ([2de90c5](https://github.com/gpmer/gpm.js/commit/2de90c5))
+* fix some command argv are invalid ([2805ed8](https://github.com/gpmer/gpm.js/commit/2805ed8))
+* fix the child_process don't set the process env, command will fail in test ([d4f6a1e](https://github.com/gpmer/gpm.js/commit/d4f6a1e))
+* fix type ([feb10c6](https://github.com/gpmer/gpm.js/commit/feb10c6))
+
+
+### Features
+
+* add global flag to config command ([b5f4094](https://github.com/gpmer/gpm.js/commit/b5f4094))
+* all command add --unixify, --force, --nolog ([0d2dc77](https://github.com/gpmer/gpm.js/commit/0d2dc77))
+* all command add -u, --unixify flag to parse path to unix style, useful in Windows Git Bash. invalid in Power Shell. ([ee2dec7](https://github.com/gpmer/gpm.js/commit/ee2dec7))
+* dep on robotjs, now it will auto type cd to dist dir once add success ([b62add7](https://github.com/gpmer/gpm.js/commit/b62add7))
+* support unix style path in Window Git bash with -u, --unixify flag ([94f1e2f](https://github.com/gpmer/gpm.js/commit/94f1e2f))
+
+
+### Reverts
+
+* remove the esc-exit, not compatible with windows ([5399d24](https://github.com/gpmer/gpm.js/commit/5399d24))
+
+
+### BREAKING CHANGES
+
+* Before: gpm relink --quiet
+
+After: gpm relink --nolog
+
+
+
 <a name="5.4.1"></a>
 ## [5.4.1](https://github.com/gpmer/gpm.js/compare/v5.4.0...v5.4.1) (2017-03-10)
 
