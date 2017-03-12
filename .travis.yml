@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: true
 
 os:
   - linux
@@ -14,7 +14,8 @@ cache:
     - node_modules
 
 before_script:
-  - npm install -g yarn
+#  - npm install -g yarn
+  - apt-get install git
   - yarn
 
 script:
