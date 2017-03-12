@@ -1,6 +1,6 @@
 {
-  "projectName": "all-contributors",
-  "projectOwner": "Axetroy",
+  "projectName": "gpm.js",
+  "projectOwner": "gpmer",
   "files": [
     "README.md"
   ],
@@ -28,15 +28,6 @@
       "contributions": [
         "bug",
         "doc"
-      ]
-    },
-    {
-      "login": "aaa",
-      "name": "aaa",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/1704?v=3",
-      "profile": "https://github.com/aaa",
-      "contributions": [
-        "bug"
       ]
     }
   ]
