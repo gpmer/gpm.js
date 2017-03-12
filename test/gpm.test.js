@@ -15,19 +15,19 @@ const add = require('../lib/command/add');
 
 const {home, root, temp, config} = CONFIG.paths;
 
-test.beforeEach(async function (t) {
+test.serial.beforeEach(async function (t) {
   await fs.ensureDir(home);
   await prepare();
   t.pass();
 });
 
-test.afterEach(async function (t) {
+test.serial.afterEach(async function (t) {
   await fs.emptydirAsync(home);
   await fs.removeAsync(home);
   t.pass();
 });
 
-test('prepare', async(t) => {
+test.serial('prepare', async(t) => {
   await fs.readdirAsync(home);
   const __root__ = await fs.readdirAsync(root);
   const __temp__ = await fs.readdirAsync(temp);
@@ -37,7 +37,7 @@ test('prepare', async(t) => {
   t.pass();
 });
 
-test('add', async(t) => {
+test.serial('add', async(t) => {
   const url = 'https://github.com/gpmer/gpm-empty-repository-for-test.git';
   const argv = {repo: url}, options = {force: true, quiet: true};
   const gitInfo = gitUrlParse(url);
