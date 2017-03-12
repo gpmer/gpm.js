@@ -14,9 +14,10 @@ const gitUrlParse = require("git-url-parse");
 const pkg = require('../package.json');
 const CONFIG = require('../lib/config');
 const prepare = require('../lib/prepare');
-const add = require('../lib/command/add');
-const list = require('../lib/command/list');
-const runtime = require('../lib/command/runtime');
+const addCommand = require('../lib/command/add');
+const listCommand = require('../lib/command/list');
+const runtimeCommand = require('../lib/command/runtime');
+const configCommand = require('../lib/command/config');
 
 const {home, root, temp, config} = CONFIG.paths;
 
@@ -60,14 +61,14 @@ test.serial('add & list', async(t) => {
   const ownerDir = path.join(sourceDir, gitInfo.owner);
   const repoDir = path.join(ownerDir, typeof options.name === 'string' ? options.name : gitInfo.name);
 
-  await add(argv, options);
+  await addCommand(argv, options);
 
   await fs.ensureDirAsync(baseDir);
   await fs.ensureDirAsync(sourceDir);
   await fs.ensureDirAsync(ownerDir);
   await fs.ensureDirAsync(repoDir);
 
-  const result = await list({}, {nolog: true});
+  const result = await listCommand({}, {nolog: true});
 
   const source = 'github.com'.red;
   const owner = 'gpmer'.yellow;
@@ -84,7 +85,7 @@ test.serial('add & list', async(t) => {
 
 test('runtime', async(t) => {
 
-  const info = await runtime({}, {nolog: true});
+  const info = await runtimeCommand({}, {nolog: true});
 
   t.deepEqual(info.node, process.version);
   t.deepEqual(info[CONFIG.name], pkg.version);
@@ -93,5 +94,68 @@ test('runtime', async(t) => {
   t.deepEqual(info.platform, os.platform());
 
   t.pass();
+});
 
+test.serial('config list', async(t) => {
+
+  const __CONFIG__ = await configCommand({action: 'list'}, {nolog: true});
+
+  t.deepEqual(__CONFIG__.version, pkg.version);
+  t.deepEqual(__CONFIG__.owner, CONFIG.name);
+  t.deepEqual(__CONFIG__.base, CONFIG.name);
+
+  t.pass();
+});
+
+test.serial('config get', async(t) => {
+
+  const version = await configCommand({action: 'get', key: 'version'}, {nolog: true});
+  const owner = await configCommand({action: 'get', key: 'owner'}, {nolog: true});
+  const base = await configCommand({action: 'get', key: 'base'}, {nolog: true});
+
+  t.deepEqual(version, pkg.version);
+  t.deepEqual(owner, CONFIG.name);
+  t.deepEqual(base, CONFIG.name);
+
+  t.pass();
+});
+
+test.serial('config set', async(t) => {
+
+  const version = await configCommand({action: 'set', key: 'version', value: 'test version'}, {nolog: true});
+  const owner = await configCommand({action: 'set', key: 'owner', value: 'test owner'}, {nolog: true});
+  const base = await configCommand({action: 'set', key: 'base', value: 'test base'}, {nolog: true});
+
+  const configJSON = await fs.readJsonAsync(config);
+
+  t.deepEqual(configJSON.version, version);
+  t.deepEqual(configJSON.owner, owner);
+  t.deepEqual(configJSON.base, base);
+
+  t.pass();
+});
+
+test.serial('config remove', async(t) => {
+
+  const version = await configCommand({action: 'delete', key: 'version'}, {nolog: true});
+  const owner = await configCommand({action: 'delete', key: 'owner'}, {nolog: true});
+  const base = await configCommand({action: 'delete', key: 'base'}, {nolog: true});
+
+  const configJSON = await fs.readJsonAsync(config);
+
+  t.deepEqual(configJSON, {});
+
+  t.pass();
+});
+
+test.serial('config reset', async(t) => {
+
+  const __config__ = await configCommand({action: 'reset'}, {nolog: true});
+
+  const configJSON = await fs.readJsonAsync(config);
+
+  t.deepEqual(__config__, configJSON);
+  t.deepEqual(__config__, CONFIG.defaults);
+
+  t.pass();
 });
