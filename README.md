@@ -208,6 +208,13 @@ yarn
 
 You can flow [Contribute Guide](https://github.com/gpmer/gpm.js/blob/master/contributing.md)
 
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/Axetroy/all-contributors/commits?author=axetroy) 🔌 [⚠️](https://github.com/Axetroy/all-contributors/commits?author=axetroy) [🐛](https://github.com/Axetroy/all-contributors/issues?q=author%3Aaxetroy) 🎨 | [<img src="https://avatars0.githubusercontent.com/u/14875359?v=3" width="100px;"/><br /><sub>Windom Z</sub>](http://windomz.github.io/)<br />[🐛](https://github.com/Axetroy/all-contributors/issues?q=author%3AWindomZ) [📖](https://github.com/Axetroy/all-contributors/commits?author=WindomZ) | [<img src="https://avatars2.githubusercontent.com/u/1704?v=3" width="100px;"/><br /><sub>aaa</sub>](https://github.com/aaa)<br />[🐛](https://github.com/Axetroy/all-contributors/issues?q=author%3Aaaa) |
+| :---: | :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## License
 
 The [MIT License](https://github.com/gpmer/gpm.js/blob/master/LICENSE)
