@@ -1,6 +1,19 @@
 /**
  * Created by axetroy on 17-2-15.
  */
+
+(function() {
+  var childProcess = require("child_process");
+  var oldSpawn = childProcess.spawn;
+  function mySpawn() {
+    console.log('spawn called');
+    console.log(arguments);
+    var result = oldSpawn.apply(this, arguments);
+    return result;
+  }
+  childProcess.spawn = mySpawn;
+})();
+
 require('colors');
 const test = require('ava');
 const path = require('path');
@@ -22,8 +35,8 @@ test.beforeEach(async function (t) {
 });
 
 test.afterEach(async function (t) {
-  await fs.emptydirAsync(home);
-  await fs.removeAsync(home);
+  // await fs.emptydirAsync(home);
+  // await fs.removeAsync(home);
   t.pass();
 });
 
