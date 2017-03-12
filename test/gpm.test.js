@@ -1,18 +1,22 @@
 /**
  * Created by axetroy on 17-2-15.
  */
+const path = require('path');
+const os = require('os');
+
 require('colors');
 const test = require('ava');
-const path = require('path');
 const _ = require('lodash');
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs-extra'));
 const gitUrlParse = require("git-url-parse");
 
+const pkg = require('../package.json');
 const CONFIG = require('../lib/config');
 const prepare = require('../lib/prepare');
 const add = require('../lib/command/add');
 const list = require('../lib/command/list');
+const runtime = require('../lib/command/runtime');
 
 const {home, root, temp, config} = CONFIG.paths;
 
@@ -73,6 +77,20 @@ test.serial('add & list', async(t) => {
   t.deepEqual(_.keys(result[source]), [owner]);
   t.deepEqual(_.keys(result[source][owner]), [name]);
   t.deepEqual(result[source][owner][name], repoDir.white);
+
+  t.pass();
+
+});
+
+test('runtime', async(t) => {
+
+  const info = await runtime({}, {nolog: true});
+
+  t.deepEqual(info.node, process.version);
+  t.deepEqual(info[CONFIG.name], pkg.version);
+  t.deepEqual(info.arch, os.arch());
+  t.deepEqual(info.os, os.type() + ' ' + os.release());
+  t.deepEqual(info.platform, os.platform());
 
   t.pass();
 
