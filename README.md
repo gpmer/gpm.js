@@ -197,7 +197,7 @@ npm uninstall @axetroy/gpm -g
 rm -rf ~/.gpm      # all file, cache, contain in this dir
 ```
 
-## Contribute
+## Contributing
 
 ```bash
 git clone https://github.com/gpmer/gpm.js.git
