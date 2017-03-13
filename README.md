@@ -45,7 +45,7 @@ gpm -h
 
 # print out
 
-   gpm 5.4.1 - Git Package Manager, make you manage the repository easier
+   gpm 6.0.0 - Git Package Manager, make you manage the repository easier
      
    USAGE
 
@@ -53,16 +53,16 @@ gpm -h
 
    COMMANDS
 
-     add <repo>                          add a repository to gpm                                                                
-     remove                              Remove a repository from registry and disk                                             
-     list [key]                          Display the all repositories in registry                                               
-     clean                               Clear the cache, usually is /home/axetroy/.gpm/temp                                    
-     find                                Find repository by a key, You can get all about the repository info                    
-     relink                              Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
-     config <action> [key] [value]       Config　handler, <list|get|set|delete|reset> [key] [value]                             
-     runtime                             Print the program runtime, useful for submit issue                                     
-     import <div>                        Import local repository into gpm registry                                              
-     help <command>                      Display help for a specific command                                                    
+     add <repo>                         add a repository to gpm                                                                
+     remove [owner] [repo]              Remove a repository from registry and disk                                             
+     list [key]                         Display the all repositories in registry                                               
+     clean                              Clear the cache, usually is /home/axetroy/.gpm/temp                                    
+     find                               Find repository by a key, You can get all about the repository info                    
+     relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
+     config <action> [key] [value]                                                                                             
+     runtime                            Print the program runtime, useful for submit issue                                     
+     import <dir>                       Import local repository into gpm registry                                              
+     help <command>                     Display help for a specific command                                                    
 
    GLOBAL OPTIONS
 
