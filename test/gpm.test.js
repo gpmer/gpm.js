@@ -18,6 +18,7 @@ const addCommand = require('../lib/command/add');
 const listCommand = require('../lib/command/list');
 const runtimeCommand = require('../lib/command/runtime');
 const configCommand = require('../lib/command/config');
+const cleanCommand = require('../lib/command/clean');
 
 const {home, root, temp, config} = CONFIG.paths;
 
@@ -156,6 +157,27 @@ test.serial('config reset', async(t) => {
 
   t.deepEqual(__config__, configJSON);
   t.deepEqual(__config__, CONFIG.defaults);
+
+  t.pass();
+});
+
+test.serial('clean', async(t) => {
+
+  let __temp__ = await fs.readdirAsync(temp);
+
+  t.deepEqual(__temp__, []);
+
+  await fs.ensureFileAsync(path.join(temp, 'test'));
+
+  __temp__ = await fs.readdirAsync(temp);
+
+  t.deepEqual(__temp__, ['test']);
+
+  await cleanCommand({}, {nolog: true});
+
+  __temp__ = await fs.readdirAsync(temp);
+
+  t.deepEqual(__temp__, []);
 
   t.pass();
 });
