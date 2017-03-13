@@ -62,6 +62,7 @@ gpm -h
      config <action> [key] [value]                                                                                             
      runtime                            Print the program runtime, useful for submit issue                                     
      import <dir>                       Import local repository into gpm registry                                              
+     foreach <plugin>                   Run the plugin in each project. The current work directory is the current project.     
      help <command>                     Display help for a specific command                                                    
 
    GLOBAL OPTIONS
@@ -106,10 +107,11 @@ gpm add https://github.com/zeit/release.git --plugin npmi
 # it will run 'npm install' in the dist directory
 ```
 
-plugin | description
+name | description
 ------------ | -------------
 [npmi](https://github.com/gpmer/gpm-plugin-npmi) | gpm plugin for run npm install after add repository
 [pub](https://github.com/gpmer/gpm-plugin-pub) | gpm plugin for Dart project, run <pub get> after add repository
+[clear-node-modules](https://github.com/gpmer/gpm-plugin-clear-node-modules) | gpm plugin for clean the all NodeJs project's node_modules directory
 
 ## Structure
 
