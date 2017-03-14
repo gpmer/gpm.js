@@ -1,3 +1,20 @@
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/gpmer/gpm.js/compare/v6.0.0...v6.1.0) (2017-03-14)
+
+
+### Bug Fixes
+
+* fix then plugin's name is invalid, will throw an error. it should not ([3ca743b](https://github.com/gpmer/gpm.js/commit/3ca743b))
+
+
+### Features
+
+* add foreach command ([f55a05d](https://github.com/gpmer/gpm.js/commit/f55a05d))
+* add plugin a method to load all plugin ([d38c612](https://github.com/gpmer/gpm.js/commit/d38c612))
+* gpm remove, now can specify which one you  want to remove, required repo's owner & name ([b85df6e](https://github.com/gpmer/gpm.js/commit/b85df6e))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/gpmer/gpm.js/compare/v5.4.1...v6.0.0) (2017-03-12)
 
