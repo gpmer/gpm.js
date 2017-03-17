@@ -50,28 +50,34 @@ gpm -h
 
 # print out
 
-  Usage: gpm <command> [options]
+   gpm 6.1.0 - Git Package Manager, make you manage the repository easier
 
+   USAGE
 
-  Commands:
+     gpm <command> [options]
 
-    add|a [options] <repo>            add a repository to gpm
-    remove|rm [key]                   Remove a repository from registry and disk, optional [key] to filter
-    list|ls [key]                     Display the all repositories in registry
-    clean|cl                          Clear the cache, usually is /home/axetroy/.gpm/temp
-    search|sr <key>                   @Deprecated, Search repository by a key, You can get all about the repository info
-    find|fd <key>                     Find repository by a key, You can get all about the repository info
-    relink|rl [options]               Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
-    config|cf <action> [key] [value]  Config　handler, <list|get|set|delete|reset> [key] [value]
-    runtime|rt                        Print the program runtime, useful for submit issue
-    import|ip [options] <dir>         Import local repository into gpm registry
+   COMMANDS
 
-  Git Package Manager, make you manage the repository easier
+     add <repo>                         add a repository to gpm
+     remove [owner] [repo]              Remove a repository from registry and disk
+     list [key]                         Display the all repositories in registry
+     clean                              Clear the cache, usually is C:\Users\axetroy\.gpm\temp
+     find                               Find repository by a key, You can get all about the repository info
+     relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
+     config <action> [key] [value]
+     runtime                            Print the program runtime, useful for submit issue
+     import <dir>                       Import local repository into gpm registry
+     foreach <plugin>                   Run the plugin in each project. The current work directory is the current project.
+     plugin <action> [key]              A series handler of plugin.
+     help <command>                     Display help for a specific command
 
-  Options:
+   GLOBAL OPTIONS
 
-    -h, --help     output usage information
-    -V, --version  output the version number
+     -h, --help         Display help
+     -V, --version      Display version
+     --no-color         Disable colors
+     --quiet            Quiet mode - only displays warn and error messages
+     -v, --verbose      Verbose mode - will also output debug messages
 
 ```
 
@@ -142,7 +148,7 @@ gpm -h
 
 ```bash
 git clone https://github.com/gpmer/gpm.js.git
-cd ./gpm
+cd ./gpm.js
 yarn
 ./bin/gpm
 ```
