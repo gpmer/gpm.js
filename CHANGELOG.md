@@ -1,3 +1,23 @@
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/gpmer/gpm.js/compare/v6.1.0...v6.1.1) (2017-03-17)
+
+
+### Code Refactoring
+
+* rename [gpm config delete <key>] to [gpm config remove <key>] ([71f6c1e](https://github.com/gpmer/gpm.js/commit/71f6c1e))
+
+
+### Features
+
+* add plugin command ([8adf931](https://github.com/gpmer/gpm.js/commit/8adf931))
+
+
+### BREAKING CHANGES
+
+* use gpm config remove <key> instead gpm config delete <key>
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/gpmer/gpm.js/compare/v6.0.0...v6.1.0) (2017-03-14)
 
