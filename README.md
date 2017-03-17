@@ -45,33 +45,34 @@ gpm -h
 
 # print out
 
-   gpm 6.0.0 - Git Package Manager, make you manage the repository easier
-     
+   gpm 6.1.0 - Git Package Manager, make you manage the repository easier
+
    USAGE
 
-     gpm <command> [options] 
+     gpm <command> [options]
 
    COMMANDS
 
-     add <repo>                         add a repository to gpm                                                                
-     remove [owner] [repo]              Remove a repository from registry and disk                                             
-     list [key]                         Display the all repositories in registry                                               
-     clean                              Clear the cache, usually is /home/axetroy/.gpm/temp                                    
-     find                               Find repository by a key, You can get all about the repository info                    
+     add <repo>                         add a repository to gpm
+     remove [owner] [repo]              Remove a repository from registry and disk
+     list [key]                         Display the all repositories in registry
+     clean                              Clear the cache, usually is C:\Users\axetroy\.gpm\temp
+     find                               Find repository by a key, You can get all about the repository info
      relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
-     config <action> [key] [value]                                                                                             
-     runtime                            Print the program runtime, useful for submit issue                                     
-     import <dir>                       Import local repository into gpm registry                                              
-     foreach <plugin>                   Run the plugin in each project. The current work directory is the current project.     
-     help <command>                     Display help for a specific command                                                    
+     config <action> [key] [value]
+     runtime                            Print the program runtime, useful for submit issue
+     import <dir>                       Import local repository into gpm registry
+     foreach <plugin>                   Run the plugin in each project. The current work directory is the current project.
+     plugin <action> [key]              A series handler of plugin.
+     help <command>                     Display help for a specific command
 
    GLOBAL OPTIONS
 
-     -h, --help         Display help                                      
-     -V, --version      Display version                                   
-     --no-color         Disable colors                                    
+     -h, --help         Display help
+     -V, --version      Display version
+     --no-color         Disable colors
      --quiet            Quiet mode - only displays warn and error messages
-     -v, --verbose      Verbose mode - will also output debug messages    
+     -v, --verbose      Verbose mode - will also output debug messages
 
 ```
 
