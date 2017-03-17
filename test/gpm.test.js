@@ -138,9 +138,9 @@ test.serial('config set', async(t) => {
 
 test.serial('config remove', async(t) => {
 
-  const version = await configCommand({action: 'delete', key: 'version'}, {nolog: true});
-  const owner = await configCommand({action: 'delete', key: 'owner'}, {nolog: true});
-  const base = await configCommand({action: 'delete', key: 'base'}, {nolog: true});
+  const version = await configCommand({action: 'remove', key: 'version'}, {nolog: true});
+  const owner = await configCommand({action: 'remove', key: 'owner'}, {nolog: true});
+  const base = await configCommand({action: 'remove', key: 'base'}, {nolog: true});
 
   const configJSON = await fs.readJsonAsync(config);
 
