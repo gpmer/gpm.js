@@ -66,7 +66,8 @@
     "observatory": "^1.0.0",
     "parse-git-config": "^1.1.1",
     "prettyjson": "^1.2.1",
-    "semver": "^5.3.0"
+    "semver": "^5.3.0",
+    "which": "^1.2.12"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.0.1",
