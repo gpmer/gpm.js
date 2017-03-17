@@ -62,3 +62,11 @@ test
 
 # docs
 docs
+
+# others
+.all-contributorsrc
+.editorconfig
+.gitattributes
+.gitignore
+.pullapprove.yml
+.travis.yml
