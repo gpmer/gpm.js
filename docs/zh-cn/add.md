@@ -4,7 +4,7 @@
 $ gpm add|a [options] <repo>
 ```
 
-## 使用
+## 帮助信息
 
 ```bash
 $ gpm help add

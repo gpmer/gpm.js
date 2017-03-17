@@ -5,6 +5,7 @@
 - [Find](/find)
 - [Import](/import)
 - [Reink](/relink)
-- [clean](/clean)
+- [Clean](/clean)
+- [Plugin](/plugin)
 - [Config](/config)
 - [Runtime](/runtime)

@@ -6,5 +6,6 @@
 - [导入仓库](zh-cn/import)
 - [链接仓库](zh-cn/relink)
 - [清除缓存](zh-cn/clean)
+- [插件管理](zh-cn/plugin)
 - [配置参数](zh-cn/config)
 - [运行环境](zh-cn/runtime)

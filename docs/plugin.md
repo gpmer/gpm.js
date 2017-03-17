@@ -1,21 +1,25 @@
 ## Command
 
 ```bash
-$ gpm clean|cl [options]
+$ gpm plugin|pl
 ```
 
-clear temp cache，at the same time it will trigger [relink](/relink)
+A series handler of plugin.
 
 ## Help Information
 
 ```bash
-$ gpm help clean
 
    gpm 6.1.0 - Git Package Manager, make you manage the repository easier
 
    USAGE
 
-     gpm clean
+     gpm plugin <action> [key]
+
+   ARGUMENTS
+
+     <action>      plugin action      required
+     [key]         query key          optional
 
    OPTIONS
 
@@ -31,6 +35,16 @@ $ gpm help clean
      --quiet            Quiet mode - only displays warn and error messages
      -v, --verbose      Verbose mode - will also output debug messages
 ```
+
+## Arguments
+
+- **action**: required
+
+plugin action, one of list|remove
+
+- **key**: required
+
+query key
 
 ## Options
 
@@ -48,8 +62,10 @@ Don't not display any log
 
 ## Example
 
-#### clear cache
+```bash
+$ gpm plugin list
+```
 
 ```bash
-$ gpm clean
+$ gpm plugin remove npmi
 ```

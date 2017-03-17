@@ -6,22 +6,65 @@ $ gpm import|ip  [options] <dir>
 
 import the repository which not add via gpm
 
+## Help Information
+
+```bash
+$ gpm help import
+
+   gpm 6.1.0 - Git Package Manager, make you manage the repository easier
+
+   USAGE
+
+     gpm import <dir>
+
+   ARGUMENTS
+
+     <dir>      The directory you want to import      required
+
+   OPTIONS
+
+     --hard             hard mode, move the repository directory to gpm base directory instead of link directory by default.      optional
+     --all              traverse the cwd, find the child dir and import then all to gpm. loop 1 deep dir                          optional
+     -u, --unixify      Output the path as unix style, useful in Windows Git bash                                                 optional
+     -f, --force        Forced mode, skip the question                                                                            optional
+     --nolog            Don't not display any log                                                                                 optional
+
+   GLOBAL OPTIONS
+
+     -h, --help         Display help
+     -V, --version      Display version
+     --no-color         Disable colors
+     --quiet            Quiet mode - only displays warn and error messages
+     -v, --verbose      Verbose mode - will also output debug messages
+```
+
 ## Arguments
 
-- **list|ls**: <required>
+- **dir**: required
+    
+The path of the repository to be imported can be a relative path or an absolute path
+    
+## Options
 
-- **options**: [optional]
-    > -h, --help         output usage information
-    
-    > --hard             hard mode, move the repository directory to gpm base directory instead of link directory by default.
-    
-    > --all              traverse the cwd, find the child dir and import then all to gpm. loop 1 deep dir
-    
-    > -f, --force        forced mode, skip the question that ask you cover the old one or not if the repository has exist in gpm registry
+- -u, --unixify
 
-- **dir**: <required>
-    
-    > The path of the repository to be imported can be a relative path or an absolute path
+Output the path as unix style, useful in Windows Git bash
+
+- -f, --force
+
+Forced mode, skip the question
+
+- --nolog
+
+Don't not display any log
+
+- --hard
+
+hard mode, move the repository directory to gpm base directory instead of link directory by default.
+
+- --all
+
+traverse the cwd, find the child dir and import then all to gpm. loop 1 deep dir
 
 ## Example
 

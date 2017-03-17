@@ -4,7 +4,7 @@
 $ gpm add|a [options] <repo>
 ```
 
-## Usage
+## Help Information
 
 ```bash
 $ gpm help add
@@ -38,7 +38,7 @@ $ gpm help add
 
 ## Arguments
 
-- **add|a**: <required>
+- **add|a**: required
 
 git repository url，support https，https proto && github, gitlab etc
 

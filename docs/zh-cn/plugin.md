@@ -1,21 +1,25 @@
-## Command
+## 命令
 
 ```bash
-$ gpm clean|cl [options]
+$ gpm plugin|pl
 ```
 
-clear temp cache，at the same time it will trigger [relink](/relink)
+关于插件的一系列操作
 
-## Help Information
+## 帮助信息
 
 ```bash
-$ gpm help clean
 
    gpm 6.1.0 - Git Package Manager, make you manage the repository easier
 
    USAGE
 
-     gpm clean
+     gpm plugin <action> [key]
+
+   ARGUMENTS
+
+     <action>      plugin action      required
+     [key]         query key          optional
 
    OPTIONS
 
@@ -32,24 +36,36 @@ $ gpm help clean
      -v, --verbose      Verbose mode - will also output debug messages
 ```
 
-## Options
+## 参数
+
+- **action**: required
+
+插件的action，list|remove 中的一个值
+
+- **key**: required
+
+查询的key
+
+## 可选项
 
 - -u, --unixify
 
-Output the path as unix style, useful in Windows Git bash
+目录输出格式为unix格式
 
 - -f, --force
 
-Forced mode, skip the question
+强制模式，跳过询问
 
 - --nolog
 
-Don't not display any log
+安静模式，不输入日志
 
-## Example
-
-#### clear cache
+## 例子
 
 ```bash
-$ gpm clean
+$ gpm plugin list
+```
+
+```bash
+$ gpm plugin remove npmi
 ```
