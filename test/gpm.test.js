@@ -45,7 +45,7 @@ test.serial('prepare', async(t) => {
   const __root__ = await fs.readdirAsync(root);
   const __temp__ = await fs.readdirAsync(temp);
   const __config__ = await fs.readJsonAsync(config);
-  t.deepEqual(__root__.length, 2);
+  t.deepEqual(__root__.length, 3);
   t.deepEqual(__temp__.length, 0);
   t.deepEqual(__config__, CONFIG.defaults);
   t.pass();
