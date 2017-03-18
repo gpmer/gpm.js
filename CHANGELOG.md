@@ -1,3 +1,28 @@
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/gpmer/gpm.js/compare/v6.1.3...v6.2.0) (2017-03-18)
+
+
+### Features
+
+* support .gpmrc config file in repo ([30850c0](https://github.com/gpmer/gpm.js/commit/30850c0))
+
+
+
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/gpmer/gpm.js/compare/v6.1.2...v6.1.3) (2017-03-17)
+
+
+### Bug Fixes
+
+* node command should be git.. ([4d4e24b](https://github.com/gpmer/gpm.js/commit/4d4e24b))
+
+
+
+<a name="6.1.2"></a>
+## [6.1.2](https://github.com/gpmer/gpm.js/compare/v6.1.1...v6.1.2) (2017-03-17)
+
+
+
 <a name="6.1.1"></a>
 ## [6.1.1](https://github.com/gpmer/gpm.js/compare/v6.1.0...v6.1.1) (2017-03-17)
 
