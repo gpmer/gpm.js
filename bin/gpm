@@ -2,10 +2,12 @@
 
 require('colors');
 const co = require('co');
+const program = require('caporal');
 const checkUpdate = require('../lib/check-update');
 const prepare = require('../lib/prepare');
 
 co(function *() {
+  program.__start__ = new Date();
   yield checkUpdate();
   yield prepare();
   require('../lib/gpm');
