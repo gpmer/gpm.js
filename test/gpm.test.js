@@ -20,6 +20,8 @@ const runtimeCommand = require('../lib/command/runtime');
 const configCommand = require('../lib/command/config');
 const cleanCommand = require('../lib/command/clean');
 
+const globalConfig = require('../lib/global-config');
+
 const {home, root, temp, config} = CONFIG.paths;
 
 test.before(async function (t) {
@@ -35,6 +37,7 @@ test.serial.beforeEach(async function (t) {
 });
 
 test.serial.afterEach(async function (t) {
+  await globalConfig.reset();
   await fs.emptydirAsync(home);
   await fs.removeAsync(home);
   t.pass();
@@ -114,37 +117,48 @@ test.serial('config get', async(t) => {
   const owner = await configCommand({action: 'get', key: 'owner'}, {nolog: true});
   const base = await configCommand({action: 'get', key: 'base'}, {nolog: true});
 
-  t.deepEqual(version, pkg.version);
-  t.deepEqual(owner, CONFIG.name);
-  t.deepEqual(base, CONFIG.name);
+  t.deepEqual(globalConfig.entity.version, version);
+  t.deepEqual(globalConfig.entity.owner, owner);
+  t.deepEqual(globalConfig.entity.base, base);
 
   t.pass();
 });
 
 test.serial('config set', async(t) => {
 
-  const version = await configCommand({action: 'set', key: 'version', value: 'test version'}, {nolog: true});
-  const owner = await configCommand({action: 'set', key: 'owner', value: 'test owner'}, {nolog: true});
-  const base = await configCommand({action: 'set', key: 'base', value: 'test base'}, {nolog: true});
+  const actions = [
+    {action: 'set', key: 'version', value: 'test version'},
+    {action: 'set', key: 'owner', value: 'test owner'},
+    {action: 'set', key: 'base', value: 'test base'}
+  ];
 
-  const configJSON = await fs.readJsonAsync(config);
+  const __actions__ = actions.slice();
 
-  t.deepEqual(configJSON.version, version);
-  t.deepEqual(configJSON.owner, owner);
-  t.deepEqual(configJSON.base, base);
+  while (actions.length) {
+    const action = actions.shift();
+    await configCommand(action, {nolog: true});
+  }
+
+  t.deepEqual(globalConfig.entity.version, __actions__[0].value);
+  t.deepEqual(globalConfig.entity.owner, __actions__[1].value);
+  t.deepEqual(globalConfig.entity.base, __actions__[2].value);
 
   t.pass();
 });
 
 test.serial('config remove', async(t) => {
 
-  const version = await configCommand({action: 'remove', key: 'version'}, {nolog: true});
-  const owner = await configCommand({action: 'remove', key: 'owner'}, {nolog: true});
-  const base = await configCommand({action: 'remove', key: 'base'}, {nolog: true});
+  const actions = [
+    {action: 'remove', key: 'version'},
+    {action: 'remove', key: 'owner'},
+    {action: 'remove', key: 'base'}
+  ];
 
-  const configJSON = await fs.readJsonAsync(config);
-
-  t.deepEqual(configJSON, {});
+  while (actions.length) {
+    const action = actions.shift();
+    await configCommand(action, {nolog: true});
+    t.deepEqual(globalConfig.entity[action.key], void 0);
+  }
 
   t.pass();
 });
@@ -162,6 +176,8 @@ test.serial('config reset', async(t) => {
 });
 
 test.serial('clean', async(t) => {
+
+  process.stdout.write(JSON.stringify(globalConfig.entity));
 
   let __temp__ = await fs.readdirAsync(temp);
 
