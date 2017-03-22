@@ -33,6 +33,7 @@ test.before(async function (t) {
 test.serial.beforeEach(async function (t) {
   await fs.ensureDir(home);
   await prepare();
+  await globalConfig.init();
   t.pass();
 });
 
