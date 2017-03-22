@@ -178,8 +178,6 @@ test.serial('config reset', async(t) => {
 
 test.serial('clean', async(t) => {
 
-  process.stdout.write(JSON.stringify(globalConfig.entity));
-
   let __temp__ = await fs.readdirAsync(temp);
 
   t.deepEqual(__temp__, []);
