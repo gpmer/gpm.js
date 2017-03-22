@@ -5,11 +5,14 @@ const co = require('co');
 const program = require('caporal');
 const checkUpdate = require('../lib/check-update');
 const prepare = require('../lib/prepare');
+const globalConfig = require('../lib/global-config');
 
 co(function *() {
   program.__start__ = new Date();
-  yield checkUpdate();
   yield prepare();
+  if (globalConfig.entity.checkUpgrade && (globalConfig.entity.checkUpgrade + '').trim() === "true") {
+    yield checkUpdate();
+  }
   require('../lib/gpm');
 }).catch(function (err) {
   console.error(err);
