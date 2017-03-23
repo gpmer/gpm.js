@@ -60,6 +60,7 @@
     "global-npm": "^0.3.0",
     "inquirer": "^3.0.1",
     "inquirer-autocomplete-prompt": "^0.8.0",
+    "json-toy": "^1.0.12",
     "lodash": "^4.17.4",
     "log4js": "^1.1.0",
     "node-persist": "^2.0.10",
@@ -74,7 +75,6 @@
     "ava": "^0.18.2",
     "conventional-changelog-cli": "^1.2.0",
     "docsify-cli": "^3.2.3",
-    "json-toy": "^1.0.12",
     "nyc": "^10.1.2"
   }
 }
