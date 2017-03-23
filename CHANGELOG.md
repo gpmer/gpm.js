@@ -1,3 +1,31 @@
+<a name="6.3.0"></a>
+# [6.3.0](https://github.com/gpmer/gpm.js/compare/v6.2.1...v6.3.0) (2017-03-23)
+
+
+### Bug Fixes
+
+* fix relink loop before check exist or not ([bbee726](https://github.com/gpmer/gpm.js/commit/bbee726))
+* run the gpmrc hooks before check it exist or not ([3b9aea5](https://github.com/gpmer/gpm.js/commit/3b9aea5))
+
+
+### Features
+
+* add tree command ([ae21cb6](https://github.com/gpmer/gpm.js/commit/ae21cb6))
+* config need to check gpm upgrade or not in global config ~/.gpm/gpm.config.json ([66abd4e](https://github.com/gpmer/gpm.js/commit/66abd4e))
+* print the time during this command ([9283593](https://github.com/gpmer/gpm.js/commit/9283593))
+
+
+
+<a name="6.2.1"></a>
+## [6.2.1](https://github.com/gpmer/gpm.js/compare/v6.2.0...v6.2.1) (2017-03-21)
+
+
+### Bug Fixes
+
+* fix gpmrc hook can't run multiple command line. ([efeac96](https://github.com/gpmer/gpm.js/commit/efeac96))
+
+
+
 <a name="6.2.0"></a>
 # [6.2.0](https://github.com/gpmer/gpm.js/compare/v6.1.3...v6.2.0) (2017-03-18)
 
