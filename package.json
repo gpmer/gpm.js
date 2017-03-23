@@ -74,6 +74,7 @@
     "ava": "^0.18.2",
     "conventional-changelog-cli": "^1.2.0",
     "docsify-cli": "^3.2.3",
+    "json-toy": "^1.0.12",
     "nyc": "^10.1.2"
   }
 }
