@@ -175,24 +175,3 @@ test.serial('config reset', async(t) => {
 
   t.pass();
 });
-
-test.serial('clean', async(t) => {
-
-  let __temp__ = await fs.readdirAsync(temp);
-
-  t.deepEqual(__temp__, []);
-
-  await fs.ensureFileAsync(path.join(temp, 'test'));
-
-  __temp__ = await fs.readdirAsync(temp);
-
-  t.deepEqual(__temp__, ['test']);
-
-  await cleanCommand({}, {nolog: true});
-
-  __temp__ = await fs.readdirAsync(temp);
-
-  t.deepEqual(__temp__, []);
-
-  t.pass();
-});
