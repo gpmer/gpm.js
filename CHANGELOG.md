@@ -1,3 +1,28 @@
+<a name="6.3.2"></a>
+## [6.3.2](https://github.com/gpmer/gpm.js/compare/v6.3.1...v6.3.2) (2017-03-27)
+
+
+### Bug Fixes
+
+* fix gpm ls command can't filter the key ([07fb70e](https://github.com/gpmer/gpm.js/commit/07fb70e))
+
+
+
+<a name="6.3.1"></a>
+## [6.3.1](https://github.com/gpmer/gpm.js/compare/v6.3.0...v6.3.1) (2017-03-23)
+
+
+### Bug Fixes
+
+* the json-toy missing in deps ([f898610](https://github.com/gpmer/gpm.js/commit/f898610))
+
+
+### Features
+
+* add LICENSE command ([452dcca](https://github.com/gpmer/gpm.js/commit/452dcca))
+
+
+
 <a name="6.3.0"></a>
 # [6.3.0](https://github.com/gpmer/gpm.js/compare/v6.2.1...v6.3.0) (2017-03-23)
 
