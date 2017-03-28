@@ -7,13 +7,13 @@ const checkUpdate = require('../lib/check-update');
 const prepare = require('../lib/prepare');
 const globalConfig = require('../lib/global-config');
 
-co(function *() {
+co(function*() {
   program.__start__ = startTime;
   yield prepare();
-  if ((globalConfig.entity.checkUpgrade + '').trim() === "true") {
+  if ((globalConfig.entity.checkUpgrade + '').trim() === 'true') {
     yield checkUpdate();
   }
   require('../lib/gpm');
-}).catch(function (err) {
+}).catch(function(err) {
   console.error(err);
 });
