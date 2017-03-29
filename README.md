@@ -44,7 +44,7 @@ npm install @axetroy/gpm -g
 ```bash
 $ gpm --help
 
-   gpm 6.3.2 - Git Package Manager, make you manage the repository easier
+   gpm 6.3.3 - Git Package Manager, make you manage the repository easier
 
    USAGE
 
@@ -59,7 +59,7 @@ $ gpm --help
      clean                              Clear the cache, usually is /home/axetroy/.gpm/temp
      find                               Find repository by a key, You can get all about the repository info
      relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
-     config <action> [key] [value]
+     config <action> [key] [value]      A series handler of configurations.
      runtime                            Print the program runtime, useful for submit issue
      import <dir>                       Import local repository into gpm registry
      foreach <plugin>                   Run the plugin in each project. The current work directory is the current project.
