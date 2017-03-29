@@ -1814,11 +1814,9 @@ glob@^7.0.3, glob@^7.0.5, glob@^7.0.6:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-global-npm@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/global-npm/-/global-npm-0.3.0.tgz#7c5115394a677d1245c4e3ba0b78bb6752797ee0"
-  dependencies:
-    which "^1.2.1"
+global-modules-path@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/global-modules-path/download/global-modules-path-1.0.0.tgz#af649fe0466bde8f2f27bd48a4b9efa38895e9ea"
 
 globals@^9.0.0:
   version "9.16.0"
@@ -4040,7 +4038,7 @@ which-module@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/which-module/-/which-module-1.0.0.tgz#bba63ca861948994ff307736089e3b96026c2a4f"
 
-which@^1.2.1, which@^1.2.14, which@^1.2.4, which@^1.2.8, which@^1.2.9:
+which@^1.2.14, which@^1.2.4, which@^1.2.8, which@^1.2.9:
   version "1.2.14"
   resolved "https://registry.npmjs.org/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
   dependencies:
