@@ -1,3 +1,19 @@
+<a name="6.3.3"></a>
+## [6.3.3](https://github.com/gpmer/gpm.js/compare/v6.3.2...v6.3.3) (2017-03-29)
+
+
+### Bug Fixes
+
+* fix tree command ([4f6a5a5](https://github.com/gpmer/gpm.js/commit/4f6a5a5))
+* multiple same repo can be add to registry ([4e9fd83](https://github.com/gpmer/gpm.js/commit/4e9fd83))
+
+
+### Features
+
+* add --ignore-rc for add command, ignore .gpmrc which you don't trust or you don't run the hooks ([4fa3ed0](https://github.com/gpmer/gpm.js/commit/4fa3ed0))
+
+
+
 <a name="6.3.2"></a>
 ## [6.3.2](https://github.com/gpmer/gpm.js/compare/v6.3.1...v6.3.2) (2017-03-27)
 
