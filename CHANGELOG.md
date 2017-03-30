@@ -1,3 +1,19 @@
+<a name="6.4.0"></a>
+# [6.4.0](https://github.com/gpmer/gpm.js/compare/v6.3.3...v6.4.0) (2017-03-30)
+
+
+### Bug Fixes
+
+* missing config command description ([bd7e048](https://github.com/gpmer/gpm.js/commit/bd7e048))
+* support plugin in windows ([20fd89e](https://github.com/gpmer/gpm.js/commit/20fd89e)), closes [#11](https://github.com/gpmer/gpm.js/issues/11)
+
+
+### Features
+
+* command add & find will copy the repo path to your system clipboard if you platform support ([7ef1fa0](https://github.com/gpmer/gpm.js/commit/7ef1fa0))
+
+
+
 <a name="6.3.3"></a>
 ## [6.3.3](https://github.com/gpmer/gpm.js/compare/v6.3.2...v6.3.3) (2017-03-29)
 
