@@ -1,0 +1,143 @@
+{
+	"global": {
+		"tips": {
+			"good_bye": "好的! 再见",
+			"success": "成功",
+			"error:": "错误",
+			"fail": "失败"
+		},
+		"options": {
+			"unixify": {
+				"desc": "Output the path as unix style, useful in Windows Git bash."
+			},
+			"force": {
+				"desc": "Forced mode, skip the question."
+			},
+			"nolog": {
+				"desc": "Don't not display any log."
+			},
+			"ignore_rc": {
+				"desc": "Ignore .gpmrc. don't run any hook you don't trust."
+			}
+		}
+	},
+	"commands": {
+		"add": {
+			"desc": "添加仓库到gpm",
+			"argv": {
+				"repo": {
+					"desc": "git仓库地址"
+				}
+			},
+			"options": {
+				"plugin": {
+					"desc": "添加仓库成功之后运行指定的插件"
+				},
+				"name": {
+					"desc": "自定义目录名称"
+				}
+			},
+			"log": {
+				"invalid_url": "无效的git仓库地址: {{{repo}}}, 请确定地址正确.",
+				"info_add_success": "仓库已经被添加到 {{{path}}}",
+				"info_copy_clipboard": "现在你可以按 {{{key}}} 粘贴仓库路径",
+				"warn_copy_clipboard": "不能访问你的系统剪切板",
+				"confirm_cover": "你确定要覆盖 {{{path}}}",
+				"make_sure_install": "不能找到 {{{bin}}} 的可执行文件, 请确保你已经安装了它.",
+				"info_run_plugin": "运行插件: {{{name}}}",
+				"err_run_plugin": "错误: 插件 {{{name}}} 没有暴露 [add] 方法"
+			}
+		},
+		"remove": {
+			"desc": "从gpm注册表/系统硬盘中移除指定的仓库",
+			"argv": {
+				"owner": {
+					"desc": "仓库的拥有者."
+				},
+				"repo": {
+					"desc": "仓库的名字."
+				}
+			}
+		},
+		"list": {
+			"desc": "显示所有的仓库列表",
+			"argv": {
+				"key": {
+					"desc": "通过关键字筛选"
+				}
+			}
+		},
+		"tree": {
+			"desc": "以目录树的结构，显示所有的仓库列表",
+			"argv": {
+				"key": {
+					"desc": "通过关键字筛选"
+				}
+			}
+		},
+		"clean": {
+			"desc": "清理缓存, 位于 {{{tempPath}}}"
+		},
+		"find": {
+			"desc": "查找仓库，你可以获取到这个仓库的所有信息"
+		},
+		"relink": {
+			"desc": "重新链接base目录下的仓库到gpm的注册表, 就像Angular手动触发$digest循环一样."
+		},
+		"config": {
+			"desc": "配置文件的一系列操作",
+			"argv": {
+				"action": {
+					"desc": "配置的action"
+				},
+				"key": {
+					"desc": "配置文件的key"
+				},
+				"value": {
+					"desc": "配置文件对应key的value"
+				}
+			}
+		},
+		"runtime": {
+			"desc": "输出程序的运行环境，"
+		},
+		"import": {
+			"desc": "导入本地的仓库到gpm",
+			"options": {
+				"hard": {
+					"desc": "硬导入, 移动仓库到gpm相应的目录，而不是默认的在gpm创建link指向该仓库"
+				},
+				"all": {
+					"desc": "遍历当前工作目录，找到一级目录下所有的仓库并且导入"
+				}
+			},
+			"argv": {
+				"dir": {
+					"desc": "你想要导入的仓库目录"
+				}
+			}
+		},
+		"foreach": {
+			"desc": "遍历所有项目并运行插件. 插件环境中，当前工作目录则为循环中的当前项目",
+			"argv": {
+				"plugin": {
+					"desc": "在循环中要运行的插件名称"
+				}
+			}
+		},
+		"plugin": {
+			"desc": "插件的一系列操作",
+			"argv": {
+				"action": {
+					"desc": "插件的action"
+				},
+				"key": {
+					"desc": "插件的key"
+				}
+			}
+		},
+		"licenses": {
+			"desc": "输出每个仓库的许可证和仓库地址."
+		}
+	}
+}
