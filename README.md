@@ -20,6 +20,7 @@ Git Package Manager, make you manage the repository easier
 - [x] add, remove, clean, cache, list commands
 - [x] score, humanize, easier to manager
 - [x] plugin support, more hook, it can help you do more thing
+- [x] support i18n
 - [ ] add repository in multi directories
 
 ## Installation
