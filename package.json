@@ -50,6 +50,7 @@
     "axios": "^0.15.3",
     "bluebird": "^3.4.7",
     "caporal": "^0.4.1",
+    "clipboardy": "^1.0.2",
     "co": "^4.6.0",
     "colors": "^1.1.2",
     "console.table": "^0.8.0",
