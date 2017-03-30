@@ -8,16 +8,16 @@
 		},
 		"options": {
 			"unixify": {
-				"desc": "Output the path as unix style, useful in Windows Git bash."
+				"desc": "以unix风格输出路径, 在Windows的Git bash非常有用"
 			},
 			"force": {
-				"desc": "Forced mode, skip the question."
+				"desc": "强制模式，跳过询问"
 			},
 			"nolog": {
-				"desc": "Don't not display any log."
+				"desc": "不输出任何的日志."
 			},
 			"ignore_rc": {
-				"desc": "Ignore .gpmrc. don't run any hook you don't trust."
+				"desc": "忽略仓库中的.gpmrc文件，如果你不信任里面的hook，不要轻易运行"
 			}
 		}
 	},
