@@ -71,6 +71,10 @@
         "key": {
           "desc": "通过关键字筛选"
         }
+      },
+      "log": {
+        "warn_empty_registry": "你还没有添加任何仓库, 请尝试运行命令添加: ${config.name} add <repo> [options]",
+        "err_not_found": "没有找到仓库"
       }
     },
     "tree": {
