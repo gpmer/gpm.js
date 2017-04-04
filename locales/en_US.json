@@ -4,7 +4,9 @@
       "good_bye": "Ok! Good bye.",
       "success": "Success",
       "error:": "Error",
-      "fail": "Fail"
+      "fail": "Fail",
+      "past": "Now you can press {{{key}}} to paste the path.",
+      "copy_fail": "Can not copy the path to you system clipboard."
     },
     "options": {
       "unixify": {
@@ -89,7 +91,10 @@
       "desc": "Clear the cache, locate in {{{tempPath}}}."
     },
     "find": {
-      "desc": "Find repository by a key, You can get all about the repository info."
+      "desc": "Find repository by a key, You can get all about the repository info.",
+      "log": {
+        "info_type_to_search": "Type to Search"
+      }
     },
     "relink": {
       "desc": "Relink the base directory and gpm registry, like Angular, trigger the $digest in manual."
