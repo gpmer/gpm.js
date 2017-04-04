@@ -57,6 +57,12 @@
         "repo": {
           "desc": "the repository'name."
         }
+      },
+      "log": {
+        "err_missing_repo": "remove <{{{owner}}}> <repo> missing repo",
+        "info_type_to_search": "Type to Search",
+        "warn_confirm_del": "Are you sure to delete {{{repo}}}",
+        "del": "{{{repo}}} have been removed."
       }
     },
     "list": {
