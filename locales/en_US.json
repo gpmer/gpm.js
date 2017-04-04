@@ -127,6 +127,12 @@
         "dir": {
           "desc": "The directory you want to import."
         }
+      },
+      "log": {
+        "invalid_repo": "Invalid repo: {{{repo}}}, please make sure that is a git repository.",
+        "invalid_repo_url": "Invalid repository, please make sure that you have set remote repository url.",
+        "warn_cmd_require_pms": "if you are using fucking <cmd>, Make sure you run it as administrator, or it will not have permission"
+        "confirm_replace": "repository has exist, Are you sure to replace {{{path}}}"
       }
     },
     "foreach": {
