@@ -127,6 +127,12 @@
         "dir": {
           "desc": "你想要导入的仓库目录"
         }
+      },
+      "log": {
+        "invalid_repo": "无效仓库: {{{repo}}}, 请确保这是一个git仓库.",
+        "invalid_repo_url": "无效的仓库, 请确保远程仓库地址的正确性.",
+        "warn_cmd_require_pms": "如果你正在使用操蛋的Windows cmd, 请确保以管理员方式运行，否则将获取不到权限"
+        "confirm_replace": "仓库已存在, 确定要覆盖 {{{path}}}"
       }
     },
     "foreach": {
