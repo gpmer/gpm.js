@@ -3,7 +3,7 @@
 [![Dependency](https://david-dm.org/gpmer/gpm.js.svg)](https://david-dm.org/gpmer/gpm.js)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 [![Prettier](https://img.shields.io/badge/Code%20Style-Prettier-green.svg)](https://github.com/prettier/prettier)
-![Node](https://img.shields.io/badge/node-%3E=6.9-blue.svg?style=flat-square)
+![Node](https://img.shields.io/badge/node-%3E=6.0-blue.svg?style=flat-square)
 [![npm version](https://badge.fury.io/js/%40axetroy%2Fgpm.svg)](https://badge.fury.io/js/%40axetroy%2Fgpm)
 
 Git Package Manager, make you manage the repository easier
@@ -30,7 +30,7 @@ npm install @axetroy/gpm -g
 
 ## Requirement
 
-- nodejs>=6.9
+- nodejs>=6.0
 - npm || yarn
 - Git
 
