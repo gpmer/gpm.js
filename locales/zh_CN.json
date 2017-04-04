@@ -135,6 +135,9 @@
         "plugin": {
           "desc": "在循环中要运行的插件名称"
         }
+      },
+      "log": {
+        "not_export_foreach_method": "插件没有输出foreach方法"
       }
     },
     "plugin": {
