@@ -159,6 +159,10 @@
         "key": {
           "desc": "Plugin key."
         }
+      },
+      "log": {
+        "require_key": "The [key] must be required, please try again: {{{cmd}}}",
+        "info_help": "Flow the command line: {{{cmd}}}"
       }
     },
     "licenses": {

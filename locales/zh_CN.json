@@ -159,6 +159,10 @@
         "key": {
           "desc": "插件的key"
         }
+      },
+      "log": {
+        "require_key": "缺少参数 [key], 请再尝试一次命令: {{{cmd}}}",
+        "info_help": "请遵循这条命令: {{{cmd}}}"
       }
     },
     "licenses": {
