@@ -1,3 +1,19 @@
+<a name="6.5.0"></a>
+# [6.5.0](https://github.com/gpmer/gpm.js/compare/v6.4.0...v6.5.0) (2017-04-04)
+
+
+### Bug Fixes
+
+* missing quotation marks ([056f227](https://github.com/gpmer/gpm.js/commit/056f227))
+* missing quotation marks ([2cde5d2](https://github.com/gpmer/gpm.js/commit/2cde5d2))
+
+
+### Features
+
+* support i18n command and message ([9574241](https://github.com/gpmer/gpm.js/commit/9574241)), closes [#12](https://github.com/gpmer/gpm.js/issues/12)
+
+
+
 <a name="6.4.0"></a>
 # [6.4.0](https://github.com/gpmer/gpm.js/compare/v6.3.3...v6.4.0) (2017-03-30)
 
