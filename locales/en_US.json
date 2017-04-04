@@ -101,6 +101,12 @@
         },
         "value": {
           "desc": "Config value."
+        },
+        "log": {
+          "require_key": "The [key] must be required",
+          "require_val": "The <value> must be required",
+          "info_reset": "Has reset the config to default",
+          "info_help": "Flow the command line: {{{cmd}}}"
         }
       }
     },

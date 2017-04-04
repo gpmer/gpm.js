@@ -101,6 +101,12 @@
         },
         "value": {
           "desc": "配置文件对应key的value"
+        },
+        "log": {
+          "require_key": "缺少参数 [key]",
+          "require_val": "缺少参数 <value>",
+          "info_reset": "已重置到默认配置",
+          "info_help": "请遵循这条命令: {{{cmd}}}"
         }
       }
     },
