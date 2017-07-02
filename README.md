@@ -1,4 +1,6 @@
 # gpm.js 
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/gpmer/gpm.js.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/gpmer/gpm.js.svg?branch=master)](https://travis-ci.org/gpmer/gpm.js)
 [![Dependency](https://david-dm.org/gpmer/gpm.js.svg)](https://david-dm.org/gpmer/gpm.js)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
