@@ -2,20 +2,28 @@
  * Created by axetroy on 17-2-15.
  */
 const fs = require('fs-extra');
-
-import { __ } from 'i18n';
 import * as i18n from 'i18n';
+import { __ } from 'i18n';
 
 import { paths, defaults } from './config';
 import globalConfig from './global-config';
 import registry from './registry';
+
+export interface I18nConfig$ {
+  locales: string[];
+  defaultLocale: string;
+  directory: string;
+  extension: string;
+  register: any;
+  objectNotation: boolean;
+}
 
 /**
  1. make sure root directory has exist
  2. make sure [temp, config] has exist
  3. make sure [config] must be a json file even it's empty
  */
-export default async function(): Promise<any> {
+export default async function(): Promise<void> {
   await fs.ensureDir(paths.root);
   await [
     await fs.ensureDir(paths.temp),
@@ -27,7 +35,7 @@ export default async function(): Promise<any> {
 
   const currentLocale = globalConfig.get('locale') || defaults.locale;
 
-  i18n.configure({
+  const i18nConfig: I18nConfig$ = {
     locales: ['en_US', 'zh_CN'],
     defaultLocale: supports.includes(currentLocale)
       ? currentLocale
@@ -36,5 +44,7 @@ export default async function(): Promise<any> {
     extension: '.json',
     register: global,
     objectNotation: true
-  });
+  };
+
+  i18n.configure(i18nConfig);
 }
