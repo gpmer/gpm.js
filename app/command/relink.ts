@@ -17,11 +17,11 @@ import {
   parseGitConfigAsync,
   isDir,
   isExistPath,
-  normalizePath
+  normalizePath,
+  GitConfig$
 } from '../utils';
 
-interface Argv$ {
-}
+interface Argv$ {}
 
 interface Options$ {
   nolog?: boolean;
@@ -29,21 +29,31 @@ interface Options$ {
   force?: boolean;
 }
 
-async function filterDir(files) {
-  let output: any[] = [];
+async function filterDir(files: string[]): Promise<string[]> {
+  let output: string[] = [];
   files = files.slice();
   while (files.length) {
-    let file: any = files.shift();
+    let file: string = <string>files.shift();
     (await isDir(file)) && output.push(file);
   }
   return output;
 }
 
-async function loop(base: string, deepIndex: number = 0, options: Options$) {
+export interface Origin$ {
+  [key: string]: {
+    [subkey: string]: string;
+  };
+}
+
+async function loop(
+  base: string,
+  deepIndex: number = 0,
+  options: Options$
+): Promise<void> {
   if (!await isExistPath(base)) return;
   if (deepIndex >= 3) {
     if (!await isGitRepoDir(base)) return;
-    let gitConfig = await parseGitConfigAsync({
+    let gitConfig: GitConfig$ = await parseGitConfigAsync({
       cwd: base,
       path: path.join('.git', 'config')
     });
@@ -60,22 +70,25 @@ async function loop(base: string, deepIndex: number = 0, options: Options$) {
         `${origin.url.green} >>> ${normalizePath(base, options).yellow}`
       );
   } else {
-    const files = ((await fs.readdir(base)) || [])
+    const files: string[] = ((await fs.readdir(base)) || [])
       .map(file => path.join(base, file));
-    const dirs = await filterDir(files);
+    const dirs: string[] = await filterDir(files);
     if (dirs.length) {
-      deepIndex++;
+      deepIndex = deepIndex + 1;
       await dirs.map(dir => loop(dir, deepIndex, options));
     }
   }
 }
 
-async function relink(argv: Argv$, options: Options$) {
-  const basePath = path.join(config.paths.home, globalConfig.entity.base);
+async function relink(argv: Argv$, options: Options$): Promise<void> {
+  const basePath: string = path.join(
+    config.paths.home,
+    globalConfig.entity.base
+  );
   await registry.clean();
   await loop(basePath, 0, options);
 }
 
-export default async function(argv: Argv$, options: Options$) {
+export default async function(argv: Argv$, options: Options$): Promise<void> {
   return await relink(argv, options);
 }
