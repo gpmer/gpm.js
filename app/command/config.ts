@@ -13,10 +13,22 @@ const __ = require('i18n').__;
 import config from '../config';
 import globalConfig from '../global-config';
 
+type Action$ =
+  | 'list'
+  | 'LIST'
+  | 'get'
+  | 'GET'
+  | 'set'
+  | 'SET'
+  | 'remove'
+  | 'REMOVE'
+  | 'reset'
+  | 'RESET';
+
 export interface Argv$ {
   key?: string;
   value?: string;
-  action: string;
+  action: Action$;
 }
 
 interface Options$ {
@@ -25,11 +37,13 @@ interface Options$ {
   force?: boolean;
 }
 
-async function configHandler(argv: Argv$, options: Options$) {
+async function configHandler(argv: Argv$, options: Options$): Promise<any> {
   const { action, key, value } = argv;
   let output = void 0;
 
-  switch (action.toUpperCase()) {
+  const actionUpperCase: Action$ = <Action$>action.toUpperCase();
+
+  switch (actionUpperCase) {
     case 'LIST':
       output = globalConfig.entity;
       !options.nolog &&
@@ -86,6 +100,6 @@ async function configHandler(argv: Argv$, options: Options$) {
   return output;
 }
 
-export default async function(argv: Argv$, options: Options$) {
+export default async function(argv: Argv$, options: Options$): Promise<any> {
   return configHandler(argv, options);
 }
