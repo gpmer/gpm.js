@@ -27,8 +27,19 @@ interface Options$ {
   force?: boolean;
 }
 
-export default async function remove(argv: Argv$, options: Options$) {
-  let repositories = registry.repositories.slice();
+export interface TargetWithIndex$ extends Target$ {
+  __index__: string;
+}
+
+export interface Answer$ {
+  repository: string;
+}
+
+export default async function remove(
+  argv: Argv$,
+  options: Options$
+): Promise<void> {
+  let repositories: Target$[] = registry.repositories.slice();
   let target: Target$;
   if (argv.owner) {
     if (!argv.repo)
@@ -42,7 +53,7 @@ export default async function remove(argv: Argv$, options: Options$) {
   } else {
     repositories = _.map(repositories, decoratorIndex);
 
-    const answer = await inquirer.prompt([
+    const answer: Answer$ = await inquirer.prompt([
       {
         name: 'repository',
         message: __('commands.remove.log.info_type_to_search') + ':',
@@ -55,7 +66,10 @@ export default async function remove(argv: Argv$, options: Options$) {
       }
     ]);
 
-    target = _.find(repositories, v => v.__index__ === answer.repository);
+    target = _.find(
+      repositories,
+      (v: TargetWithIndex$) => v.__index__ === answer.repository
+    );
   }
 
   if (
