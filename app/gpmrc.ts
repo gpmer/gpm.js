@@ -8,6 +8,7 @@ import { EventEmitter } from 'events';
 import { isExistPath, runShell } from './utils';
 
 interface Rc$ {
+  name: string;
   hooks: PlainObject$;
 }
 
@@ -16,8 +17,9 @@ interface PlainObject$ {
 }
 
 class Gpmrc extends EventEmitter {
+  public name: string;
   public exist: boolean = false;
-  public rc: Rc$ = { hooks: {} };
+  public rc: Rc$ = { name: 'gpm', hooks: {} };
   constructor() {
     super();
   }

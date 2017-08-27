@@ -64,7 +64,6 @@ class Registry extends EventEmitter {
   }
 
   async add(target: Target$): Promise<void> {
-    const self = this;
     _.remove(
       this.repositories,
       repo =>
@@ -73,8 +72,8 @@ class Registry extends EventEmitter {
         repo.name === target.name &&
         repo.path === target.path
     );
-    self.repositories.push(target);
-    await storage.set(self.key, self.repositories);
+    this.repositories.push(target);
+    await storage.set(this.key, this.repositories);
   }
 
   async remove(target: Target$): Promise<void> {

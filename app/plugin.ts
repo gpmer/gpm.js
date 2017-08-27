@@ -2,36 +2,64 @@
  * Created by axetroy on 17-3-13.
  */
 import { EventEmitter } from 'events';
-const path = require('path');
-const _ = require('lodash');
-const spawn = require('cross-spawn');
-const fs = require('fs-extra');
-let globalPackageLoader = require('global-modules-path');
-require('console.table');
+import * as path from 'path';
+import * as spawn from 'cross-spawn';
+import * as fs from 'fs-extra';
+import * as globalPackageLoader from 'global-modules-path';
+import * as _ from 'lodash';
+import 'console.table';
 
-const { camelcase } = require('./utils');
+import { camelcase } from './utils';
 
 const GLOBAL_NODE_MODULES_PATH = globalPackageLoader.getPath('./');
 
+export interface Plugin$ {
+  name?: string;
+  add?: Function;
+  foreach?: Function;
+  __gpm__path__?: string;
+}
+
+export interface Plugins$ {
+  [actionName: string]: Plugin$[];
+}
+
+export interface PluginLoader$ {
+  [pluginName: string]: Plugin$;
+}
+
+export interface PluginObj$ {
+  name: string;
+  description: string;
+  homepage: string;
+}
+
+export interface LoaderOutput$ {
+  [pluginName: string]: Plugin$;
+}
+
+// 支持的插件action
+type ACTION$ = 'add' | 'foreach';
+
 class Plugin extends EventEmitter {
-  private plugins: any = {};
-  private $: any = this.loader();
+  private plugins: Plugins$ = {};
+  private $: PluginLoader$ = this.loader();
   constructor() {
     super();
   }
 
-  get(action) {
+  get(action: ACTION$): Plugin$[] {
     return (this.plugins[action] || []).slice();
   }
 
-  remove(pluginName) {
+  remove(pluginName: string): Promise<number> {
     return new Promise((resolve, reject) => {
       const uninstall = spawn(
         'npm',
         ['uninstall', `gpm-plugin-${pluginName}`],
         { stdio: 'inherit' }
       );
-      uninstall.on('close', (code, signal) => {
+      uninstall.on('close', (code: number, signal: string) => {
         if (code !== 0) {
           reject(code);
           throw new Error(`Error Code: ${code}, Exist Signal: ${signal}`);
@@ -42,9 +70,9 @@ class Plugin extends EventEmitter {
     });
   }
 
-  list() {
-    let table: any[] = [];
-    _.each(this.$, (v, name) => {
+  list(): PluginObj$[] {
+    let table: PluginObj$[] = [];
+    _.each(this.$, (v: any, name) => {
       const pkg = fs.readJsonSync(path.join(v.__gpm__path__, 'package.json'));
       table.push({
         name: (pkg.name || '').yellow,
@@ -56,19 +84,26 @@ class Plugin extends EventEmitter {
     return table;
   }
 
-  load(action, pluginName) {
-    const container = (this.plugins[action] = this.plugins[action] || []);
-    let plugin: any = {};
+  /**
+   * get one plugin
+   * @param {string} action
+   * @param {string} pluginName
+   * @returns {Plugin$}
+   */
+  load(action: ACTION$, pluginName: string): Plugin$ {
+    const container: Plugin$[] = (this.plugins[action] =
+      this.plugins[action] || []);
+    let plugin: Plugin$ = {};
     if (pluginName) {
-      const pluginFullName = `gpm-plugin-${pluginName}`;
-      const pluginPath = globalPackageLoader.getPath(pluginFullName);
+      const pluginFullName: string = `gpm-plugin-${pluginName}`;
+      const pluginPath: string = globalPackageLoader.getPath(pluginFullName);
       if (!pluginFullName) {
         throw new Error(
           `Can not found ${pluginFullName}, Please make sure you have install it in global`
         );
       }
       try {
-        plugin = require(pluginPath);
+        plugin = <Plugin$>require(pluginPath);
       } catch (err) {
         throw err;
       }
@@ -82,15 +117,22 @@ class Plugin extends EventEmitter {
     return plugin;
   }
 
-  loader() {
-    const output = {};
-    const modules = fs.readdirSync(GLOBAL_NODE_MODULES_PATH) || [];
+  /**
+   * load all plugins
+   * @returns {LoaderOutput$}
+   */
+  loader(): LoaderOutput$ {
+    const output: LoaderOutput$ = {};
+    const modules: string[] = fs.readdirSync(GLOBAL_NODE_MODULES_PATH) || [];
     modules
       .filter(module => /gpm-plugin-[\w\-\_]+/.test(module))
-      .forEach(moduleName => {
-        const shortName = moduleName.replace(/^gpm-plugin-/, '');
-        const modulePath = path.join(GLOBAL_NODE_MODULES_PATH, moduleName);
-        const module = require(modulePath);
+      .forEach((moduleName: string) => {
+        const shortName: string = moduleName.replace(/^gpm-plugin-/, '');
+        const modulePath: string = path.join(
+          GLOBAL_NODE_MODULES_PATH,
+          moduleName
+        );
+        const module: Plugin$ = require(modulePath);
         module.__gpm__path__ = modulePath;
         output[camelcase(shortName)] = module;
       });

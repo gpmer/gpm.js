@@ -26,7 +26,7 @@ import registry from '../registry';
 import globalConfig from '../global-config';
 import Gpmrc from '../gpmrc';
 
-const ACTION = Symbol('after add repository');
+const ACTION = 'add';
 
 interface Argv$ {
   repo: string;
@@ -37,7 +37,7 @@ interface Options$ {
   unixify?: boolean;
   force?: boolean;
   name?: string;
-  plugin?: string;
+  plugin: string;
   ignoreRc: boolean;
 }
 
@@ -158,18 +158,19 @@ async function add(repo: string, options: Options$) {
     }
   }
 
+  // 获取add的相关插件
   const plugins = plugin.get(ACTION);
 
   process.chdir(entity.path);
 
   while (plugins.length) {
-    const plugin = plugins.shift();
+    const plugin: any = plugins.shift();
     const task = observatory.add(
       __('commands.add.log.info_run_plugin', {
         name: ('gpm-plugin-' + plugin.name).green
       })
     );
-    await new Promise(function(resolve, reject) {
+    await new Promise((resolve, reject) => {
       if (!_.isFunction(plugin.add)) {
         reject(
           new Error(
