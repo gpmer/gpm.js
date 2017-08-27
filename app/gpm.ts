@@ -1,17 +1,14 @@
-let startTime: Date = new Date();
-const program = require('caporal');
-program.__start__ && (startTime = program.__start__);
-
-const process = require('process');
-const path = require('path');
+const startTime: Date = new Date();
+import * as path from 'path';
+import * as program from 'caporal';
+import * as inquirer from 'inquirer';
+import 'colors';
 import { EventEmitter } from 'events';
-import { green } from 'colors';
 import prepare from './prepare';
 import checkUpdate from './check-update';
 import globalConfig from './global-config';
 
 // 3th lib
-const inquirer = require('inquirer');
 import { __ } from 'i18n';
 
 // command handler
@@ -37,19 +34,19 @@ inquirer.registerPrompt(
 const pkg = require(path.join(__dirname, '../package.json'));
 const config = require('./config');
 
-const event = new EventEmitter();
+interface Flag$ {
+  flag: string;
+  desc: string;
+}
 
-let FLAGS: any;
+interface GlobalFlags$ {
+  unixify: Flag$;
+  force: Flag$;
+  nolog: Flag$;
+  ignoreRc: Flag$;
+}
 
-event.on('done', code => {
-  if (process.env.GPM_ENV !== 'development' && code === 0) {
-    process.stdout.write(
-      `Done in ${((new Date().getTime() - startTime.getTime()) / 1000).toFixed(
-        2
-      ).green}s.\n`
-    );
-  }
-});
+let FLAGS: GlobalFlags$;
 
 function errorHandler(err) {
   if (err) {
@@ -58,21 +55,12 @@ function errorHandler(err) {
   process.exit(1);
 }
 
-process.on('exit', code => event.emit('done', code));
-
-process.on('unhandledRejection', errorHandler);
-
-process.on('uncaughtException', errorHandler);
-
-process.on('warning', warning => {
-  console.warn(warning.name); // Print the warning name
-  console.warn(warning.message); // Print the warning message
-  console.warn(warning.stack); // Print the stack trace
-});
-
 class Gpm extends EventEmitter {
   constructor(private config?: any) {
     super();
+    process.on('exit', this.onExist);
+    process.on('unhandledRejection', errorHandler);
+    process.on('uncaughtException', errorHandler);
     this.bootstrap();
   }
 
@@ -109,7 +97,6 @@ class Gpm extends EventEmitter {
    * @returns {Promise<void>}
    */
   async init() {
-    program.__start__ = startTime;
     await prepare();
     if ((globalConfig.entity.checkUpgrade + '').trim() === 'true') {
       await checkUpdate();
@@ -291,6 +278,15 @@ class Gpm extends EventEmitter {
    */
   exec() {
     program.parse(process.argv);
+  }
+
+  onExist(code) {
+    if (process.env.GPM_ENV !== 'development' && code === 0) {
+      process.stdout.write(
+        `Done in ${((new Date().getTime() - startTime.getTime()) /
+          1000).toFixed(2).green}s.\n`
+      );
+    }
   }
 }
 
