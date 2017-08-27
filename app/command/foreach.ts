@@ -20,7 +20,7 @@ interface Options$ {
   force?: boolean;
 }
 
-async function foreach(argv: Argv$, options: Options$) {
+async function foreach(argv: Argv$, options: Options$): Promise<void> {
   let repositories: Target$[] = registry.repositories.slice();
   const cwd: string = process.cwd();
   while (repositories.length) {
@@ -29,7 +29,7 @@ async function foreach(argv: Argv$, options: Options$) {
     await new Promise((resolve, reject) => {
       process.chdir(repository.path);
       plugins.forEach((plugin: Plugin$) => {
-        const runner = plugin.foreach;
+        const runner: Function = <Function>plugin.foreach;
         if (!_.isFunction(runner)) {
           throw new Error(__('commands.foreach.log.not_export_foreach_method'));
         }
@@ -42,7 +42,7 @@ async function foreach(argv: Argv$, options: Options$) {
   process.chdir(cwd);
 }
 
-export default function(argv: Argv$, options: Options$) {
+export default function(argv: Argv$, options: Options$): Promise<void> {
   plugin.load(ACTION, argv.plugin);
   return foreach(argv, options);
 }
