@@ -9,41 +9,94 @@ const _ = require('lodash');
 const log4js = require('log4js');
 const logger = log4js.getLogger('UTILS');
 
-export function isExistPath(dir): Promise<boolean> {
-  return fs
-    .stat(dir)
-    .then(() => Promise.resolve(true))
-    .catch(() => Promise.resolve(false));
+/**
+ * 判断是否存在该路径
+ * @param dir
+ * @returns {Promise<boolean>}
+ */
+export async function isExistPath(dir): Promise<boolean> {
+  try {
+    await fs.stat(dir);
+    return true;
+  } catch (err) {
+    return false;
+  }
 }
 
-export function isGitRepoDir(dir): Promise<boolean> {
-  return isExistPath(path.join(dir, '.git'));
+/**
+ * 判断项目目录是否是git项目目录
+ * @param dir {string}
+ * @returns {Promise<boolean>}
+ */
+export async function isGitRepoDir(dir: string): Promise<boolean> {
+  return await isExistPath(path.join(dir, '.git'));
 }
 
-export async function parseGitConfigAsync(options): Promise<any> {
+export type ParseGitConfigOptions$ =
+  | string
+  | Function
+  | ParseGitConfigObjectOptions$;
+export interface ParseGitConfigObjectOptions$ {
+  cwd: string;
+  path: string;
+}
+
+export interface GitConfig$ {
+  [key: string]: {
+    [subkey: string]: string;
+  };
+}
+
+/**
+ * 解析.git目录的配置文件
+ * @param options
+ * @returns {Promise<GitConfig$ | any>}
+ */
+export async function parseGitConfigAsync(
+  options: ParseGitConfigOptions$
+): Promise<GitConfig$ | any> {
   return await new Promise((resolve, reject) => {
-    parseGitConfig(options, function(err, config) {
+    parseGitConfig(options, function(err: Error | null, config: GitConfig$) {
       if (err) return reject(err);
       return resolve(config);
     });
   });
 }
 
-export function isLink(path): string {
-  return fs
-    .readlink(path)
-    .then(() => Promise.resolve(true))
-    .catch(err => Promise.resolve(false));
+/**
+ * 判断是否是link
+ * @param path
+ * @returns {Promise<boolean>}
+ */
+export async function isLink(path: string): Promise<boolean> {
+  try {
+    await fs.readlink(path);
+    return true;
+  } catch (err) {
+    return false;
+  }
 }
 
-export function isDir(path) {
-  return fs
-    .readdir(path)
-    .then(() => Promise.resolve(true))
-    .catch(err => Promise.resolve(false));
+/**
+ * 判断是否是目录
+ * @param path
+ * @returns {Promise<boolean>}
+ */
+export async function isDir(path: string): Promise<boolean> {
+  try {
+    await fs.readdir(path);
+    return true;
+  } catch (err) {
+    return false;
+  }
 }
 
-export function unixify(path): string {
+/**
+ * 把路径转化为unix格式
+ * @param path
+ * @returns {string}
+ */
+export function unixify(path: string): string {
   return (
     '/' +
     path
@@ -54,22 +107,47 @@ export function unixify(path): string {
   );
 }
 
-export function normalizePath(path, options): string {
-  return (options || {}).unixify ? unixify(path) : path;
+interface NormalizePathOptions$ {
+  unixify?: boolean;
 }
 
+/**
+ * 路径正常化
+ * @param path
+ * @param options
+ * @returns {string}
+ */
+export function normalizePath(
+  path: string,
+  options: NormalizePathOptions$ = { unixify: false }
+): string {
+  return options.unixify ? unixify(path) : path;
+}
+
+/**
+ * - 转换为驼峰式写法
+ * @param flag
+ * @returns {string}
+ */
 export function camelcase(flag): string {
   return flag.split('-').reduce(function(str, word) {
     return str + word[0].toUpperCase() + word.slice(1);
   });
 }
 
+/**
+ * 以spawn的方式运行shell命令
+ * @param {string} command
+ * @param {string[]} argv
+ * @param {{}} options
+ * @returns {Promise<any>}
+ */
 export async function spawnShell(
-  command,
-  argv = [],
+  command: string,
+  argv: string[] = [],
   options = {}
 ): Promise<any> {
-  const cmd = spawn(
+  const stream = spawn(
     command,
     argv,
     _.extend(
@@ -78,7 +156,7 @@ export async function spawnShell(
     )
   );
   return await new Promise((resolve, reject) => {
-    cmd.on('close', (code, signal) => {
+    stream.on('close', (code, signal) => {
       code === 0
         ? resolve()
         : reject(
@@ -91,23 +169,37 @@ export async function spawnShell(
   });
 }
 
-export async function runShell(cmd, options): Promise<void> {
-  const cmds = cmd.split(/\&\&/);
+/**
+ * 运行简单的shell命令
+ * @param {string} cmd
+ * @param {{}} options
+ * @returns {Promise<void>}
+ */
+export async function runShell(cmd: string, options = {}): Promise<void> {
+  const cmds: string[] = cmd.split(/\&\&/);
   while (cmds.length) {
-    let cmd = cmds.shift();
-    const _cmd = cmd.split(/\&/).map(v => v.trim());
-    while (_cmd.length) {
-      let __cmd = _cmd.shift();
-      __cmd = __cmd.split(/\s+/).map(v => v.trim()).filter(v => !!v);
-      let command = __cmd.shift().trim();
-      let argv = __cmd || [];
+    let cmd: string = <string>cmds.shift();
+    const cmdArray: string[] = cmd.split(/\&/).map(v => v.trim());
+    while (cmdArray.length) {
+      let __cmd = <string>cmdArray.shift();
+      const subCmd: string[] = __cmd
+        .split(/\s+/)
+        .map(v => v.trim())
+        .filter(v => !!v);
+      let command = (<string>subCmd.shift()).trim();
+      let argv: string[] = subCmd || [];
       let full_command = command + ' ' + argv.join(' ');
-      logger.debug(`Running Command ${full_command.yellow}`);
-      await spawnShell(command, argv, options);
+      console.log(`Running Command ${full_command.yellow}`);
+      await spawnShell(command, <never>argv, options);
     }
   }
 }
 
+/**
+ * 解析许可协议
+ * @param str
+ * @returns {string}
+ */
 export function parseLicense(str): string | null {
   const MIT_LICENSE = /ermission is hereby granted, free of charge, to any/;
   const BSD_LICENSE = /edistribution and use in source and binary forms, with or withou/;
