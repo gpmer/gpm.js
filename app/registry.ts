@@ -19,37 +19,51 @@ export interface ToJsonOptions$ {
   color: string;
 }
 
+export interface Json$ {
+  [source: string]: Source$;
+}
+
+export interface Source$ {
+  [owner: string]: Owner$;
+}
+
+export interface Owner$ {
+  [name: string]: Project$;
+}
+
+export type Project$ = string | string[];
+
+export interface Config$ {
+  dir: string;
+  stringify: Function;
+  parse: Function;
+  encoding: string;
+  logging: boolean;
+  continuous: boolean;
+  interval: boolean;
+  ttl: boolean;
+  expiredInterval: number;
+  forgiveParseErrors: boolean;
+}
+
 class Registry extends EventEmitter {
   private key = 'repositories';
   public repositories: Target$[] = [];
-  constructor() {
+  constructor(private config: Config$) {
     super();
   }
 
-  get isEmpty() {
+  get isEmpty(): boolean {
     return this.repositories.length === 0;
   }
 
-  async init() {
-    await storage.init({
-      dir: config.paths.storage,
-      stringify: JSON.stringify,
-      parse: JSON.parse,
-      encoding: 'utf8',
-      logging: false, // can also be custom logging function
-      continuous: true, // continously persist to disk
-      interval: false, // milliseconds, persist to disk on an interval
-      ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS
-      expiredInterval: 7 * 24 * 3600 * 1000, // clear cache in 7 days
-      // in some cases, you (or some other service) might add non-valid storage files to your
-      // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
-      forgiveParseErrors: false // [NEW]
-    });
+  async init(): Promise<void> {
+    await storage.init(this.config);
 
     this.repositories = (await storage.getItem(this.key)) || [];
   }
 
-  async add(target: Target$) {
+  async add(target: Target$): Promise<void> {
     const self = this;
     _.remove(
       this.repositories,
@@ -63,7 +77,7 @@ class Registry extends EventEmitter {
     await storage.set(self.key, self.repositories);
   }
 
-  async remove(target: Target$) {
+  async remove(target: Target$): Promise<void> {
     let before = this.repositories.slice();
     _.remove(
       this.repositories,
@@ -79,7 +93,7 @@ class Registry extends EventEmitter {
     }
   }
 
-  find(key = '') {
+  find(key: string = ''): Target$[] {
     if (!key) return this.repositories;
     const searchResult = fuzzy
       .filter(key, this.repositories.map(repo => repo.owner + '/' + repo.name))
@@ -89,31 +103,34 @@ class Registry extends EventEmitter {
       .map(v => v);
   }
 
-  async clean() {
+  async clean(): Promise<void> {
     this.repositories = [];
     await storage.set(this.key, this.repositories);
   }
 
-  toJson(repositories, options: ToJsonOptions$ | any = { color: '#fff' }) {
-    const output = {};
+  toJson(
+    repositories,
+    options: ToJsonOptions$ | any = { color: '#fff' }
+  ): Json$ {
+    const output: Json$ = {};
     repositories = (repositories || this.repositories).slice();
     while (repositories.length) {
-      const repo = repositories.shift();
-      const sourceKey = options.color ? repo.source.red : repo.source;
-      const ownerKey = options.color ? repo.owner.yellow : repo.owner;
-      const nameKey = options.color ? repo.name.green : repo.name;
-      const source = (output[sourceKey] = output[sourceKey] || {});
-      const owner = (source[ownerKey] = source[ownerKey] || {});
-      const project = owner[nameKey];
+      const repo: Target$ = repositories.shift();
+      const sourceKey: string = options.color ? repo.source.red : repo.source;
+      const ownerKey: string = options.color ? repo.owner.yellow : repo.owner;
+      const nameKey: string = options.color ? repo.name.green : repo.name;
+      const source: Source$ = (output[sourceKey] = output[sourceKey] || {});
+      const owner: Owner$ = (source[ownerKey] = source[ownerKey] || {});
+      const project: Project$ = owner[nameKey];
 
-      let projectPath = normalizePath(repo.path, options);
+      let projectPath: string = normalizePath(repo.path, options);
       projectPath = options.color ? projectPath.white : projectPath;
 
       if (!_.isEmpty(project)) {
         if (_.isString(project)) {
-          owner[nameKey] = [project].concat(projectPath);
+          owner[nameKey] = [<string>project].concat(projectPath);
         } else if (_.isArray(project)) {
-          owner[nameKey].push(projectPath);
+          (<string[]>owner[nameKey]).push(projectPath);
         }
       } else {
         owner[nameKey] = projectPath;
@@ -123,4 +140,17 @@ class Registry extends EventEmitter {
   }
 }
 
-export default new Registry();
+export default new Registry({
+  dir: config.paths.storage,
+  stringify: JSON.stringify,
+  parse: JSON.parse,
+  encoding: 'utf8',
+  logging: false, // can also be custom logging function
+  continuous: true, // continously persist to disk
+  interval: false, // milliseconds, persist to disk on an interval
+  ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS
+  expiredInterval: 7 * 24 * 3600 * 1000, // clear cache in 7 days
+  // in some cases, you (or some other service) might add non-valid storage files to your
+  // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
+  forgiveParseErrors: false // [NEW]
+});
