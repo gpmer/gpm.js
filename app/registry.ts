@@ -13,6 +13,7 @@ export interface Target$ {
   owner: string;
   name: string;
   path: string;
+  href: string;
 }
 
 export interface ToJsonOptions$ {

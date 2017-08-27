@@ -27,7 +27,7 @@ interface Options$ {
   force?: boolean;
 }
 
-export interface TargetWithIndex$ extends Target$ {
+export interface ExtendTarget$ extends Target$ {
   __index__: string;
 }
 
@@ -61,14 +61,17 @@ export default async function remove(
         pageSize: 10,
         source: (answers, input) =>
           Promise.resolve(
-            registry.find(input).map(decoratorIndex).map(repo => repo.__index__)
+            registry
+              .find(input)
+              .map(decoratorIndex)
+              .map((repo: ExtendTarget$) => repo.__index__)
           )
       }
     ]);
 
     target = _.find(
       repositories,
-      (v: TargetWithIndex$) => v.__index__ === answer.repository
+      (v: ExtendTarget$) => v.__index__ === answer.repository
     );
   }
 

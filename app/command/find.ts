@@ -12,7 +12,7 @@ const __ = require('i18n').__;
 
 const logger = log4js.getLogger('FIND');
 import config from '../config';
-import registry from '../registry';
+import registry, { Target$ } from '../registry';
 import { normalizePath } from '../utils';
 
 interface Argv$ {}
@@ -23,7 +23,12 @@ interface Options$ {
   force?: boolean;
 }
 
-export function decoratorIndex(repo) {
+export interface ExtendTarget$ extends Target$ {
+  __index__: string;
+  __search__: string;
+}
+
+export function decoratorIndex<T>(repo: any): T {
   repo.__index__ = `${repo.source.red}:${('@' + repo.owner).yellow}/${repo.name
     .green}(${path.relative(config.paths.home, repo.path)})`;
   return repo;
@@ -40,12 +45,18 @@ export default async function search(argv: Argv$, options: Options$) {
       pageSize: 10,
       source: (answers, input) =>
         Promise.resolve(
-          registry.find(input).map(decoratorIndex).map(repo => repo.__index__)
+          registry
+            .find(input)
+            .map(decoratorIndex)
+            .map((repo: ExtendTarget$) => repo.__index__)
         )
     }
   ]);
 
-  const target = _.find(repositories, v => v.__index__ === answer.repository);
+  const target: ExtendTarget$ = _.find(
+    repositories,
+    (v: ExtendTarget$) => v.__index__ === answer.repository
+  );
 
   _.extend(target, gitUrlParse(target.href));
 
