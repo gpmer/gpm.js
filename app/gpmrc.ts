@@ -1,34 +1,39 @@
 /**
  * Created by axetroy on 17-3-23.
  */
+import * as path from 'path';
+import * as fs from 'fs-extra';
 import { EventEmitter } from 'events';
-const path = require('path');
-const _ = require('lodash');
-const fs = require('fs-extra');
 
 import { isExistPath, runShell } from './utils';
 
+interface Rc$ {
+  hooks: PlainObject$;
+}
+
+interface PlainObject$ {
+  [s: string]: string;
+}
+
 class Gpmrc extends EventEmitter {
   public exist: boolean = false;
-  public rc: any = {};
+  public rc: Rc$ = { hooks: {} };
   constructor() {
     super();
   }
 
-  async load(dir) {
-    const self = this;
+  async load(dir: string): Promise<void> {
     const rcPath = path.join(dir, '.gpmrc');
     if (await isExistPath(rcPath)) {
-      self.rc = await fs.readJson(rcPath);
-      self.exist = true;
+      this.rc = <Rc$>await fs.readJson(rcPath);
+      this.exist = true;
     }
   }
 
-  async runHook(hookName, options = {}) {
-    const self = this;
-    const hooks = self.rc.hooks || {};
+  async runHook(hookName: string, options: PlainObject$ = {}): Promise<void> {
+    const hooks = this.rc.hooks || {};
     if (hooks[hookName]) {
-      await runShell(hooks.add, _.extend({ stdio: 'inherit' }, options));
+      await runShell(hooks.add, { ...{ stdio: 'inherit' }, ...options });
     }
   }
 }
