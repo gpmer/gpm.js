@@ -17,7 +17,10 @@ interface Options$ {
   force?: boolean;
 }
 
-async function clean(argv: Argv$, options: Options$) {
+export default async function clean(
+  argv: Argv$,
+  options: Options$
+): Promise<void> {
   try {
     await fs.emptyDir(config.paths.temp);
   } catch (err) {
@@ -30,8 +33,4 @@ async function clean(argv: Argv$, options: Options$) {
   await relinkHandler(argv, { nolog: options.nolog });
   !options.nolog &&
     logger.info(`clean ${config.paths.temp.green.underline} success`);
-}
-
-export default async function(argv: Argv$, options: Options$) {
-  return await clean(argv, options);
 }
