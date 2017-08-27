@@ -1,28 +1,33 @@
 /**
  * Created by axetroy on 17-3-13.
  */
-const process = require('process');
-
-const Promise = require('bluebird');
 const log4js = require('log4js');
-const co = require('co');
 const __ = require('i18n').__;
 
-const config = require('../config');
-const plugin = require('../plugin');
-const registry = require('../registry');
+import plugin from '../plugin';
+import registry, { Target$ } from '../registry';
 
 const ACTION = Symbol('foreach every repository');
 
-function* foreach(argv, options) {
+interface Argv$ {
+  plugin: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+async function foreach(argv: Argv$, options: Options$) {
   let repositories = registry.repositories.slice();
   const cwd = process.cwd();
   while (repositories.length) {
-    let repository = repositories.shift();
+    let repository: Target$ = <Target$>repositories.shift();
     const plugins = plugin.get(ACTION);
-    yield new Promise(function(resolve, reject) {
+    await new Promise((resolve, reject) => {
       process.chdir(repository.path);
-      plugins.forEach(function(plugin) {
+      plugins.forEach(plugin => {
         const runner = plugin.foreach;
         if (typeof runner !== 'function')
           throw new Error(__('commands.foreach.log.not_export_foreach_method'));
@@ -35,7 +40,7 @@ function* foreach(argv, options) {
   process.chdir(cwd);
 }
 
-module.exports = function(argv = {}, options = {}) {
+export default function(argv: Argv$, options: Options$) {
   plugin.load(ACTION, argv.plugin);
-  return co.wrap(foreach)(argv, options);
-};
+  return foreach(argv, options);
+}

@@ -1,11 +1,9 @@
 /**
  * Created by axetroy on 17-3-13.
  */
-const EventEmitter = require('events').EventEmitter;
-const process = require('process');
+import { EventEmitter } from 'events';
 const path = require('path');
 const _ = require('lodash');
-const Promise = require('bluebird');
 const spawn = require('cross-spawn');
 const fs = require('fs-extra');
 let globalPackageLoader = require('global-modules-path');
@@ -16,10 +14,10 @@ const { camelcase } = require('./utils');
 const GLOBAL_NODE_MODULES_PATH = globalPackageLoader.getPath('./');
 
 class Plugin extends EventEmitter {
+  private plugins: any = {};
+  private $: any = this.loader();
   constructor() {
     super();
-    this.plugins = {};
-    this.$ = this.loader();
   }
 
   get(action) {
@@ -27,7 +25,7 @@ class Plugin extends EventEmitter {
   }
 
   remove(pluginName) {
-    return Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       const uninstall = spawn(
         'npm',
         ['uninstall', `gpm-plugin-${pluginName}`],
@@ -45,7 +43,7 @@ class Plugin extends EventEmitter {
   }
 
   list() {
-    let table = [];
+    let table: any[] = [];
     _.each(this.$, (v, name) => {
       const pkg = fs.readJsonSync(path.join(v.__gpm__path__, 'package.json'));
       table.push({
@@ -60,7 +58,7 @@ class Plugin extends EventEmitter {
 
   load(action, pluginName) {
     const container = (this.plugins[action] = this.plugins[action] || []);
-    let plugin = {};
+    let plugin: any = {};
     if (pluginName) {
       const pluginFullName = `gpm-plugin-${pluginName}`;
       const pluginPath = globalPackageLoader.getPath(pluginFullName);
@@ -100,4 +98,4 @@ class Plugin extends EventEmitter {
   }
 }
 
-module.exports = new Plugin();
+export default new Plugin();

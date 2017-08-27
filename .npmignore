@@ -70,3 +70,6 @@ docs
 .gitignore
 .pullapprove.yml
 .travis.yml
+app
+*.map
+*.test.js

@@ -3,20 +3,29 @@
  */
 
 const path = require('path');
-const process = require('process');
 const spawn = require('cross-spawn');
 
-const co = require('co');
 const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
 const log4js = require('log4js');
 const logger = log4js.getLogger('CONFIG');
 const __ = require('i18n').__;
 
-const config = require('../config');
-const plugin = require('../plugin');
+import plugin from '../plugin';
+import config from '../config';
 
-function* configHandler(argv, options) {
+interface Argv$ {
+  action: string;
+  key: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+export default async function configHandler(argv: Argv$, options: Options$) {
   const { action, key } = argv;
   let output = void 0;
 
@@ -26,13 +35,15 @@ function* configHandler(argv, options) {
       break;
     case 'REMOVE':
       if (!key)
-        return !options.nolog &&
+        return (
+          !options.nolog &&
           logger.error(
             __('commands.plugin.log.require_key', {
               cmd: (config.name + ` config set ${key} [key]`).green
             })
-          );
-      yield plugin.remove(key);
+          )
+        );
+      await plugin.remove(key);
       break;
     default:
       !options.nolog &&
@@ -48,7 +59,3 @@ function* configHandler(argv, options) {
   }
   return output;
 }
-
-module.exports = function(argv = {}, options = {}) {
-  return co.wrap(configHandler)(argv, options);
-};

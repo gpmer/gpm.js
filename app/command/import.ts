@@ -2,32 +2,40 @@
  * Created by axetroy on 17-2-15.
  */
 const path = require('path');
-const process = require('process');
 const _ = require('lodash');
 const prettyjson = require('prettyjson');
-const Promise = require('bluebird');
 const fs = require('fs-extra');
 const log4js = require('log4js');
 const gitUrlParse = require('git-url-parse');
 const inquirer = require('inquirer');
-const co = require('co');
 const __ = require('i18n').__;
 
-const prompt = inquirer.createPromptModule();
+export const prompt: any = inquirer.createPromptModule();
 const logger = log4js.getLogger('IMPORT');
-const config = require('../config');
-const registry = require('../registry');
-const {
+import registry from '../registry';
+import config from '../config';
+import {
   isGitRepoDir,
   parseGitConfigAsync,
   isExistPath,
   isLink,
   normalizePath
-} = require('../utils');
+} from '../utils';
 
-function* importHandlerOneDir(targetPath, options) {
+interface Argv$ {
+  dir: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+  hard?: boolean;
+}
+
+async function importHandlerOneDir(targetPath: string, options: Options$) {
   targetPath = path.resolve(process.cwd(), targetPath);
-  const isGitDir = yield isGitRepoDir(targetPath);
+  const isGitDir = await isGitRepoDir(targetPath);
 
   if (!isGitDir)
     throw new Error(
@@ -36,7 +44,7 @@ function* importHandlerOneDir(targetPath, options) {
       })
     );
 
-  let gitConfig = yield parseGitConfigAsync({
+  let gitConfig = await parseGitConfigAsync({
     cwd: targetPath,
     path: path.join('.git', 'config')
   });
@@ -47,7 +55,7 @@ function* importHandlerOneDir(targetPath, options) {
 
   const gitInfo = gitUrlParse(origin.url);
 
-  const configJSON = yield fs.readJson(config.paths.config);
+  const configJSON = await fs.readJson(config.paths.config);
 
   const distPath = path.join(
     config.paths.home,
@@ -61,31 +69,33 @@ function* importHandlerOneDir(targetPath, options) {
     logger.warn(__('commands.import.log.warn_cmd_require_pms'));
   }
 
-  const hasExistDist = yield isExistPath(distPath);
-  const hasLinkDist = yield isLink(distPath);
+  const hasExistDist = await isExistPath(distPath);
+  const hasLinkDist = await isLink(distPath);
 
   if (hasExistDist || hasLinkDist) {
     let isConfirmReplace = { result: false };
     if (options.force) {
       isConfirmReplace = { result: true };
     } else {
-      isConfirmReplace = yield prompt({
-        type: 'confirm',
-        name: 'result',
-        message: __('commands.import.log.confirm_replace', {
-          path: normalizePath(distPath, options).yellow
-        }).white,
-        default: false
-      });
+      isConfirmReplace = <any>await prompt(
+        <any>{
+          type: 'confirm',
+          name: 'result',
+          message: __('commands.import.log.confirm_replace', {
+            path: normalizePath(distPath, options).yellow
+          }).white,
+          default: false
+        }
+      );
     }
 
     if (!isConfirmReplace.result) {
       !options.nolog && logger.info(__('global.tips.good_bye'));
-      return Promise.reject();
+      return;
     } else {
       // if it's a link, then unlink first
-      if (hasLinkDist) yield fs.unlink(distPath);
-      yield fs.remove(distPath);
+      if (hasLinkDist) await fs.unlink(distPath);
+      await fs.remove(distPath);
     }
   }
 
@@ -93,43 +103,41 @@ function* importHandlerOneDir(targetPath, options) {
 
   if (options.hard) {
     action = 'move';
-    yield fs.move(targetPath, distPath);
+    await fs.move(targetPath, distPath);
   } else {
     action = 'link';
     // make sure his parent dir has exist
-    yield fs.ensureDir(path.resolve(distPath, '../'));
+    await fs.ensureDir(path.resolve(distPath, '../'));
     // specify dir only for window, other platform will ignore
-    yield fs.symlink(targetPath, distPath, 'dir');
+    await fs.symlink(targetPath, distPath, 'dir');
   }
 
-  yield registry.add(_.extend({}, gitInfo, { path: distPath }));
+  await registry.add(_.extend({}, gitInfo, { path: distPath }));
 
   logger.info(
-    `${normalizePath(targetPath, options).green} has been ${action} to ${normalizePath(distPath, options).yellow}`
+    `${normalizePath(targetPath, options)
+      .green} has been ${action} to ${normalizePath(distPath, options).yellow}`
   );
 
-  return yield Promise.resolve();
+  return await Promise.resolve();
 }
 
-function* importHandler(targetPath, options) {
+async function importHandler(targetPath, options) {
   if (options.all) {
-    const files = yield fs.readdir(targetPath);
+    const files = await fs.readdir(targetPath);
     while (files.length) {
       let file = files.shift();
-      yield co(function*() {
-        return yield importHandlerOneDir(path.join(targetPath, file), options);
-      }).catch(function(err) {
-        if (err) {
-          console.error(err);
-        }
-        return Promise.resolve();
-      });
+      try {
+        await importHandlerOneDir(path.join(targetPath, file), options);
+      } catch (err) {
+        console.error(err);
+      }
     }
   } else {
-    yield importHandlerOneDir(targetPath, options);
+    await importHandlerOneDir(targetPath, options);
   }
 }
 
-module.exports = function(argv, options) {
+export default function(argv: Argv$, options: Options$) {
   return importHandler(argv.dir, options);
-};
+}

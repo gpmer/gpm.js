@@ -1,48 +1,55 @@
 /**
  * Created by axetroy on 17-3-23.
  */
-const EventEmitter = require('events').EventEmitter;
-const co = require('co');
+import { EventEmitter } from 'events';
 const _ = require('lodash');
 const storage = require('node-persist');
 const fuzzy = require('fuzzy');
 const { normalizePath } = require('./utils');
 const config = require('./config');
 
+export interface Target$ {
+  source: string;
+  owner: string;
+  name: string;
+  path: string;
+}
+
+export interface ToJsonOptions$ {
+  color: string;
+}
+
 class Registry extends EventEmitter {
+  private key = 'repositories';
+  public repositories: Target$[] = [];
   constructor() {
     super();
-    this.key = 'repositories';
-    this.repositories = [];
   }
 
   get isEmpty() {
     return this.repositories.length === 0;
   }
 
-  init() {
-    const self = this;
-    return co(function*() {
-      yield storage.init({
-        dir: config.paths.storage,
-        stringify: JSON.stringify,
-        parse: JSON.parse,
-        encoding: 'utf8',
-        logging: false, // can also be custom logging function
-        continuous: true, // continously persist to disk
-        interval: false, // milliseconds, persist to disk on an interval
-        ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS
-        expiredInterval: 7 * 24 * 3600 * 1000, // clear cache in 7 days
-        // in some cases, you (or some other service) might add non-valid storage files to your
-        // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
-        forgiveParseErrors: false // [NEW]
-      });
-
-      self.repositories = (yield storage.getItem(self.key)) || [];
+  async init() {
+    await storage.init({
+      dir: config.paths.storage,
+      stringify: JSON.stringify,
+      parse: JSON.parse,
+      encoding: 'utf8',
+      logging: false, // can also be custom logging function
+      continuous: true, // continously persist to disk
+      interval: false, // milliseconds, persist to disk on an interval
+      ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS
+      expiredInterval: 7 * 24 * 3600 * 1000, // clear cache in 7 days
+      // in some cases, you (or some other service) might add non-valid storage files to your
+      // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
+      forgiveParseErrors: false // [NEW]
     });
+
+    this.repositories = (await storage.getItem(this.key)) || [];
   }
 
-  add(target = {}) {
+  async add(target: Target$) {
     const self = this;
     _.remove(
       this.repositories,
@@ -52,14 +59,11 @@ class Registry extends EventEmitter {
         repo.name === target.name &&
         repo.path === target.path
     );
-    return co(function*() {
-      self.repositories.push(target);
-      yield storage.set(self.key, self.repositories);
-    });
+    self.repositories.push(target);
+    await storage.set(self.key, self.repositories);
   }
 
-  remove(target = {}) {
-    const self = this;
+  async remove(target: Target$) {
     let before = this.repositories.slice();
     _.remove(
       this.repositories,
@@ -70,11 +74,9 @@ class Registry extends EventEmitter {
         repo.path === target.path
     );
     const after = this.repositories;
-    return co(function*() {
-      if (!_.isEqual(before, after)) {
-        yield storage.set(self.key, self.repositories);
-      }
-    });
+    if (!_.isEqual(before, after)) {
+      await storage.set(this.key, this.repositories);
+    }
   }
 
   find(key = '') {
@@ -87,15 +89,12 @@ class Registry extends EventEmitter {
       .map(v => v);
   }
 
-  clean() {
-    const self = this;
-    return co(function*() {
-      self.repositories = [];
-      yield storage.set(self.key, self.repositories);
-    });
+  async clean() {
+    this.repositories = [];
+    await storage.set(this.key, this.repositories);
   }
 
-  toJson(repositories, options = {}) {
+  toJson(repositories, options: ToJsonOptions$ | any = { color: '#fff' }) {
     const output = {};
     repositories = (repositories || this.repositories).slice();
     while (repositories.length) {
@@ -124,4 +123,4 @@ class Registry extends EventEmitter {
   }
 }
 
-module.exports = new Registry();
+export default new Registry();

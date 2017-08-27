@@ -1,9 +1,7 @@
 /**
  * Created by axetroy on 17-2-14.
  */
-const process = require('process');
 const path = require('path');
-const Promise = require('bluebird');
 const prettyjson = require('prettyjson');
 const inquirer = require('inquirer');
 const _ = require('lodash');
@@ -13,19 +11,28 @@ const log4js = require('log4js');
 const __ = require('i18n').__;
 
 const logger = log4js.getLogger('FIND');
-const config = require('../config');
-const { normalizePath } = require('../utils');
-const registry = require('../registry');
+import config from '../config';
+import registry from '../registry';
+import { normalizePath } from '../utils';
 
-function decoratorIndex(repo) {
-  repo.__index__ = `${repo.source.red}:${('@' + repo.owner).yellow}/${repo.name.green}(${path.relative(config.paths.home, repo.path)})`;
+interface Argv$ {}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+export function decoratorIndex(repo) {
+  repo.__index__ = `${repo.source.red}:${('@' + repo.owner).yellow}/${repo.name
+    .green}(${path.relative(config.paths.home, repo.path)})`;
   return repo;
 }
 
-function* search(argv, options) {
+export default async function search(argv: Argv$, options: Options$) {
   let repositories = registry.repositories.map(decoratorIndex);
 
-  const answer = yield inquirer.prompt([
+  const answer = await inquirer.prompt([
     {
       name: 'repository',
       message: __('commands.find.log.info_type_to_search') + ':',
@@ -57,9 +64,3 @@ function* search(argv, options) {
     logger.warn(__('global.tips.copy_fail'));
   }
 }
-
-module.exports = function(argv, options) {
-  return search(argv, options);
-};
-
-module.exports.decoratorIndex = decoratorIndex;

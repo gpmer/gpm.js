@@ -2,11 +2,8 @@
  * Created by axetroy on 17-2-14.
  */
 const path = require('path');
-const process = require('process');
 
-const co = require('co');
 const gitUrlParse = require('git-url-parse');
-const Promise = require('bluebird');
 const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
 const _ = require('lodash');
@@ -22,16 +19,29 @@ const __ = require('i18n').__;
 
 const cwd = process.cwd();
 
-const { isExistPath, isLink, normalizePath, runShell } = require('../utils');
-const config = require('../config');
-const plugin = require('../plugin');
-const registry = require('../registry');
-const globalConfig = require('../global-config');
-const Gpmrc = require('../gpmrc');
+import { isExistPath, isLink, normalizePath, runShell } from '../utils';
+import config from '../config';
+import plugin from '../plugin';
+import registry from '../registry';
+import globalConfig from '../global-config';
+import Gpmrc from '../gpmrc';
 
 const ACTION = Symbol('after add repository');
 
-function* add(repo, options) {
+interface Argv$ {
+  repo: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+  name?: string;
+  plugin?: string;
+  ignoreRc: boolean;
+}
+
+async function add(repo: string, options: Options$) {
   const gitInfo = gitUrlParse(repo);
 
   if (!gitInfo || !gitInfo.owner || !gitInfo.name) {
@@ -52,11 +62,11 @@ function* add(repo, options) {
   );
 
   let confirmCover = false;
-  if (yield isExistPath(repoDir)) {
+  if (await isExistPath(repoDir)) {
     if (options.force) {
       confirmCover = true;
     } else {
-      confirmCover = (yield prompt({
+      confirmCover = (await prompt({
         type: 'confirm',
         name: 'result',
         message: __('commands.add.log.confirm_cover', {
@@ -71,10 +81,10 @@ function* add(repo, options) {
     }
   }
 
-  yield fs.ensureDir(baseDir);
-  yield fs.ensureDir(sourceDir);
-  yield fs.ensureDir(ownerDir);
-  yield fs.ensureDir(randomTemp);
+  await fs.ensureDir(baseDir);
+  await fs.ensureDir(sourceDir);
+  await fs.ensureDir(ownerDir);
+  await fs.ensureDir(randomTemp);
 
   try {
     const git = which.sync('git');
@@ -89,16 +99,16 @@ function* add(repo, options) {
     throw err;
   }
 
-  yield runShell(`git clone ${gitInfo.href}`, {
+  await runShell(`git clone ${gitInfo.href}`, {
     cwd: randomTemp,
     stdio: 'inherit'
   });
 
   // if it's a link, then unlink first
-  if (yield isLink(repoDir)) yield fs.unlink(repoDir);
-  yield fs.remove(repoDir);
-  yield fs.move(tempDir, repoDir);
-  yield fs.remove(randomTemp);
+  if (await isLink(repoDir)) await fs.unlink(repoDir);
+  await fs.remove(repoDir);
+  await fs.move(tempDir, repoDir);
+  await fs.remove(randomTemp);
 
   /**
    * parse the .gpmrc
@@ -109,7 +119,7 @@ function* add(repo, options) {
    */
   if (!options.ignoreRc) {
     const gpmrc = new Gpmrc();
-    yield gpmrc.load(repoDir);
+    await gpmrc.load(repoDir);
     if (gpmrc.exist) {
       const alias = gpmrc.rc.name;
       if (alias && alias !== gitInfo.name) {
@@ -117,10 +127,10 @@ function* add(repo, options) {
           ownerDir,
           _.isString(options.name) ? options.name : alias
         );
-        yield fs.move(repoDir, newRepoDir);
+        await fs.move(repoDir, newRepoDir);
         repoDir = newRepoDir;
       }
-      yield gpmrc.runHook('add', { cwd: repoDir }).catch(err => {
+      await gpmrc.runHook('add', { cwd: repoDir }).catch(err => {
         console.error(err);
         return Promise.resolve();
       });
@@ -129,7 +139,7 @@ function* add(repo, options) {
 
   const entity = _.extend({}, gitInfo, { path: repoDir });
   delete entity.toString;
-  yield registry.add(entity);
+  await registry.add(entity);
 
   if (!options.nolog) {
     let finallyPath = normalizePath(repoDir, options);
@@ -159,7 +169,7 @@ function* add(repo, options) {
         name: ('gpm-plugin-' + plugin.name).green
       })
     );
-    yield new Promise(function(resolve, reject) {
+    await new Promise(function(resolve, reject) {
       if (!_.isFunction(plugin.add)) {
         reject(
           new Error(
@@ -185,7 +195,7 @@ function* add(repo, options) {
   process.chdir(cwd);
 }
 
-module.exports = function(argv, options) {
+export default async function(argv: Argv$, options: Options$) {
   plugin.load(ACTION, options.plugin);
-  return co.wrap(add)(argv.repo, options);
-};
+  return await add(argv.repo, options);
+}

@@ -3,28 +3,35 @@
  */
 
 const path = require('path');
-const process = require('process');
-const co = require('co');
 const fs = require('fs-extra');
 const _ = require('lodash');
 const jt = require('json-toy');
 
-const config = require('../config');
-const {
+import config from '../config';
+import registry, { Target$ } from '../registry';
+import globalConfig from '../global-config';
+
+import {
   normalizePath,
   isExistPath,
   isGitRepoDir,
   parseGitConfigAsync,
   parseLicense
-} = require('../utils');
-const registry = require('../registry');
-const globalConfig = require('../global-config');
+} from '../utils';
 
-function* licenses(key, options) {
+interface Argv$ {}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+export default async function licenses(argv: Argv$, options: Options$) {
   const output = {};
   const repositories = registry.repositories.slice();
   while (repositories.length) {
-    const repo = repositories.shift();
+    const repo: Target$ = <Target$>repositories.shift();
     const sourceKey = repo.source;
     const ownerKey = repo.owner;
     const nameKey = repo.name;
@@ -34,8 +41,8 @@ function* licenses(key, options) {
 
     const repoDir = normalizePath(repo.path, options);
 
-    if (!(yield isGitRepoDir(repoDir))) return;
-    let gitConfig = yield parseGitConfigAsync({
+    if (!await isGitRepoDir(repoDir)) return;
+    let gitConfig = await parseGitConfigAsync({
       cwd: repoDir,
       path: path.join('.git', 'config')
     });
@@ -48,9 +55,9 @@ function* licenses(key, options) {
     };
 
     const licensePath = path.join(repoDir, 'LICENSE');
-    if (yield isExistPath(licensePath)) {
-      const raw = yield fs.readFile(licensePath, { encoding: 'utf8' });
-      let license = parseLicense(raw);
+    if (await isExistPath(licensePath)) {
+      const raw = await fs.readFile(licensePath, { encoding: 'utf8' });
+      let license: string = parseLicense(raw) + '';
       entity.License = license.trim().replace(/\*+$/, '');
     }
 
@@ -74,16 +81,15 @@ function* licenses(key, options) {
 
   !options.nolog &&
     process.stdout.write(
-      jt.treeString(output, {
-        space: 4,
-        vSpace: 0,
-        valueOut: true,
-        rootName: normalizePath(ROOT, options)
-      }) + '\n'
+      jt.treeString(
+        output,
+        {
+          space: 4,
+          vSpace: 0,
+          valueOut: true,
+          rootName: normalizePath(ROOT, options)
+        }
+      ) + '\n'
     );
   return output;
 }
-
-module.exports = function(argv = {}, options = {}) {
-  return co.wrap(licenses)(argv.key, options);
-};

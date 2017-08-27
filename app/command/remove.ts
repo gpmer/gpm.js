@@ -1,8 +1,7 @@
 /**
  * Created by axetroy on 17-2-14.
  */
-const process = require('process');
-const Promise = require('bluebird');
+
 const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
 const _ = require('lodash');
@@ -10,17 +9,27 @@ const inquirer = require('inquirer');
 const log4js = require('log4js');
 const __ = require('i18n').__;
 
-const { decoratorIndex } = require('./find');
-
 const logger = log4js.getLogger('REMOVE');
-const prompt = inquirer.createPromptModule();
+export const prompt: any = inquirer.createPromptModule();
 
-const { normalizePath } = require('../utils');
-const registry = require('../registry');
+import registry, { Target$ } from '../registry';
+import { normalizePath } from '../utils';
+import { decoratorIndex } from './find';
 
-function* remove(argv, options) {
+interface Argv$ {
+  owner: string;
+  repo: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+export default async function remove(argv: Argv$, options: Options$) {
   let repositories = registry.repositories.slice();
-  let target = {};
+  let target: Target$;
   if (argv.owner) {
     if (!argv.repo)
       return logger.info(
@@ -33,7 +42,7 @@ function* remove(argv, options) {
   } else {
     repositories = _.map(repositories, decoratorIndex);
 
-    const answer = yield inquirer.prompt([
+    const answer = await inquirer.prompt([
       {
         name: 'repository',
         message: __('commands.remove.log.info_type_to_search') + ':',
@@ -50,26 +59,29 @@ function* remove(argv, options) {
   }
 
   if (
-    (yield prompt({
-      type: 'confirm',
-      name: 'result',
-      message: `[${'DANGER'.red}]` +
-        __('commands.remove.log.warn_confirm_del', {
-          repo: normalizePath(target.path, options).red
-        }) +
-        ':',
-      default: false
-    })).result == false
+    (await prompt(
+      {
+        type: 'confirm',
+        name: 'result',
+        message:
+          `[${'DANGER'.red}]` +
+          __('commands.remove.log.warn_confirm_del', {
+            repo: normalizePath(target.path, options).red
+          }) +
+          ':',
+        default: false
+      }
+    )).result == false
   ) {
     !options.nolog && logger.info(__('global.tips.good_bye'));
     return process.exit(0);
   }
 
-  yield fs.ensureDir(target.path);
-  yield fs.emptyDir(target.path);
-  yield fs.remove(target.path);
+  await fs.ensureDir(target.path);
+  await fs.emptyDir(target.path);
+  await fs.remove(target.path);
 
-  yield registry.remove(target);
+  await registry.remove(target);
 
   logger.info(
     __('commands.remove.log.del', {
@@ -77,7 +89,3 @@ function* remove(argv, options) {
     })
   );
 }
-
-module.exports = function(argv, options) {
-  return remove(argv, options);
-};

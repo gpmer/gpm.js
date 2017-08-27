@@ -2,9 +2,6 @@
  * Created by axetroy on 17-2-14.
  */
 const path = require('path');
-const process = require('process');
-const Promise = require('bluebird');
-const co = require('co');
 const fs = require('fs-extra');
 const spawn = require('cross-spawn');
 const parseGitConfig = require('parse-git-config');
@@ -12,19 +9,19 @@ const _ = require('lodash');
 const log4js = require('log4js');
 const logger = log4js.getLogger('UTILS');
 
-function isExistPath(dir) {
+export function isExistPath(dir): Promise<boolean> {
   return fs
     .stat(dir)
     .then(() => Promise.resolve(true))
     .catch(() => Promise.resolve(false));
 }
 
-function isGitRepoDir(dir) {
+export function isGitRepoDir(dir): Promise<boolean> {
   return isExistPath(path.join(dir, '.git'));
 }
 
-function parseGitConfigAsync(options) {
-  return new Promise(function(resolve, reject) {
+export async function parseGitConfigAsync(options): Promise<any> {
+  return await new Promise((resolve, reject) => {
     parseGitConfig(options, function(err, config) {
       if (err) return reject(err);
       return resolve(config);
@@ -32,40 +29,46 @@ function parseGitConfigAsync(options) {
   });
 }
 
-function isLink(path) {
+export function isLink(path): string {
   return fs
     .readlink(path)
     .then(() => Promise.resolve(true))
     .catch(err => Promise.resolve(false));
 }
 
-function isDir(path) {
+export function isDir(path) {
   return fs
     .readdir(path)
     .then(() => Promise.resolve(true))
     .catch(err => Promise.resolve(false));
 }
 
-function unixify(path) {
-  return '/' +
+export function unixify(path): string {
+  return (
+    '/' +
     path
       .replace(/^\/+/g, '')
       .replace(/^[A-Z]/, match => match.toLowerCase())
       .replace(/\:/, '')
-      .replace(/\\/g, '/');
+      .replace(/\\/g, '/')
+  );
 }
 
-function normalizePath(path, options) {
+export function normalizePath(path, options): string {
   return (options || {}).unixify ? unixify(path) : path;
 }
 
-function camelcase(flag) {
+export function camelcase(flag): string {
   return flag.split('-').reduce(function(str, word) {
     return str + word[0].toUpperCase() + word.slice(1);
   });
 }
 
-function spawnShell(command, argv = [], options = {}) {
+export async function spawnShell(
+  command,
+  argv = [],
+  options = {}
+): Promise<any> {
   const cmd = spawn(
     command,
     argv,
@@ -74,39 +77,38 @@ function spawnShell(command, argv = [], options = {}) {
       options
     )
   );
-  return new Promise(function(resolve, reject) {
+  return await new Promise((resolve, reject) => {
     cmd.on('close', (code, signal) => {
       code === 0
         ? resolve()
         : reject(
             new Error(
-              `<${(command + ' ' + argv.join(' ')).red}> Error Code: ${code}, Exist Signal: ${signal}`
+              `<${(command + ' ' + argv.join(' '))
+                .red}> Error Code: ${code}, Exist Signal: ${signal}`
             )
           );
     });
   });
 }
 
-function runShell(cmd, options) {
+export async function runShell(cmd, options): Promise<void> {
   const cmds = cmd.split(/\&\&/);
-  return co(function*() {
-    while (cmds.length) {
-      let cmd = cmds.shift();
-      const _cmd = cmd.split(/\&/).map(v => v.trim());
-      while (_cmd.length) {
-        let __cmd = _cmd.shift();
-        __cmd = __cmd.split(/\s+/).map(v => v.trim()).filter(v => !!v);
-        let command = __cmd.shift().trim();
-        let argv = __cmd || [];
-        let full_command = command + ' ' + argv.join(' ');
-        logger.debug(`Running Command ${full_command.yellow}`);
-        yield spawnShell(command, argv, options);
-      }
+  while (cmds.length) {
+    let cmd = cmds.shift();
+    const _cmd = cmd.split(/\&/).map(v => v.trim());
+    while (_cmd.length) {
+      let __cmd = _cmd.shift();
+      __cmd = __cmd.split(/\s+/).map(v => v.trim()).filter(v => !!v);
+      let command = __cmd.shift().trim();
+      let argv = __cmd || [];
+      let full_command = command + ' ' + argv.join(' ');
+      logger.debug(`Running Command ${full_command.yellow}`);
+      await spawnShell(command, argv, options);
     }
-  });
+  }
 }
 
-function parseLicense(str) {
+export function parseLicense(str): string | null {
   const MIT_LICENSE = /ermission is hereby granted, free of charge, to any/;
   const BSD_LICENSE = /edistribution and use in source and binary forms, with or withou/;
   const BSD_SOURCE_CODE_LICENSE = /edistribution and use of this software in source and binary forms, with or withou/;
@@ -151,17 +153,3 @@ function parseLicense(str) {
   }
   return null;
 }
-
-module.exports = {
-  isExistPath,
-  isGitRepoDir,
-  parseLicense,
-  parseGitConfigAsync,
-  isLink,
-  isDir,
-  unixify,
-  normalizePath,
-  camelcase,
-  runShell,
-  spawnShell
-};

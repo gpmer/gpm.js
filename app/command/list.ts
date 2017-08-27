@@ -3,26 +3,35 @@
  */
 
 const path = require('path');
-const process = require('process');
-const co = require('co');
 
 const _ = require('lodash');
 const prettyjson = require('prettyjson');
 const log4js = require('log4js');
-const __ = require('i18n').__;
+import { __ } from 'i18n';
 
 const logger = log4js.getLogger('LIST');
-const config = require('../config');
-const { normalizePath } = require('../utils');
-const registry = require('../registry');
+import config from '../config';
+import { normalizePath } from '../utils';
+import registry from '../registry';
 
-function* ls(key, options) {
+interface Argv$ {
+  key: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+async function ls(key: string, options: Options$) {
   if (registry.isEmpty)
     return logger.warn(__('commands.list.log.warn_empty_registry'));
 
   let repositories = key ? registry.find(key) : registry.repositories.slice();
 
-  if (_.isEmpty(repositories)) return logger.info(__('commands.list.log.err_not_found'));
+  if (_.isEmpty(repositories))
+    return logger.info(__('commands.list.log.err_not_found'));
 
   const result = registry.toJson(
     repositories,
@@ -34,14 +43,10 @@ function* ls(key, options) {
   const ROOT = normalizePath(basePath, options).white;
 
   !options.nolog &&
-    process.stdout.write(
-      prettyjson.render({
-        [ROOT]: result
-      }) + '\n'
-    );
+    process.stdout.write(prettyjson.render({ [ROOT]: result }) + '\n');
   return result;
 }
 
-module.exports = function(argv = {}, options = {}) {
-  return co.wrap(ls)(argv.key, options);
-};
+export default async function(argv: Argv$, options: Options$) {
+  return await ls(argv.key, options);
+}

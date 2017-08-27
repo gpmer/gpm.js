@@ -4,7 +4,8 @@
       "good_bye": "好的! 再见",
       "success": "成功",
       "error:": "错误",
-      "fail": "失败"
+      "fail": "失败",
+      "past": "global.tips.past"
     },
     "options": {
       "unixify": {
@@ -89,7 +90,10 @@
       "desc": "清理缓存, 位于 {{{tempPath}}}"
     },
     "find": {
-      "desc": "查找仓库，你可以获取到这个仓库的所有信息"
+      "desc": "查找仓库，你可以获取到这个仓库的所有信息",
+      "log": {
+        "info_type_to_search": "commands.find.log.info_type_to_search"
+      }
     },
     "relink": {
       "desc": "重新链接base目录下的仓库到gpm的注册表, 就像Angular手动触发$digest循环一样."
@@ -112,6 +116,9 @@
           "info_reset": "已重置到默认配置",
           "info_help": "请遵循这条命令: {{{cmd}}}"
         }
+      },
+      "log": {
+        "help": "commands.config.log.help"
       }
     },
     "runtime": {

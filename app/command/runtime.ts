@@ -2,17 +2,22 @@
  * Created by axetroy on 17-2-15.
  */
 
-const process = require('process');
 const os = require('os');
-
-const co = require('co');
 
 const prettyjson = require('prettyjson');
 
 const pkg = require('../../package.json');
 const config = require('../config');
 
-function* runtime(argv, options) {
+interface Argv$ {}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+}
+
+async function runtime(argv: Argv$, options: Options$) {
   const info = {
     node: process.version,
     [config.name]: pkg.version,
@@ -25,6 +30,6 @@ function* runtime(argv, options) {
   return info;
 }
 
-module.exports = function(argv = {}, options = {}) {
-  return co.wrap(runtime)(argv, options);
-};
+export default async function(argv: Argv$, options: Options$) {
+  return runtime(argv, options);
+}

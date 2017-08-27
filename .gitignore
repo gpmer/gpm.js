@@ -56,3 +56,5 @@ jspm_packages
 
 # for test, create a fake home dir
 .home
+
+build

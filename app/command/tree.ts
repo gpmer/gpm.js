@@ -3,8 +3,6 @@
  */
 
 const path = require('path');
-const process = require('process');
-const co = require('co');
 
 const _ = require('lodash');
 const prettyjson = require('prettyjson');
@@ -13,18 +11,30 @@ const __ = require('i18n').__;
 const jt = require('json-toy');
 
 const logger = log4js.getLogger('LIST');
-const config = require('../config');
-const { normalizePath } = require('../utils');
-const registry = require('../registry');
-const globalConfig = require('../global-config');
+import config from '../config';
+import { normalizePath } from '../utils';
+import registry from '../registry';
+import globalConfig from '../global-config';
 
-function* ls(key, options) {
+interface Argv$ {
+  key: string;
+}
+
+interface Options$ {
+  nolog?: boolean;
+  unixify?: boolean;
+  force?: boolean;
+  color?: string;
+}
+
+async function ls(key: string, options: Options$) {
   if (registry.isEmpty)
     return logger.warn(__('commands.list.log.warn_empty_registry'));
 
   let repositories = key ? registry.find(key) : registry.repositories.slice();
 
-  if (_.isEmpty(repositories)) return logger.info(__('commands.list.log.err_not_found'));
+  if (_.isEmpty(repositories))
+    return logger.info(__('commands.list.log.err_not_found'));
 
   const result = registry.toJson(null, options);
 
@@ -37,16 +47,19 @@ function* ls(key, options) {
 
   !options.nolog &&
     process.stdout.write(
-      jt.treeString(result, {
-        space: 4,
-        vSpace: 0,
-        valueOut: false,
-        rootName: normalizePath(ROOT, options)
-      }) + '\n'
+      jt.treeString(
+        result,
+        {
+          space: 4,
+          vSpace: 0,
+          valueOut: false,
+          rootName: normalizePath(ROOT, options)
+        }
+      ) + '\n'
     );
   return result;
 }
 
-module.exports = function(argv = {}, options = {}) {
-  return co.wrap(ls)(argv.key, options);
-};
+export default function(argv: Argv$, options: Options$) {
+  return ls(argv.key, options);
+}
