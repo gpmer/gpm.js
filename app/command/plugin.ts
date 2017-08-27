@@ -14,8 +14,10 @@ const __ = require('i18n').__;
 import plugin from '../plugin';
 import config from '../config';
 
+type action$ = 'LIST' | 'REMOVE';
+
 interface Argv$ {
-  action: string;
+  action: action$;
   key: string;
 }
 
@@ -25,11 +27,15 @@ interface Options$ {
   force?: boolean;
 }
 
-export default async function configHandler(argv: Argv$, options: Options$) {
+export default async function configHandler(
+  argv: Argv$,
+  options: Options$
+): Promise<void> {
   const { action, key } = argv;
-  let output = void 0;
 
-  switch (action.toUpperCase()) {
+  const upperCaseAction: action$ = <action$>action.toUpperCase();
+
+  switch (upperCaseAction) {
     case 'LIST':
       plugin.list();
       break;
@@ -57,5 +63,4 @@ export default async function configHandler(argv: Argv$, options: Options$) {
         );
       break;
   }
-  return output;
 }
