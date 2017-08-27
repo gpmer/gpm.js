@@ -31,11 +31,21 @@ interface Options$ {
   unixify?: boolean;
   force?: boolean;
   hard?: boolean;
+  all?: boolean;
 }
 
-async function importHandlerOneDir(targetPath: string, options: Options$) {
+interface PromptResult$ {
+  result?: boolean;
+}
+
+type action$ = 'move' | 'link';
+
+async function importHandlerOneDir(
+  targetPath: string,
+  options: Options$
+): Promise<void> {
   targetPath = path.resolve(process.cwd(), targetPath);
-  const isGitDir = await isGitRepoDir(targetPath);
+  const isGitDir: boolean = await isGitRepoDir(targetPath);
 
   if (!isGitDir)
     throw new Error(
@@ -69,15 +79,15 @@ async function importHandlerOneDir(targetPath: string, options: Options$) {
     logger.warn(__('commands.import.log.warn_cmd_require_pms'));
   }
 
-  const hasExistDist = await isExistPath(distPath);
-  const hasLinkDist = await isLink(distPath);
+  const hasExistDist: boolean = await isExistPath(distPath);
+  const hasLinkDist: boolean = await isLink(distPath);
 
   if (hasExistDist || hasLinkDist) {
-    let isConfirmReplace = { result: false };
+    let isConfirmReplace: PromptResult$ = { result: false };
     if (options.force) {
       isConfirmReplace = { result: true };
     } else {
-      isConfirmReplace = <any>await prompt(
+      isConfirmReplace = <PromptResult$>await prompt(
         <any>{
           type: 'confirm',
           name: 'result',
@@ -99,7 +109,7 @@ async function importHandlerOneDir(targetPath: string, options: Options$) {
     }
   }
 
-  let action = '';
+  let action: action$;
 
   if (options.hard) {
     action = 'move';
@@ -118,15 +128,16 @@ async function importHandlerOneDir(targetPath: string, options: Options$) {
     `${normalizePath(targetPath, options)
       .green} has been ${action} to ${normalizePath(distPath, options).yellow}`
   );
-
-  return await Promise.resolve();
 }
 
-async function importHandler(targetPath, options) {
+async function importHandler(
+  targetPath: string,
+  options: Options$
+): Promise<void> {
   if (options.all) {
-    const files = await fs.readdir(targetPath);
+    const files: string[] = await fs.readdir(targetPath);
     while (files.length) {
-      let file = files.shift();
+      let file: string = <string>files.shift();
       try {
         await importHandlerOneDir(path.join(targetPath, file), options);
       } catch (err) {
@@ -138,6 +149,6 @@ async function importHandler(targetPath, options) {
   }
 }
 
-export default function(argv: Argv$, options: Options$) {
+export default function(argv: Argv$, options: Options$): Promise<void> {
   return importHandler(argv.dir, options);
 }
