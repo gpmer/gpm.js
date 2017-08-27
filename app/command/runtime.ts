@@ -17,8 +17,19 @@ interface Options$ {
   force?: boolean;
 }
 
-async function runtime(argv: Argv$, options: Options$) {
-  const info = {
+export interface RuntimeInfo$ {
+  node: string;
+  arch: string;
+  os: string;
+  platform: string;
+  [configName: string]: string;
+}
+
+export default async function runtime(
+  argv: Argv$,
+  options: Options$
+): Promise<RuntimeInfo$> {
+  const info: RuntimeInfo$ = {
     node: process.version,
     [config.name]: pkg.version,
     arch: os.arch(),
@@ -28,8 +39,4 @@ async function runtime(argv: Argv$, options: Options$) {
 
   !options.nolog && process.stdout.write(prettyjson.render(info) + '\n');
   return info;
-}
-
-export default async function(argv: Argv$, options: Options$) {
-  return runtime(argv, options);
 }
