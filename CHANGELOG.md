@@ -1,3 +1,30 @@
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/gpmer/gpm.js/compare/v6.5.2...v7.0.0) (2017-08-29)
+
+
+### Bug Fixes
+
+* **package:** update console.table to version 0.9.0 ([0cb6f22](https://github.com/gpmer/gpm.js/commit/0cb6f22))
+* **package:** update fs-extra to version 4.0.0 ([e9bf9f1](https://github.com/gpmer/gpm.js/commit/e9bf9f1))
+* **package:** update log4js to version 2.0.0 ([ff10c28](https://github.com/gpmer/gpm.js/commit/ff10c28))
+
+
+
+<a name="6.5.2"></a>
+## [6.5.2](https://github.com/gpmer/gpm.js/compare/v6.5.1...v6.5.2) (2017-05-03)
+
+
+### Bug Fixes
+
+* fix last commit ([2bfcebf](https://github.com/gpmer/gpm.js/commit/2bfcebf))
+
+
+
+<a name="6.5.1"></a>
+## [6.5.1](https://github.com/gpmer/gpm.js/compare/v6.5.0...v6.5.1) (2017-05-03)
+
+
+
 <a name="6.5.0"></a>
 # [6.5.0](https://github.com/gpmer/gpm.js/compare/v6.4.0...v6.5.0) (2017-04-04)
 
