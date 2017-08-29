@@ -6,8 +6,6 @@ const fs = require('fs-extra');
 const spawn = require('cross-spawn');
 const parseGitConfig = require('parse-git-config');
 const _ = require('lodash');
-const log4js = require('log4js');
-const logger = log4js.getLogger('UTILS');
 
 /**
  * 判断是否存在该路径

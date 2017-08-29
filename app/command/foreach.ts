@@ -1,7 +1,6 @@
 /**
  * Created by axetroy on 17-3-13.
  */
-const log4js = require('log4js');
 import * as _ from 'lodash';
 const __ = require('i18n').__;
 

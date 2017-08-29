@@ -1,14 +1,13 @@
 /**
  * Created by axetroy on 17-2-14.
  */
+
 const path = require('path');
 
 const gitUrlParse = require('git-url-parse');
 const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
 const _ = require('lodash');
-const log4js = require('log4js');
-const logger = log4js.getLogger('ADD');
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
 const observatory = require('observatory');
@@ -25,6 +24,7 @@ import plugin from '../plugin';
 import registry from '../registry';
 import globalConfig from '../global-config';
 import Gpmrc from '../gpmrc';
+import { info, warn } from '../logger';
 
 const ACTION = 'add';
 
@@ -61,7 +61,7 @@ async function add(repo: string, options: Options$) {
     typeof options.name === 'string' ? options.name : gitInfo.name
   );
 
-  let confirmCover:boolean = false;
+  let confirmCover: boolean = false;
   if (await isExistPath(repoDir)) {
     if (options.force) {
       confirmCover = true;
@@ -76,7 +76,7 @@ async function add(repo: string, options: Options$) {
       })).result;
     }
     if (!confirmCover) {
-      !options.nolog && logger.info(__('global.tips.good_bye'));
+      !options.nolog && info(__('global.tips.good_bye'));
       return process.exit(1);
     }
   }
@@ -143,18 +143,18 @@ async function add(repo: string, options: Options$) {
 
   if (!options.nolog) {
     let finallyPath = normalizePath(repoDir, options);
-    logger.info(
+    info(
       __('commands.add.log.info_add_success', {
         path: finallyPath.green.underline
       })
     );
     try {
       clipboardy.writeSync(finallyPath);
-      logger.info(
+      info(
         __('commands.add.log.info_copy_clipboard', { key: '<CTRL+V>'.green })
       );
     } catch (err) {
-      logger.warn(__('commands.add.log.warn_copy_clipboard'));
+      warn(__('commands.add.log.warn_copy_clipboard'));
     }
   }
 

@@ -1,11 +1,10 @@
 /**
  * Created by axetroy on 17-2-14.
  */
-const fs = require('fs-extra');
-const log4js = require('log4js');
-const logger = log4js.getLogger('CLEAN');
 
+const fs = require('fs-extra');
 import config from '../config';
+import { info } from '../logger';
 
 import relinkHandler from './relink';
 
@@ -31,6 +30,5 @@ export default async function clean(
   }
   // auto generate file again
   await relinkHandler(argv, { nolog: options.nolog });
-  !options.nolog &&
-    logger.info(`clean ${config.paths.temp.green.underline} success`);
+  !options.nolog && info(`clean ${config.paths.temp.green.underline} success`);
 }

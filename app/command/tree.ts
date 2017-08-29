@@ -6,15 +6,14 @@ const path = require('path');
 
 const _ = require('lodash');
 const prettyjson = require('prettyjson');
-const log4js = require('log4js');
 const __ = require('i18n').__;
 const jt = require('json-toy');
 
-const logger = log4js.getLogger('LIST');
 import config from '../config';
 import { normalizePath } from '../utils';
 import registry from '../registry';
 import globalConfig from '../global-config';
+import { info, warn } from '../logger';
 
 interface Argv$ {
   key: string;
@@ -29,12 +28,12 @@ interface Options$ {
 
 async function ls(key: string, options: Options$) {
   if (registry.isEmpty)
-    return logger.warn(__('commands.list.log.warn_empty_registry'));
+    return warn(__('commands.list.log.warn_empty_registry'));
 
   let repositories = key ? registry.find(key) : registry.repositories.slice();
 
   if (_.isEmpty(repositories))
-    return logger.info(__('commands.list.log.err_not_found'));
+    return info(__('commands.list.log.err_not_found'));
 
   const result = registry.toJson(null, options);
 

@@ -2,14 +2,14 @@
  * Created by axetroy on 17-2-15.
  */
 
+
 const path = require('path');
 
 const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
-const log4js = require('log4js');
-const logger = log4js.getLogger('CONFIG');
 const __ = require('i18n').__;
 
+import {info,error} from "../logger"
 import config from '../config';
 import globalConfig from '../global-config';
 
@@ -52,19 +52,19 @@ async function configHandler(argv: Argv$, options: Options$): Promise<any> {
     case 'GET':
       if (!key)
         return (
-          !options.nolog && logger.error(__('commands.config.log.require_key'))
+          !options.nolog && error(__('commands.config.log.require_key'))
         );
       output = globalConfig.get(key);
-      !options.nolog && logger.info(`${key}: ${output}`);
+      !options.nolog && info(`${key}: ${output}`);
       break;
     case 'SET':
       if (!key)
         return (
-          !options.nolog && logger.error(__('commands.config.log.require_key'))
+          !options.nolog && error(__('commands.config.log.require_key'))
         );
       if (!value)
         return (
-          !options.nolog && logger.error(__('commands.config.log.require_val'))
+          !options.nolog && error(__('commands.config.log.require_val'))
         );
       output = await globalConfig.set(key, value);
       !options.nolog &&
@@ -73,7 +73,7 @@ async function configHandler(argv: Argv$, options: Options$): Promise<any> {
     case 'REMOVE':
       if (!key)
         return (
-          !options.nolog && logger.error(__('commands.config.log.require_key'))
+          !options.nolog && error(__('commands.config.log.require_key'))
         );
       output = await globalConfig.remove(key);
       !options.nolog &&
@@ -81,13 +81,13 @@ async function configHandler(argv: Argv$, options: Options$): Promise<any> {
       break;
     case 'RESET':
       output = await globalConfig.reset();
-      !options.nolog && logger.info(__('commands.config.log.info_reset'));
+      !options.nolog && info(__('commands.config.log.info_reset'));
       !options.nolog &&
         process.stdout.write(prettyjson.render(globalConfig.entity) + '\n');
       break;
     default:
       !options.nolog &&
-        logger.info(
+        info(
           __('commands.config.log.help', {
             cmd: (config.name +
               ' config ' +

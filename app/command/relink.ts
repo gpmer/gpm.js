@@ -6,8 +6,6 @@ const path = require('path');
 
 const _ = require('lodash');
 const fs = require('fs-extra');
-const log4js = require('log4js');
-const logger = log4js.getLogger('RELINK');
 const gitUrlParse = require('git-url-parse');
 import globalConfig from '../global-config';
 import registry from '../registry';

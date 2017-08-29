@@ -2,17 +2,12 @@
  * Created by axetroy on 2017/3/18.
  */
 
-const path = require('path');
-const spawn = require('cross-spawn');
-
 const prettyjson = require('prettyjson');
-const fs = require('fs-extra');
-const log4js = require('log4js');
-const logger = log4js.getLogger('CONFIG');
 const __ = require('i18n').__;
 
 import plugin from '../plugin';
 import config from '../config';
+import { error, info } from '../logger';
 
 type action$ = 'LIST' | 'REMOVE';
 
@@ -41,19 +36,18 @@ export default async function configHandler(
       break;
     case 'REMOVE':
       if (!key)
-        return (
-          !options.nolog &&
-          logger.error(
+        if (!options.nolog) {
+          return error(
             __('commands.plugin.log.require_key', {
               cmd: (config.name + ` config set ${key} [key]`).green
             })
-          )
-        );
+          );
+        }
       await plugin.remove(key);
       break;
     default:
       !options.nolog &&
-        logger.info(
+        info(
           __('commands.plugin.log.info_help', {
             cmd: (config.name +
               ' plugin ' +

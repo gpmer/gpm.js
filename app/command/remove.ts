@@ -6,15 +6,14 @@ const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
 const _ = require('lodash');
 const inquirer = require('inquirer');
-const log4js = require('log4js');
 const __ = require('i18n').__;
 
-const logger = log4js.getLogger('REMOVE');
 export const prompt: any = inquirer.createPromptModule();
 
 import registry, { Target$ } from '../registry';
 import { normalizePath } from '../utils';
 import { decoratorIndex } from './find';
+import { info } from '../logger';
 
 interface Argv$ {
   owner: string;
@@ -43,7 +42,7 @@ export default async function remove(
   let target: Target$;
   if (argv.owner) {
     if (!argv.repo)
-      return logger.info(
+      return info(
         __('commands.remove.log.err_missing_repo', { owner: argv.owner })
       );
     target = _.find(
@@ -90,7 +89,7 @@ export default async function remove(
       }
     )).result == false
   ) {
-    !options.nolog && logger.info(__('global.tips.good_bye'));
+    !options.nolog && info(__('global.tips.good_bye'));
     return process.exit(0);
   }
 
@@ -100,7 +99,7 @@ export default async function remove(
 
   await registry.remove(target);
 
-  logger.info(
+  info(
     __('commands.remove.log.del', {
       repo: normalizePath(target.path, options).green
     })

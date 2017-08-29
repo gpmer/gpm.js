@@ -1,19 +1,19 @@
 /**
  * Created by axetroy on 17-2-14.
  */
+
 const path = require('path');
 const prettyjson = require('prettyjson');
 const inquirer = require('inquirer');
 const _ = require('lodash');
 const gitUrlParse = require('git-url-parse');
 const clipboardy = require('clipboardy');
-const log4js = require('log4js');
 const __ = require('i18n').__;
 
-const logger = log4js.getLogger('FIND');
 import config from '../config';
 import registry, { Target$ } from '../registry';
 import { normalizePath } from '../utils';
+import { info, warn } from '../logger';
 
 interface Argv$ {}
 
@@ -70,8 +70,8 @@ export default async function search(argv: Argv$, options: Options$) {
 
   try {
     clipboardy.writeSync(target.path);
-    logger.info(__('global.tips.past', { key: '<CTRL+V>'.green }));
+    info(__('global.tips.past', { key: '<CTRL+V>'.green }));
   } catch (err) {
-    logger.warn(__('global.tips.copy_fail'));
+    warn(__('global.tips.copy_fail'));
   }
 }
