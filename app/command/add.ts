@@ -48,20 +48,20 @@ async function add(repo: string, options: Options$) {
     throw new Error(__('commands.add.log.invalid_url', { repo }));
   }
 
-  const randomTemp = path.join(config.paths.temp, uniqueString());
-  const tempDir = path.join(randomTemp, gitInfo.name);
-  const baseDir = path.join(
+  const randomTemp: string = path.join(config.paths.temp, uniqueString());
+  const tempDir: string = path.join(randomTemp, gitInfo.name);
+  const baseDir: string = path.join(
     config.paths.home,
     globalConfig.entity.base || config.defaults.base
   );
-  const sourceDir = path.join(baseDir, gitInfo.source);
-  const ownerDir = path.join(sourceDir, gitInfo.owner);
-  let repoDir = path.join(
+  const sourceDir: string = path.join(baseDir, gitInfo.source);
+  const ownerDir: string = path.join(sourceDir, gitInfo.owner);
+  let repoDir: string = path.join(
     ownerDir,
     typeof options.name === 'string' ? options.name : gitInfo.name
   );
 
-  let confirmCover = false;
+  let confirmCover:boolean = false;
   if (await isExistPath(repoDir)) {
     if (options.force) {
       confirmCover = true;
@@ -121,7 +121,7 @@ async function add(repo: string, options: Options$) {
     const gpmrc = new Gpmrc();
     await gpmrc.load(repoDir);
     if (gpmrc.exist) {
-      const alias = gpmrc.rc.name;
+      const alias: string = gpmrc.rc.name;
       if (alias && alias !== gitInfo.name) {
         let newRepoDir = path.join(
           ownerDir,
