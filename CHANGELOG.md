@@ -1,3 +1,16 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/gpmer/gpm.js/compare/v7.0.0...v7.1.0) (2017-10-28)
+
+
+### Bug Fixes
+
+* **package:** update axios to version 0.17.0 ([37f7b85](https://github.com/gpmer/gpm.js/commit/37f7b85))
+* **package:** update caporal to version 0.8.0 ([5e8cda5](https://github.com/gpmer/gpm.js/commit/5e8cda5))
+* fix caporal import ([0d8802f](https://github.com/gpmer/gpm.js/commit/0d8802f))
+* type ([c210a98](https://github.com/gpmer/gpm.js/commit/c210a98))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/gpmer/gpm.js/compare/v6.5.2...v7.0.0) (2017-08-29)
 
