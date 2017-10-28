@@ -58,23 +58,27 @@
   version "0.0.30"
   resolved "http://registry.npm.taobao.org/@types/debug/download/@types/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
 
-"@types/fs-extra@^4.0.0":
-  version "4.0.0"
-  resolved "http://registry.npm.taobao.org/@types/fs-extra/download/@types/fs-extra-4.0.0.tgz#1dd742ad5c9bce308f7a52d02ebc01421bc9102f"
+"@types/fs-extra@^4.0.3":
+  version "4.0.3"
+  resolved "http://registry.npm.taobao.org/@types/fs-extra/download/@types/fs-extra-4.0.3.tgz#87343b1ab99415b61817ac894ed622355a0ebf67"
   dependencies:
     "@types/node" "*"
 
-"@types/i18n@^0.8.0":
-  version "0.8.0"
-  resolved "http://registry.npm.taobao.org/@types/i18n/download/@types/i18n-0.8.0.tgz#7b64f487beec22bee904f60b17cfb3d3bf2c8111"
+"@types/i18n@^0.8.2":
+  version "0.8.2"
+  resolved "http://registry.npm.taobao.org/@types/i18n/download/@types/i18n-0.8.2.tgz#78b6f937f9c77c2914311df272923944b7221a0c"
 
-"@types/lodash@^4.14.74":
-  version "4.14.74"
-  resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
+"@types/lodash@^4.14.80":
+  version "4.14.80"
+  resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.80.tgz#a6b8b7900e6a7dcbc2e90d9b6dfbe3f6a7f69951"
 
-"@types/node@*", "@types/node@^8.0.25":
+"@types/node@*":
   version "8.0.25"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-8.0.25.tgz#66ecaf4df93f5281b48427ee96fbcdfc4f0cdce1"
+
+"@types/node@^8.0.47":
+  version "8.0.47"
+  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-8.0.47.tgz#968e596f91acd59069054558a00708c445ca30c2"
 
 JSONStream@^1.0.4:
   version "1.3.1"
@@ -106,9 +110,9 @@ align-text@^0.1.1, align-text@^0.1.3:
     longest "^1.0.1"
     repeat-string "^1.5.2"
 
-all-contributors-cli@^4.4.0:
-  version "4.4.0"
-  resolved "http://registry.npm.taobao.org/all-contributors-cli/download/all-contributors-cli-4.4.0.tgz#174f1295c9735c3f9299439a22c415d542dee850"
+all-contributors-cli@^4.5.1:
+  version "4.5.1"
+  resolved "http://registry.npm.taobao.org/all-contributors-cli/download/all-contributors-cli-4.5.1.tgz#e2d198ee80074103aa7a202f6d83eb5575e10701"
   dependencies:
     async "^2.0.0-rc.1"
     inquirer "^3.0.1"
@@ -141,6 +145,10 @@ ansi-escapes@^1.1.0:
 ansi-escapes@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-2.0.0.tgz#5bae52be424878dd9783e8910e3fc2922e83c81b"
+
+ansi-escapes@^3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.taobao.org/ansi-escapes/download/ansi-escapes-3.0.0.tgz#ec3e8b4e9f8064fc02c3ac9b65f1c275bda8ef92"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -687,7 +695,7 @@ babel-types@^6.18.0, babel-types@^6.24.1, babel-types@^6.26.0:
     lodash "^4.17.4"
     to-fast-properties "^1.0.3"
 
-babylon@^6.1.0, babylon@^6.17.4, babylon@^6.18.0:
+babylon@^6.1.0, babylon@^6.18.0:
   version "6.18.0"
   resolved "http://registry.npm.taobao.org/babylon/download/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
@@ -1093,48 +1101,46 @@ console.table@^0.9.1:
   dependencies:
     easy-table "1.1.0"
 
-conventional-changelog-angular@^1.3.4:
-  version "1.4.0"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-angular/download/conventional-changelog-angular-1.4.0.tgz#118b9f7d41a3d99500bfb6bea1f3525e055e8b9b"
+conventional-changelog-angular@^1.5.1:
+  version "1.5.1"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-angular/download/conventional-changelog-angular-1.5.1.tgz#974e73aa1c39c392e4364f2952bd9a62904e9ea3"
   dependencies:
     compare-func "^1.3.1"
-    github-url-from-git "^1.4.0"
     q "^1.4.1"
-    read-pkg-up "^2.0.0"
 
-conventional-changelog-atom@^0.1.0:
+conventional-changelog-atom@^0.1.1:
   version "0.1.1"
   resolved "http://registry.npm.taobao.org/conventional-changelog-atom/download/conventional-changelog-atom-0.1.1.tgz#d40a9b297961b53c745e5d1718fd1a3379f6a92f"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-cli@^1.3.2:
-  version "1.3.2"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-cli/download/conventional-changelog-cli-1.3.2.tgz#33abf2b5720a9b094df38e81741ccb502e1a4125"
+conventional-changelog-cli@^1.3.4:
+  version "1.3.4"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-cli/download/conventional-changelog-cli-1.3.4.tgz#38f7ff7ac7bca92ea110897ea08b473f2055a27c"
   dependencies:
     add-stream "^1.0.0"
-    conventional-changelog "^1.1.4"
+    conventional-changelog "^1.1.6"
     lodash "^4.1.0"
     meow "^3.7.0"
     tempfile "^1.1.1"
 
-conventional-changelog-codemirror@^0.1.0:
-  version "0.1.0"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-codemirror/download/conventional-changelog-codemirror-0.1.0.tgz#7577a591dbf9b538e7a150a7ee62f65a2872b334"
+conventional-changelog-codemirror@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-codemirror/download/conventional-changelog-codemirror-0.2.0.tgz#3cc925955f3b14402827b15168049821972d9459"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-core@^1.9.0:
-  version "1.9.0"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-core/download/conventional-changelog-core-1.9.0.tgz#de5dfbc091847656508d4a389e35c9a1bc49e7f4"
+conventional-changelog-core@^1.9.2:
+  version "1.9.2"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-core/download/conventional-changelog-core-1.9.2.tgz#a09b6b959161671ff45b93cc9efb0444e7c845c0"
   dependencies:
-    conventional-changelog-writer "^1.1.0"
-    conventional-commits-parser "^1.0.0"
+    conventional-changelog-writer "^2.0.1"
+    conventional-commits-parser "^2.0.0"
     dateformat "^1.0.12"
     get-pkg-repo "^1.0.0"
     git-raw-commits "^1.2.0"
     git-remote-origin-url "^2.0.0"
-    git-semver-tags "^1.2.0"
+    git-semver-tags "^1.2.2"
     lodash "^4.0.0"
     normalize-package-data "^2.3.5"
     q "^1.4.1"
@@ -1142,21 +1148,21 @@ conventional-changelog-core@^1.9.0:
     read-pkg-up "^1.0.1"
     through2 "^2.0.0"
 
-conventional-changelog-ember@^0.2.6:
-  version "0.2.6"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-ember/download/conventional-changelog-ember-0.2.6.tgz#8b7355419f5127493c4c562473ab2fc792f1c2b6"
+conventional-changelog-ember@^0.2.8:
+  version "0.2.8"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-ember/download/conventional-changelog-ember-0.2.8.tgz#65e686da83d23b67133d1f853908c87f948035c0"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-eslint@^0.1.0:
-  version "0.1.0"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-eslint/download/conventional-changelog-eslint-0.1.0.tgz#a52411e999e0501ce500b856b0a643d0330907e2"
+conventional-changelog-eslint@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-eslint/download/conventional-changelog-eslint-0.2.0.tgz#b4b9b5dc09417844d87c7bcfb16bdcc686c4b1c1"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-express@^0.1.0:
-  version "0.1.0"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-express/download/conventional-changelog-express-0.1.0.tgz#55c6c841c811962036c037bdbd964a54ae310fce"
+conventional-changelog-express@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-express/download/conventional-changelog-express-0.2.0.tgz#8d666ad41b10ebf964a4602062ddd2e00deb518d"
   dependencies:
     q "^1.4.1"
 
@@ -1172,16 +1178,16 @@ conventional-changelog-jscs@^0.1.0:
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-jshint@^0.1.0:
-  version "0.1.0"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-jshint/download/conventional-changelog-jshint-0.1.0.tgz#00cab8e9a3317487abd94c4d84671342918d2a07"
+conventional-changelog-jshint@^0.2.0:
+  version "0.2.0"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-jshint/download/conventional-changelog-jshint-0.2.0.tgz#63ad7aec66cd1ae559bafe80348c4657a6eb1872"
   dependencies:
     compare-func "^1.3.1"
     q "^1.4.1"
 
-conventional-changelog-writer@^1.1.0:
-  version "1.4.1"
-  resolved "http://registry.npm.taobao.org/conventional-changelog-writer/download/conventional-changelog-writer-1.4.1.tgz#3f4cb4d003ebb56989d30d345893b52a43639c8e"
+conventional-changelog-writer@^2.0.1:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/conventional-changelog-writer/download/conventional-changelog-writer-2.0.1.tgz#47c10d0faba526b78d194389d1e931d09ee62372"
   dependencies:
     compare-func "^1.3.1"
     conventional-commits-filter "^1.0.0"
@@ -1194,20 +1200,20 @@ conventional-changelog-writer@^1.1.0:
     split "^1.0.0"
     through2 "^2.0.0"
 
-conventional-changelog@^1.1.4:
-  version "1.1.4"
-  resolved "http://registry.npm.taobao.org/conventional-changelog/download/conventional-changelog-1.1.4.tgz#108bc750c2a317e200e2f9b413caaa1f8c7efa3b"
+conventional-changelog@^1.1.6:
+  version "1.1.6"
+  resolved "http://registry.npm.taobao.org/conventional-changelog/download/conventional-changelog-1.1.6.tgz#ebd9b1ab63766c715f903f654626b6b1c0da7762"
   dependencies:
-    conventional-changelog-angular "^1.3.4"
-    conventional-changelog-atom "^0.1.0"
-    conventional-changelog-codemirror "^0.1.0"
-    conventional-changelog-core "^1.9.0"
-    conventional-changelog-ember "^0.2.6"
-    conventional-changelog-eslint "^0.1.0"
-    conventional-changelog-express "^0.1.0"
+    conventional-changelog-angular "^1.5.1"
+    conventional-changelog-atom "^0.1.1"
+    conventional-changelog-codemirror "^0.2.0"
+    conventional-changelog-core "^1.9.2"
+    conventional-changelog-ember "^0.2.8"
+    conventional-changelog-eslint "^0.2.0"
+    conventional-changelog-express "^0.2.0"
     conventional-changelog-jquery "^0.1.0"
     conventional-changelog-jscs "^0.1.0"
-    conventional-changelog-jshint "^0.1.0"
+    conventional-changelog-jshint "^0.2.0"
 
 conventional-commits-filter@^1.0.0:
   version "1.0.0"
@@ -1216,9 +1222,9 @@ conventional-commits-filter@^1.0.0:
     is-subset "^0.1.1"
     modify-values "^1.0.0"
 
-conventional-commits-parser@^1.0.0:
-  version "1.3.0"
-  resolved "http://registry.npm.taobao.org/conventional-commits-parser/download/conventional-commits-parser-1.3.0.tgz#e327b53194e1a7ad5dc63479ee9099a52b024865"
+conventional-commits-parser@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/conventional-commits-parser/download/conventional-commits-parser-2.0.0.tgz#71d01910cb0a99aeb20c144e50f81f4df3178447"
   dependencies:
     JSONStream "^1.0.4"
     is-text-path "^1.0.0"
@@ -1275,9 +1281,9 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
-cross-env@^5.0.5:
-  version "5.0.5"
-  resolved "http://registry.npm.taobao.org/cross-env/download/cross-env-5.0.5.tgz#4383d364d9660873dd185b398af3bfef5efffef3"
+cross-env@^5.1.1:
+  version "5.1.1"
+  resolved "http://registry.npm.taobao.org/cross-env/download/cross-env-5.1.1.tgz#b6d8ab97f304c0f71dae7277b75fe424c08dfa74"
   dependencies:
     cross-spawn "^5.1.0"
     is-windows "^1.0.0"
@@ -1368,6 +1374,12 @@ debug@2.6.8, debug@^2.2.0, debug@^2.4.5, debug@^2.6.3, debug@^2.6.8:
   dependencies:
     ms "2.0.0"
 
+debug@^3.1.0:
+  version "3.1.0"
+  resolved "http://registry.npm.taobao.org/debug/download/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  dependencies:
+    ms "2.0.0"
+
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/decamelize/download/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -1422,9 +1434,9 @@ detect-indent@^5.0.0:
   version "5.0.0"
   resolved "http://registry.npm.taobao.org/detect-indent/download/detect-indent-5.0.0.tgz#3871cc0a6a002e8c3e5b3cf7f336264675f06b9d"
 
-docsify-cli@^4.1.9:
-  version "4.1.9"
-  resolved "http://registry.npm.taobao.org/docsify-cli/download/docsify-cli-4.1.9.tgz#6791846199b019f6fa9376f02ab7ee6b1375a415"
+docsify-cli@^4.1.11:
+  version "4.1.11"
+  resolved "http://registry.npm.taobao.org/docsify-cli/download/docsify-cli-4.1.11.tgz#b99989155ca6e5f73c7cb48b47207ce602b89594"
   dependencies:
     chalk "^1.1.3"
     connect "^3.6.0"
@@ -1796,12 +1808,12 @@ fs-extra@^2.1.2:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
 
-fs-extra@^4.0.1:
-  version "4.0.1"
-  resolved "http://registry.npm.taobao.org/fs-extra/download/fs-extra-4.0.1.tgz#7fc0c6c8957f983f57f306a24e5b9ddd8d0dd880"
+fs-extra@^4.0.2:
+  version "4.0.2"
+  resolved "http://registry.npm.taobao.org/fs-extra/download/fs-extra-4.0.2.tgz#f91704c53d1b461f893452b0c307d9997647ab6b"
   dependencies:
     graceful-fs "^4.1.2"
-    jsonfile "^3.0.0"
+    jsonfile "^4.0.0"
     universalify "^0.1.0"
 
 fs.realpath@^1.0.0:
@@ -1920,9 +1932,9 @@ git-remote-origin-url@^2.0.0:
     gitconfiglocal "^1.0.0"
     pify "^2.3.0"
 
-git-semver-tags@^1.2.0:
-  version "1.2.1"
-  resolved "http://registry.npm.taobao.org/git-semver-tags/download/git-semver-tags-1.2.1.tgz#6ccd2a52e735b736748dc762444fcd9588e27490"
+git-semver-tags@^1.2.2:
+  version "1.2.2"
+  resolved "http://registry.npm.taobao.org/git-semver-tags/download/git-semver-tags-1.2.2.tgz#a2139be1bf6e337e125f3eb8bb8fc6f5d4d6445f"
   dependencies:
     meow "^3.3.0"
     semver "^5.0.1"
@@ -1934,9 +1946,9 @@ git-up@^2.0.0:
     is-ssh "^1.3.0"
     parse-url "^1.3.0"
 
-git-url-parse@^7.0.0:
-  version "7.0.0"
-  resolved "http://registry.npm.taobao.org/git-url-parse/download/git-url-parse-7.0.0.tgz#2a7553f0c1e1405496f79da922e7a560895270f8"
+git-url-parse@^7.0.1:
+  version "7.0.1"
+  resolved "http://registry.npm.taobao.org/git-url-parse/download/git-url-parse-7.0.1.tgz#1a3dffc6eaa9e3634deedc58e20d9e33106d3d41"
   dependencies:
     git-up "^2.0.0"
 
@@ -1945,10 +1957,6 @@ gitconfiglocal@^1.0.0:
   resolved "http://registry.npm.taobao.org/gitconfiglocal/download/gitconfiglocal-1.0.0.tgz#41d045f3851a5ea88f03f24ca1c6178114464b9b"
   dependencies:
     ini "^1.3.2"
-
-github-url-from-git@^1.4.0:
-  version "1.5.0"
-  resolved "http://registry.npm.taobao.org/github-url-from-git/download/github-url-from-git-1.5.0.tgz#f985fedcc0a9aa579dc88d7aff068d55cc6251a0"
 
 glob-base@^0.3.0:
   version "0.3.0"
@@ -2271,11 +2279,30 @@ inquirer@^1.0.2:
     strip-ansi "^3.0.0"
     through "^2.3.6"
 
-inquirer@^3.0.1, inquirer@^3.2.2:
+inquirer@^3.0.1:
   version "3.2.2"
   resolved "http://registry.npm.taobao.org/inquirer/download/inquirer-3.2.2.tgz#c2aaede1507cc54d826818737742d621bef2e823"
   dependencies:
     ansi-escapes "^2.0.0"
+    chalk "^2.0.0"
+    cli-cursor "^2.1.0"
+    cli-width "^2.0.0"
+    external-editor "^2.0.4"
+    figures "^2.0.0"
+    lodash "^4.3.0"
+    mute-stream "0.0.7"
+    run-async "^2.2.0"
+    rx-lite "^4.0.8"
+    rx-lite-aggregates "^4.0.8"
+    string-width "^2.1.0"
+    strip-ansi "^4.0.0"
+    through "^2.3.6"
+
+inquirer@^3.3.0:
+  version "3.3.0"
+  resolved "http://registry.npm.taobao.org/inquirer/download/inquirer-3.3.0.tgz#9dd2f2ad765dcab1ff0443b491442a20ba227dc9"
+  dependencies:
+    ansi-escapes "^3.0.0"
     chalk "^2.0.0"
     cli-cursor "^2.1.0"
     cli-width "^2.0.0"
@@ -2528,15 +2555,15 @@ istanbul-lib-hook@^1.0.7:
   dependencies:
     append-transform "^0.4.0"
 
-istanbul-lib-instrument@^1.7.4:
-  version "1.7.5"
-  resolved "http://registry.npm.taobao.org/istanbul-lib-instrument/download/istanbul-lib-instrument-1.7.5.tgz#adb596f8f0cb8b95e739206351a38a586af21b1e"
+istanbul-lib-instrument@^1.8.0:
+  version "1.9.1"
+  resolved "http://registry.npm.taobao.org/istanbul-lib-instrument/download/istanbul-lib-instrument-1.9.1.tgz#250b30b3531e5d3251299fdd64b0b2c9db6b558e"
   dependencies:
     babel-generator "^6.18.0"
     babel-template "^6.16.0"
     babel-traverse "^6.18.0"
     babel-types "^6.18.0"
-    babylon "^6.17.4"
+    babylon "^6.18.0"
     istanbul-lib-coverage "^1.1.1"
     semver "^5.3.0"
 
@@ -2627,9 +2654,9 @@ jsonfile@^2.1.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-jsonfile@^3.0.0:
-  version "3.0.1"
-  resolved "http://registry.npm.taobao.org/jsonfile/download/jsonfile-3.0.1.tgz#a5ecc6f65f53f662c4415c7675a0331d0992ec66"
+jsonfile@^4.0.0:
+  version "4.0.0"
+  resolved "http://registry.npm.taobao.org/jsonfile/download/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
   optionalDependencies:
     graceful-fs "^4.1.6"
 
@@ -2978,9 +3005,9 @@ modify-values@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/modify-values/download/modify-values-1.0.0.tgz#e2b6cdeb9ce19f99317a53722f3dbf5df5eaaab2"
 
-moment@^2.18.1:
-  version "2.18.1"
-  resolved "http://registry.npm.taobao.org/moment/download/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+moment@^2.19.1:
+  version "2.19.1"
+  resolved "http://registry.npm.taobao.org/moment/download/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
 
 ms@2.0.0, ms@^2.0.0:
   version "2.0.0"
@@ -3101,9 +3128,9 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/number-is-nan/download/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nyc@^11.1.0:
-  version "11.1.0"
-  resolved "http://registry.npm.taobao.org/nyc/download/nyc-11.1.0.tgz#d6b3c5e16892a25af63138ba484676aa8a22eda7"
+nyc@^11.2.1:
+  version "11.2.1"
+  resolved "http://registry.npm.taobao.org/nyc/download/nyc-11.2.1.tgz#ad850afe9dbad7f4970728b4b2e47fed1c38721c"
   dependencies:
     archy "^1.0.0"
     arrify "^1.0.1"
@@ -3117,7 +3144,7 @@ nyc@^11.1.0:
     glob "^7.0.6"
     istanbul-lib-coverage "^1.1.1"
     istanbul-lib-hook "^1.0.7"
-    istanbul-lib-instrument "^1.7.4"
+    istanbul-lib-instrument "^1.8.0"
     istanbul-lib-report "^1.1.1"
     istanbul-lib-source-maps "^1.2.1"
     istanbul-reports "^1.1.1"
@@ -4224,9 +4251,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "http://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.4.2:
-  version "2.4.2"
-  resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
+typescript@^2.5.3:
+  version "2.5.3"
+  resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.5.3.tgz#df3dcdc38f3beb800d4bc322646b04a3f6ca7f0d"
 
 uglify-js@^2.6:
   version "2.8.29"
