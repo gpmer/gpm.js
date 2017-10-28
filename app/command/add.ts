@@ -37,8 +37,8 @@ interface Options$ {
   unixify?: boolean;
   force?: boolean;
   name?: string;
-  plugin: string;
-  ignoreRc: boolean;
+  plugin?: string;
+  ignoreRc?: boolean;
 }
 
 async function add(repo: string, options: Options$) {
@@ -197,6 +197,6 @@ async function add(repo: string, options: Options$) {
 }
 
 export default async function(argv: Argv$, options: Options$) {
-  plugin.load(ACTION, options.plugin);
+  plugin.load(ACTION, options.plugin || '');
   return await add(argv.repo, options);
 }

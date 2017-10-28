@@ -16,7 +16,7 @@ import globalConfig from '../global-config';
 import { info, warn } from '../logger';
 
 interface Argv$ {
-  key: string;
+  key?: string;
 }
 
 interface Options$ {
@@ -46,19 +46,16 @@ async function ls(key: string, options: Options$) {
 
   !options.nolog &&
     process.stdout.write(
-      jt.treeString(
-        result,
-        {
-          space: 4,
-          vSpace: 0,
-          valueOut: false,
-          rootName: normalizePath(ROOT, options)
-        }
-      ) + '\n'
+      jt.treeString(result, {
+        space: 4,
+        vSpace: 0,
+        valueOut: false,
+        rootName: normalizePath(ROOT, options)
+      }) + '\n'
     );
   return result;
 }
 
 export default function(argv: Argv$, options: Options$) {
-  return ls(argv.key, options);
+  return ls(argv.key || '', options);
 }

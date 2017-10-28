@@ -14,7 +14,7 @@ import registry, { Target$, Json$ } from '../registry';
 import { warn, info } from '../logger';
 
 interface Argv$ {
-  key: string;
+  key?: string;
 }
 
 interface Options$ {
@@ -52,5 +52,5 @@ export default async function(
   argv: Argv$,
   options: Options$
 ): Promise<Json$ | void> {
-  return await ls(argv.key, options);
+  return await ls(argv.key || '', options);
 }

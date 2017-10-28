@@ -1,5 +1,6 @@
 const startTime: Date = new Date();
 import * as path from 'path';
+// const program  = require('caporal');
 import * as program from 'caporal';
 import * as inquirer from 'inquirer';
 import 'colors';
@@ -110,112 +111,165 @@ class Gpm extends EventEmitter {
     program.version(pkg.version).description(pkg.description);
 
     program
-      .command('add')
+      .command('add', __('commands.add.desc'))
       .alias('a')
       .argument(
         '<repo>',
         __('commands.add.argv.repo.desc'),
         /^(https|git)(.*)\.git$/
       )
-      .description(__('commands.add.desc'))
       .option('-n, --name <name>', __('commands.add.options.name.desc'))
       .option('-p, --plugin <plugin>', __('commands.add.options.plugin.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
       .option(FLAGS.ignoreRc.flag, FLAGS.ignoreRc.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: { repo: string },
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+          ignoreRc?: boolean;
+          name?: string;
+          plugin?: string;
+        }
+      ) {
         return addHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('remove')
+      .command('remove', __('commands.remove.desc'))
       .alias('rm')
-      .description(__('commands.remove.desc'))
       .argument('[owner]', __('commands.remove.argv.owner.desc'))
       .argument('[repo]', __('commands.remove.argv.repo.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: { owner: string; repo: string },
+        options: { unixify?: boolean; force?: boolean; nolog?: boolean }
+      ) {
         return removeHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('list')
+      .command('list', __('commands.list.desc'))
       .alias('ls')
-      .description(__('commands.list.desc'))
       .argument('[key]', __('commands.list.argv.key.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: { key?: string },
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return listHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('tree')
+      .command('tree', __('commands.tree.desc'))
       .alias('tr')
-      .description(__('commands.tree.desc'))
       .argument('[key]', __('commands.tree.argv.key.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: { key?: string },
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return treeHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('clean')
+      .command(
+        'clean',
+        __('commands.clean.desc', { tempPath: config.paths.temp })
+      )
       .alias('cl')
-      .description(__('commands.clean.desc', { tempPath: config.paths.temp }))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv,
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return cleanHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('find')
+      .command('find', __('commands.find.desc'))
       .alias('fd')
-      .description(__('commands.find.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv,
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return findHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('relink')
+      .command('relink', __('commands.relink.desc'))
       .alias('rl')
-      .description(__('commands.relink.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv,
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return relinkHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('config')
+      .command('config', __('commands.config.desc'))
       .alias('cf')
-      .description(__('commands.config.desc'))
       .argument('<action>', __('commands.config.argv.action.desc'))
       .argument('[key]', __('commands.config.argv.key.desc'))
       .argument('[value]', __('commands.config.argv.value.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: {
+          action: any;
+          key?: string;
+          value?: string;
+        },
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return configHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('runtime')
+      .command('runtime', __('commands.runtime.desc'))
       .alias('rt')
-      .description(__('commands.runtime.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
@@ -224,47 +278,69 @@ class Gpm extends EventEmitter {
       });
 
     program
-      .command('import')
+      .command('import', __('commands.import.desc'))
       .alias('ip')
-      .description(__('commands.import.desc'))
       .argument('<dir>', __('commands.import.argv.dir.desc'))
       .option('--hard', __('commands.import.options.hard.desc'))
       .option('--all', __('commands.import.options.all.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: {
+          dir: string;
+        },
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+          hard?: boolean;
+          all?: boolean;
+        }
+      ) {
         importHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('foreach')
+      .command('foreach', __('commands.foreach.desc'))
       .alias('fe')
-      .description(__('commands.foreach.desc'))
       .argument('<plugin>', __('commands.foreach.argv.plugin.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: {
+          plugin: string;
+        },
+        options: {
+          unixify?: boolean;
+          force?: boolean;
+          nolog?: boolean;
+        }
+      ) {
         return foreachHandler(argv, options).catch(errorHandler);
       });
 
     program
-      .command('plugin')
+      .command('plugin', __('commands.plugin.desc'))
       .alias('pl')
-      .description(__('commands.plugin.desc'))
       .argument('<action>', __('commands.plugin.argv.action.desc'))
       .argument('[key]', __('commands.plugin.argv.key.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
+      .action(function(
+        argv: {
+          action: any;
+          key: string;
+        },
+        options
+      ) {
         return pluginHandler(argv, options).catch(errorHandler);
       });
     program
-      .command('licenses')
+      .command('licenses', __('commands.licenses.desc'))
       .alias('lc')
-      .description(__('commands.licenses.desc'))
       .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
       .option(FLAGS.force.flag, FLAGS.force.desc)
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
