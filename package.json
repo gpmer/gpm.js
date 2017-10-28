@@ -48,7 +48,7 @@
   "preferGlobal": true,
   "homepage": "https://github.com/gpmer/gpm.js#readme",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.17.0",
     "caporal": "^0.8.0",
     "clipboardy": "^1.1.4",
     "colors": "^1.1.2",
