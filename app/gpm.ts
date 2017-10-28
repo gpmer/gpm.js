@@ -1,7 +1,6 @@
 const startTime: Date = new Date();
 import * as path from 'path';
-// const program  = require('caporal');
-import * as program from 'caporal';
+const program  = require('caporal');
 import * as inquirer from 'inquirer';
 import 'colors';
 import { EventEmitter } from 'events';
