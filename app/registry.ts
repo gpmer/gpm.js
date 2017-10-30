@@ -128,8 +128,8 @@ class Registry extends EventEmitter {
    * @returns {Promise<void>}
    */
   async clean(): Promise<void> {
+    await storage.set(this.key, []);
     this.repositories = [];
-    await storage.set(this.key, this.repositories);
   }
 
   /**
