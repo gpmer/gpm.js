@@ -72,24 +72,6 @@ $ gpm --help
 
 ```
 
-### Config
-
-this is a default config, it will be generated in ``~/.gpm`` by default
-
-**~/.gpm/gpm.config.json**
-
-```json
-{
-  "name": "gpm",
-  "base": "gpm",
-  "checkUpgrade": false
-}
-```
-
-- name: user name
-- base: the repositories base dir, all repository will be install in this dir
-- checkUpgrade: check upgrade before run every command
-
 ### Plugin
 
 Plugin system have been remove after ``gpm: ^7.1.0`` 
