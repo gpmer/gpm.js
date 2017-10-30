@@ -67,7 +67,6 @@
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
     "node-persist": "^2.1.0",
-    "observatory": "^1.0.0",
     "os-locale": "^2.1.0",
     "parse-git-config": "^1.1.1",
     "prettyjson": "^1.2.1",
