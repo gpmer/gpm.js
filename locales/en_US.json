@@ -79,14 +79,6 @@
         "err_not_found": "Not Found any repository"
       }
     },
-    "tree": {
-      "desc": "Display the all repositories in registry as a tree view.",
-      "argv": {
-        "key": {
-          "desc": "filter by the key."
-        }
-      }
-    },
     "clean": {
       "desc": "Clear the cache, locate in {{{tempPath}}}."
     },
@@ -169,9 +161,6 @@
         "require_key": "The [key] must be required, please try again: {{{cmd}}}",
         "info_help": "Flow the command line: {{{cmd}}}"
       }
-    },
-    "licenses": {
-      "desc": "Give you the license (and URL to the source code) associated with each repository."
     }
   }
 }

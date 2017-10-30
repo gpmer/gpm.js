@@ -15,12 +15,10 @@ import { __ } from 'i18n';
 import listHandler from './command/list';
 import relinkHandler from './command/relink';
 import addHandler from './command/add';
-import treeHandler from './command/tree';
 import runtimeHandler from './command/runtime';
 import configHandler from './command/config';
 import cleanHandler from './command/clean';
 import findHandler from './command/find';
-import licensesHandler from './command/licenses';
 import foreachHandler from './command/foreach';
 import importHandler from './command/import';
 import pluginHandler from './command/plugin';
@@ -171,24 +169,6 @@ class Gpm extends EventEmitter {
       });
 
     program
-      .command('tree', __('commands.tree.desc'))
-      .alias('tr')
-      .argument('[key]', __('commands.tree.argv.key.desc'))
-      .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
-      .option(FLAGS.force.flag, FLAGS.force.desc)
-      .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(
-        argv: { key?: string },
-        options: {
-          unixify?: boolean;
-          force?: boolean;
-          nolog?: boolean;
-        }
-      ) {
-        return treeHandler(argv, options).catch(errorHandler);
-      });
-
-    program
       .command(
         'clean',
         __('commands.clean.desc', { tempPath: config.paths.temp })
@@ -336,15 +316,6 @@ class Gpm extends EventEmitter {
         options
       ) {
         return pluginHandler(argv, options).catch(errorHandler);
-      });
-    program
-      .command('licenses', __('commands.licenses.desc'))
-      .alias('lc')
-      .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
-      .option(FLAGS.force.flag, FLAGS.force.desc)
-      .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(argv, options) {
-        return licensesHandler(argv, options).catch(errorHandler);
       });
   }
 
