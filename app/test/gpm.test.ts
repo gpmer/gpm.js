@@ -3,8 +3,7 @@
  */
 const path = require('path');
 const os = require('os');
-
-require('colors');
+import chalk from 'chalk';
 const test = require('ava');
 const _ = require('lodash');
 const fs = require('fs-extra');
@@ -77,9 +76,9 @@ test.serial('add & list', async t => {
 
   const result = await listCommand({ key: '' }, { nolog: true });
 
-  const source = 'github.com'.red;
-  const owner = 'gpmer'.yellow;
-  const name = 'gpm-empty-repository-for-test'.green;
+  const source = chalk.red('github.com');
+  const owner = chalk.yellow('gpmer');
+  const name = chalk.green('gpm-empty-repository-for-test');
 
   t.deepEqual(_.keys(result), [source]);
   t.deepEqual(_.keys(result[source]), [owner]);
