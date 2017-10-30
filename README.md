@@ -33,12 +33,6 @@ Git Package Manager, make you manage the repository easier
 npm install @axetroy/gpm -g
 ```
 
-## Requirement
-
-- nodejs>=6.0
-- npm || yarn
-- Git
-
 ## Supports
 
 - [x] Windows
@@ -50,36 +44,31 @@ npm install @axetroy/gpm -g
 ```bash
 $ gpm --help
 
-   gpm 6.3.3 - Git Package Manager, make you manage the repository easier
-
+   gpm 7.1.0 - Git Package Manager, make you manage the repository easier
+     
    USAGE
 
      gpm <command> [options]
 
    COMMANDS
 
-     add <repo>                         add a repository to gpm
-     remove [owner] [repo]              Remove a repository from registry and disk
-     list [key]                         Display the all repositories in registry
-     tree [key]                         Display the all repositories in registry as a tree view
-     clean                              Clear the cache, usually is /home/axetroy/.gpm/temp
-     find                               Find repository by a key, You can get all about the repository info
-     relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual
-     config <action> [key] [value]      A series handler of configurations.
-     runtime                            Print the program runtime, useful for submit issue
-     import <dir>                       Import local repository into gpm registry
-     foreach <plugin>                   Run the plugin in each project. The current work directory is the current project.
-     plugin <action> [key]              A series handler of plugin.
-     licenses                           Give you the license (and URL to the source code) associated with each repository..
-     help <command>                     Display help for a specific command
+     add <repo>                         Add a repository to gpm.                                                                
+     remove [owner] [repo]              Remove a repository from registry and disk.                                             
+     list [key]                         Display the all repositories in registry.                                               
+     clean                              Clear the cache, locate in /home/axetroy/.gpm/temp.                                     
+     find                               Find repository by a key, You can get all about the repository info.                    
+     relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual.
+     config <action> [key] [value]      A series handler of configurations.                                                     
+     runtime                            Print the program runtime, useful for submit issue.                                     
+     help <command>                     Display help for a specific command                                                     
 
    GLOBAL OPTIONS
 
-     -h, --help         Display help
-     -V, --version      Display version
-     --no-color         Disable colors
+     -h, --help         Display help                                      
+     -V, --version      Display version                                   
+     --no-color         Disable colors                                    
      --quiet            Quiet mode - only displays warn and error messages
-     -v, --verbose      Verbose mode - will also output debug messages
+     -v, --verbose      Verbose mode - will also output debug messages 
 
 ```
 
@@ -103,25 +92,7 @@ this is a default config, it will be generated in ``~/.gpm`` by default
 
 ### Plugin
 
-load plugin with option ``'-p, --plugin name'``
-
-only support ``gpm add```, more hooks are coming soon.
-
-plugin's name should match this pattern: ``gpm-plugin-${name}``
-
-```bash
-npm install gpm-plugin-npmi -g
-
-gpm add https://github.com/zeit/release.git --plugin npmi
-
-# it will run 'npm install' in the dist directory
-```
-
-name | description
------------- | -------------
-[npmi](https://github.com/gpmer/gpm-plugin-npmi) | gpm plugin for run npm install after add repository
-[pub](https://github.com/gpmer/gpm-plugin-pub) | gpm plugin for Dart project, run <pub get> after add repository
-[clear-node-modules](https://github.com/gpmer/gpm-plugin-clear-node-modules) | gpm plugin for clean the all NodeJs project's node_modules directory
+Plugin system have been remove after ``gpm: ^7.1.0`` 
 
 ## Structure
 
