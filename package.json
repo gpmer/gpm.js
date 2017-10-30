@@ -14,7 +14,7 @@
     "docs": "docsify serve docs",
     "build": "tsc",
     "postinstall": "npm run build && ./bin/gpm relink",
-    "postuninstall": "./node_modules/.bin/ts-node ./app/scripts/postuninstall.ts"
+    "postuninstall": "node ./build/scripts/postuninstall.ts"
   },
   "repository": {
     "type": "git",
