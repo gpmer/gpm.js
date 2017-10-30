@@ -1,7 +1,7 @@
 {
   "name": "@axetroy/gpm",
   "engines": {
-    "node": ">=6.9.0"
+    "node": ">=7.6"
   },
   "version": "7.1.0",
   "description": "Git Package Manager, make you manage the repository easier",
