@@ -116,7 +116,7 @@ export function normalizePath(
   path: string,
   options: { unixify?: boolean } = { unixify: false }
 ): string {
-  return path.normalize(options.unixify ? unixify(path) : path);
+  return options.unixify ? unixify(path) : path;
 }
 
 /**

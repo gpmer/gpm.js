@@ -76,7 +76,6 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
-    "@types/chalk": "^2.2.0",
     "@types/debug": "^0.0.30",
     "@types/fs-extra": "^4.0.3",
     "@types/i18n": "^0.8.2",
