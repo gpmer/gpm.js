@@ -20,7 +20,6 @@ import configHandler from './command/config';
 import cleanHandler from './command/clean';
 import findHandler from './command/find';
 import foreachHandler from './command/foreach';
-import importHandler from './command/import';
 import pluginHandler from './command/plugin';
 import removeHandler from './command/remove';
 
@@ -254,30 +253,6 @@ class Gpm extends EventEmitter {
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
       .action(function(argv, options) {
         return runtimeHandler(argv, options).catch(errorHandler);
-      });
-
-    program
-      .command('import', __('commands.import.desc'))
-      .alias('ip')
-      .argument('<dir>', __('commands.import.argv.dir.desc'))
-      .option('--hard', __('commands.import.options.hard.desc'))
-      .option('--all', __('commands.import.options.all.desc'))
-      .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
-      .option(FLAGS.force.flag, FLAGS.force.desc)
-      .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(
-        argv: {
-          dir: string;
-        },
-        options: {
-          unixify?: boolean;
-          force?: boolean;
-          nolog?: boolean;
-          hard?: boolean;
-          all?: boolean;
-        }
-      ) {
-        importHandler(argv, options).catch(errorHandler);
       });
 
     program

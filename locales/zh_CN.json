@@ -116,28 +116,6 @@
     "runtime": {
       "desc": "输出程序的运行环境，"
     },
-    "import": {
-      "desc": "导入本地的仓库到gpm",
-      "options": {
-        "hard": {
-          "desc": "硬导入, 移动仓库到gpm相应的目录，而不是默认的在gpm创建link指向该仓库"
-        },
-        "all": {
-          "desc": "遍历当前工作目录，找到一级目录下所有的仓库并且导入"
-        }
-      },
-      "argv": {
-        "dir": {
-          "desc": "你想要导入的仓库目录"
-        }
-      },
-      "log": {
-        "invalid_repo": "无效仓库: {{{repo}}}, 请确保这是一个git仓库.",
-        "invalid_repo_url": "无效的仓库, 请确保远程仓库地址的正确性.",
-        "warn_cmd_require_pms": "如果你正在使用操蛋的Windows cmd, 请确保以管理员方式运行，否则将获取不到权限",
-        "confirm_replace": "仓库已存在, 确定要覆盖 {{{path}}}"
-      }
-    },
     "foreach": {
       "desc": "遍历所有项目并运行插件. 插件环境中，当前工作目录则为循环中的当前项目",
       "argv": {
