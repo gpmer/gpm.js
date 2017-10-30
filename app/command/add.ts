@@ -68,9 +68,11 @@ async function add(repo: string, options: Options$) {
       confirmCover = (await prompt({
         type: 'confirm',
         name: 'result',
-        message: __('commands.add.log.confirm_cover', {
-          path: chalk.yellow.underline(normalizePath(repoDir, options))
-        }).white,
+        message: chalk.white(
+          __('commands.add.log.confirm_cover', {
+            path: chalk.yellow.underline(normalizePath(repoDir, options))
+          })
+        ),
         ['default']: false
       })).result;
     }
