@@ -116,17 +116,6 @@
     "runtime": {
       "desc": "输出程序的运行环境，"
     },
-    "foreach": {
-      "desc": "遍历所有项目并运行插件. 插件环境中，当前工作目录则为循环中的当前项目",
-      "argv": {
-        "plugin": {
-          "desc": "在循环中要运行的插件名称"
-        }
-      },
-      "log": {
-        "not_export_foreach_method": "插件没有输出foreach方法"
-      }
-    },
     "plugin": {
       "desc": "插件的一系列操作",
       "argv": {

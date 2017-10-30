@@ -19,7 +19,6 @@ import runtimeHandler from './command/runtime';
 import configHandler from './command/config';
 import cleanHandler from './command/clean';
 import findHandler from './command/find';
-import foreachHandler from './command/foreach';
 import pluginHandler from './command/plugin';
 import removeHandler from './command/remove';
 
@@ -253,26 +252,6 @@ class Gpm extends EventEmitter {
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
       .action(function(argv, options) {
         return runtimeHandler(argv, options).catch(errorHandler);
-      });
-
-    program
-      .command('foreach', __('commands.foreach.desc'))
-      .alias('fe')
-      .argument('<plugin>', __('commands.foreach.argv.plugin.desc'))
-      .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
-      .option(FLAGS.force.flag, FLAGS.force.desc)
-      .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(
-        argv: {
-          plugin: string;
-        },
-        options: {
-          unixify?: boolean;
-          force?: boolean;
-          nolog?: boolean;
-        }
-      ) {
-        return foreachHandler(argv, options).catch(errorHandler);
       });
 
     program
