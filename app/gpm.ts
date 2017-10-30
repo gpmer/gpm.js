@@ -19,7 +19,6 @@ import runtimeHandler from './command/runtime';
 import configHandler from './command/config';
 import cleanHandler from './command/clean';
 import findHandler from './command/find';
-import pluginHandler from './command/plugin';
 import removeHandler from './command/remove';
 
 inquirer.registerPrompt(
@@ -252,24 +251,6 @@ class Gpm extends EventEmitter {
       .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
       .action(function(argv, options) {
         return runtimeHandler(argv, options).catch(errorHandler);
-      });
-
-    program
-      .command('plugin', __('commands.plugin.desc'))
-      .alias('pl')
-      .argument('<action>', __('commands.plugin.argv.action.desc'))
-      .argument('[key]', __('commands.plugin.argv.key.desc'))
-      .option(FLAGS.unixify.flag, FLAGS.unixify.desc)
-      .option(FLAGS.force.flag, FLAGS.force.desc)
-      .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
-      .action(function(
-        argv: {
-          action: any;
-          key: string;
-        },
-        options
-      ) {
-        return pluginHandler(argv, options).catch(errorHandler);
       });
   }
 

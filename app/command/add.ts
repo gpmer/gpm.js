@@ -8,24 +8,19 @@ const fs = require('fs-extra');
 const _ = require('lodash');
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
-const observatory = require('observatory');
 const which = require('which');
 const uniqueString = require('unique-string');
 const clipboardy = require('clipboardy');
 import chalk from 'chalk';
 const __ = require('i18n').__;
 
-const cwd = process.cwd();
 
 import { isExistPath, isLink, normalizePath, runShell } from '../utils';
 import config from '../config';
-import plugin from '../plugin';
 import registry from '../registry';
 import globalConfig from '../global-config';
 import Gpmrc from '../gpmrc';
 import { info, warn } from '../logger';
-
-const ACTION = 'add';
 
 interface Argv$ {
   repo: string;
@@ -36,7 +31,6 @@ interface Options$ {
   unixify?: boolean;
   force?: boolean;
   name?: string;
-  plugin?: string;
   ignoreRc?: boolean;
 }
 
@@ -160,46 +154,8 @@ async function add(repo: string, options: Options$) {
       warn(__('commands.add.log.warn_copy_clipboard'));
     }
   }
-
-  // 获取add的相关插件
-  const plugins = plugin.get(ACTION);
-
-  process.chdir(entity.path);
-
-  while (plugins.length) {
-    const plugin: any = plugins.shift();
-    const task = observatory.add(
-      __('commands.add.log.info_run_plugin', {
-        name: chalk.green('gpm-plugin-' + plugin.name)
-      })
-    );
-    await new Promise((resolve, reject) => {
-      if (!_.isFunction(plugin.add)) {
-        reject(
-          new Error(
-            __('commands.add.log.err_run_plugin', {
-              name: plugin.name.red
-            })
-          )
-        );
-      } else {
-        plugin.add.call(entity, err => {
-          if (err) {
-            task.fail(__('global.tips.fail'));
-            reject(err);
-          } else {
-            task.done('global.tips.success');
-            resolve();
-          }
-        });
-      }
-    });
-  }
-
-  process.chdir(cwd);
 }
 
 export default async function(argv: Argv$, options: Options$) {
-  plugin.load(ACTION, options.plugin || '');
   return await add(argv.repo, options);
 }

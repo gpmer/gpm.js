@@ -113,21 +113,6 @@
     },
     "runtime": {
       "desc": "Print the program runtime, useful for submit issue."
-    },
-    "plugin": {
-      "desc": "A series handler of plugin.",
-      "argv": {
-        "action": {
-          "desc": "Plugin action."
-        },
-        "key": {
-          "desc": "Plugin key."
-        }
-      },
-      "log": {
-        "require_key": "The [key] must be required, please try again: {{{cmd}}}",
-        "info_help": "Flow the command line: {{{cmd}}}"
-      }
     }
   }
 }

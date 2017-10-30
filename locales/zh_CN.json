@@ -115,21 +115,6 @@
     },
     "runtime": {
       "desc": "输出程序的运行环境，"
-    },
-    "plugin": {
-      "desc": "插件的一系列操作",
-      "argv": {
-        "action": {
-          "desc": "插件的action"
-        },
-        "key": {
-          "desc": "插件的key"
-        }
-      },
-      "log": {
-        "require_key": "缺少参数 [key], 请再尝试一次命令: {{{cmd}}}",
-        "info_help": "请遵循这条命令: {{{cmd}}}"
-      }
     }
   }
 }
