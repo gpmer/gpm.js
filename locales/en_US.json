@@ -75,7 +75,7 @@
         }
       },
       "log": {
-        "warn_empty_registry": "You did not add any repository yet, try run command line: ${config.name} add <repo> [options]",
+        "warn_empty_registry": "You did not add any repository yet, try run command line: gpm add <repo> [options]",
         "err_not_found": "Not Found any repository"
       }
     },
