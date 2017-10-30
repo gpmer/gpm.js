@@ -42,8 +42,7 @@
     "url": "https://github.com/gpmer/gpm.js/issues"
   },
   "bin": {
-    "gpm": "./bin/gpm",
-    "gpmx": "./bin/gpm"
+    "gpm": "./bin/gpm"
   },
   "preferGlobal": true,
   "homepage": "https://github.com/gpmer/gpm.js#readme",
