@@ -124,7 +124,7 @@ async function add(repo: string, options: Options$) {
     if (gpmrc.exist) {
       const alias: string = gpmrc.rc.name;
       if (alias && alias !== gitInfo.name) {
-        let newRepoDir = path.join(
+        let newRepoDir: string = path.join(
           ownerDir,
           _.isString(options.name) ? options.name : alias
         );
