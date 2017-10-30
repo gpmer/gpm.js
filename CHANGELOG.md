@@ -1,3 +1,28 @@
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/gpmer/gpm.js/compare/v7.1.0...v8.0.0) (2017-10-30)
+
+
+### Bug Fixes
+
+* Add postuninstall script ([c57b218](https://github.com/gpmer/gpm.js/commit/c57b218))
+* Fix invalid color picker ([5f1ba32](https://github.com/gpmer/gpm.js/commit/5f1ba32))
+* fix invalid var in 1i8n template ([868ddb5](https://github.com/gpmer/gpm.js/commit/868ddb5))
+* fix test case ([5e3f011](https://github.com/gpmer/gpm.js/commit/5e3f011))
+* set storage value first ([0f2a569](https://github.com/gpmer/gpm.js/commit/0f2a569))
+
+
+### Features
+
+* remove gpmx bin ([3163fac](https://github.com/gpmer/gpm.js/commit/3163fac))
+* Remove import command ([e992c5d](https://github.com/gpmer/gpm.js/commit/e992c5d))
+* run relink command after install ([efdda39](https://github.com/gpmer/gpm.js/commit/efdda39))
+* 移除colors，改用兼容性更好的chalk作为颜色输出模块 ([9ab1074](https://github.com/gpmer/gpm.js/commit/9ab1074))
+* 移除foreach命令 ([431fe66](https://github.com/gpmer/gpm.js/commit/431fe66))
+* 移除plugin命令 ([76abda8](https://github.com/gpmer/gpm.js/commit/76abda8))
+* 移除tree和licenses命令 ([8de7efe](https://github.com/gpmer/gpm.js/commit/8de7efe))
+
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/gpmer/gpm.js/compare/v7.0.0...v7.1.0) (2017-10-28)
 
