@@ -13,7 +13,7 @@
     "generate": "all-contributors generate",
     "docs": "docsify serve docs",
     "build": "tsc",
-    "postinstall": "npm run build && ./bin/gpm relink",
+    "postinstall": "./bin/gpm relink",
     "postuninstall": "node ./build/scripts/postuninstall.js"
   },
   "repository": {
