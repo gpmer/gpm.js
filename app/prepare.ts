@@ -24,11 +24,11 @@ export interface I18nConfig$ {
  3. make sure [config] must be a json file even it's empty
  */
 export default async function(): Promise<void> {
-  await fs.ensureDir(paths.root);
+  await fs.ensureDir(paths.root); // ensure gpm root dir exist
   await [
-    await fs.ensureDir(paths.temp),
-    await globalConfig.init(),
-    await registry.init()
+    await fs.ensureDir(paths.temp), // ensure gpm temp dir exist
+    await globalConfig.init(), // ensure global config have been init
+    await registry.init() // ensure registry init
   ];
 
   const supports = ['en_US', 'zh_CN'];

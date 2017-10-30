@@ -49,10 +49,20 @@ class Plugin extends EventEmitter {
     super();
   }
 
+  /**
+   * get a plugin
+   * @param {ACTION$} action
+   * @returns {Plugin$[]}
+   */
   get(action: ACTION$): Plugin$[] {
     return (this.plugins[action] || []).slice();
   }
 
+  /**
+   * remove a plugin
+   * @param {string} pluginName
+   * @returns {Promise<number>}
+   */
   remove(pluginName: string): Promise<number> {
     return new Promise((resolve, reject) => {
       const uninstall = spawn(
@@ -71,6 +81,10 @@ class Plugin extends EventEmitter {
     });
   }
 
+  /**
+   * print the list of plugins
+   * @returns {PluginObj$[]}
+   */
   list(): PluginObj$[] {
     let table: PluginObj$[] = [];
     _.each(this.$, (v: any, name) => {
@@ -111,7 +125,9 @@ class Plugin extends EventEmitter {
       plugin.name = plugin.name || pluginName;
       if (_.isEmpty(plugin))
         throw new Error(
-          `Can not found ${chalk.green(pluginFullName)}, Please make sure you have install it in global`
+          `Can not found ${chalk.green(
+            pluginFullName
+          )}, Please make sure you have install it in global`
         );
       container.push(plugin);
     }

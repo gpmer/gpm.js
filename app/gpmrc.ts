@@ -24,6 +24,11 @@ class Gpmrc extends EventEmitter {
     super();
   }
 
+  /**
+   * load .gpmrc file
+   * @param {string} dir
+   * @returns {Promise<void>}
+   */
   async load(dir: string): Promise<void> {
     const rcPath = path.join(dir, '.gpmrc');
     if (await isExistPath(rcPath)) {
@@ -32,6 +37,12 @@ class Gpmrc extends EventEmitter {
     }
   }
 
+  /**
+   * run .gpmrc file hook
+   * @param {string} hookName
+   * @param {PlainObject$} options
+   * @returns {Promise<void>}
+   */
   async runHook(hookName: string, options: PlainObject$ = {}): Promise<void> {
     const hooks = this.rc.hooks || {};
     if (hooks[hookName]) {

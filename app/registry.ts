@@ -51,16 +51,29 @@ class Registry extends EventEmitter {
     super();
   }
 
+  /**
+   * get registry is empty or not
+   * @returns {boolean}
+   */
   get isEmpty(): boolean {
     return this.repositories.length === 0;
   }
 
+  /**
+   * init registry
+   * @returns {Promise<void>}
+   */
   async init(): Promise<void> {
     await storage.init(this.config);
 
     this.repositories = (await storage.getItem(this.key)) || [];
   }
 
+  /**
+   * add repo
+   * @param {Target$} target
+   * @returns {Promise<void>}
+   */
   async add(target: Target$): Promise<void> {
     _.remove(
       this.repositories,
@@ -74,6 +87,11 @@ class Registry extends EventEmitter {
     await storage.set(this.key, this.repositories);
   }
 
+  /**
+   * remove repo
+   * @param {Target$} target
+   * @returns {Promise<void>}
+   */
   async remove(target: Target$): Promise<void> {
     let before = this.repositories.slice();
     _.remove(
@@ -90,6 +108,11 @@ class Registry extends EventEmitter {
     }
   }
 
+  /**
+   * find repo and return a list
+   * @param {string} key
+   * @returns {Target$[]}
+   */
   find(key: string = ''): Target$[] {
     if (!key) return this.repositories;
     const searchResult = fuzzy
@@ -100,11 +123,20 @@ class Registry extends EventEmitter {
       .map(v => v);
   }
 
+  /**
+   * clear registry
+   * @returns {Promise<void>}
+   */
   async clean(): Promise<void> {
     this.repositories = [];
     await storage.set(this.key, this.repositories);
   }
 
+  /**
+   * transform to JSON ouput
+   * @param repositories
+   * @returns {Json$}
+   */
   toJson(repositories): Json$ {
     const output: Json$ = {};
     repositories = (repositories || this.repositories).slice();
