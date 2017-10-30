@@ -4,7 +4,7 @@
 
 const path = require('path');
 const _ = require('lodash');
-const prettyjson = require('prettyjson');
+import chalk from 'chalk';
 const fs = require('fs-extra');
 const gitUrlParse = require('git-url-parse');
 const inquirer = require('inquirer');
@@ -50,7 +50,7 @@ async function importHandlerOneDir(
   if (!isGitDir)
     throw new Error(
       __('commands.import.log.invalid_repo', {
-        repo: normalizePath(targetPath, options).green
+        repo: chalk.green(normalizePath(targetPath, options))
       })
     );
 
@@ -87,16 +87,14 @@ async function importHandlerOneDir(
     if (options.force) {
       isConfirmReplace = { result: true };
     } else {
-      isConfirmReplace = <PromptResult$>await prompt(
-        <any>{
-          type: 'confirm',
-          name: 'result',
-          message: __('commands.import.log.confirm_replace', {
-            path: normalizePath(distPath, options).yellow
-          }).white,
-          default: false
-        }
-      );
+      isConfirmReplace = <PromptResult$>await prompt(<any>{
+        type: 'confirm',
+        name: 'result',
+        message: __('commands.import.log.confirm_replace', {
+          path: chalk.green(normalizePath(distPath, options))
+        }).white,
+        ['default']: false
+      });
     }
 
     if (!isConfirmReplace.result) {
@@ -125,8 +123,9 @@ async function importHandlerOneDir(
   await registry.add(_.extend({}, gitInfo, { path: distPath }));
 
   info(
-    `${normalizePath(targetPath, options)
-      .green} has been ${action} to ${normalizePath(distPath, options).yellow}`
+    `${chalk.green(
+      normalizePath(targetPath, options)
+    )} has been ${action} to ${chalk.yellow(normalizePath(distPath, options))}`
   );
 }
 

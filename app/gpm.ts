@@ -1,12 +1,12 @@
 const startTime: Date = new Date();
 import * as path from 'path';
-const program  = require('caporal');
+const program = require('caporal');
 import * as inquirer from 'inquirer';
-import 'colors';
 import { EventEmitter } from 'events';
 import prepare from './prepare';
 import checkUpdate from './check-update';
 import globalConfig from './global-config';
+import chalk from 'chalk';
 
 // 3th lib
 import { __ } from 'i18n';
@@ -358,8 +358,9 @@ class Gpm extends EventEmitter {
   onExist(code) {
     if (process.env.GPM_ENV !== 'development' && code === 0) {
       process.stdout.write(
-        `Done in ${((new Date().getTime() - startTime.getTime()) /
-          1000).toFixed(2).green}s.\n`
+        `Done in ${chalk.green(
+          ((new Date().getTime() - startTime.getTime()) / 1000).toFixed(2)
+        )}s.\n`
       );
     }
   }

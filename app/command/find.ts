@@ -9,6 +9,7 @@ const _ = require('lodash');
 const gitUrlParse = require('git-url-parse');
 const clipboardy = require('clipboardy');
 const __ = require('i18n').__;
+import chalk from 'chalk';
 
 import config from '../config';
 import registry, { Target$ } from '../registry';
@@ -29,8 +30,8 @@ export interface ExtendTarget$ extends Target$ {
 }
 
 export function decoratorIndex<T>(repo: any): T {
-  repo.__index__ = `${repo.source.red}:${('@' + repo.owner).yellow}/${repo.name
-    .green}(${path.relative(config.paths.home, repo.path)})`;
+  repo.__index__ = `${repo.source.red}:${chalk.yellow('@' + repo.owner)}/${repo
+    .name.green}(${path.relative(config.paths.home, repo.path)})`;
   return repo;
 }
 
@@ -70,7 +71,7 @@ export default async function search(argv: Argv$, options: Options$) {
 
   try {
     clipboardy.writeSync(target.path);
-    info(__('global.tips.past', { key: '<CTRL+V>'.green }));
+    info(__('global.tips.past', { key: chalk.green('<CTRL+V>') }));
   } catch (err) {
     warn(__('global.tips.copy_fail'));
   }

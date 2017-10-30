@@ -3,7 +3,7 @@
  */
 
 const path = require('path');
-
+import chalk from 'chalk';
 const _ = require('lodash');
 const prettyjson = require('prettyjson');
 import { __ } from 'i18n';
@@ -34,14 +34,11 @@ async function ls(key: string, options: Options$): Promise<Json$ | void> {
   if (_.isEmpty(repositories))
     return info(__('commands.list.log.err_not_found'));
 
-  const result: Json$ = registry.toJson(
-    repositories,
-    _.extend({ color: true }, options)
-  );
+  const result: Json$ = registry.toJson(repositories);
 
   const basePath: string = path.join(config.paths.home, config.defaults.base);
 
-  const ROOT: string = normalizePath(basePath, options).white;
+  const ROOT: string = chalk.white(normalizePath(basePath, options));
 
   !options.nolog &&
     process.stdout.write(prettyjson.render({ [ROOT]: result }) + '\n');

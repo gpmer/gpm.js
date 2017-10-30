@@ -2,7 +2,7 @@
  * Created by axetroy on 17-2-14.
  */
 
-const prettyjson = require('prettyjson');
+import chalk from 'chalk';
 const fs = require('fs-extra');
 const _ = require('lodash');
 const inquirer = require('inquirer');
@@ -75,19 +75,17 @@ export default async function remove(
   }
 
   if (
-    (await prompt(
-      {
-        type: 'confirm',
-        name: 'result',
-        message:
-          `[${'DANGER'.red}]` +
-          __('commands.remove.log.warn_confirm_del', {
-            repo: normalizePath(target.path, options).red
-          }) +
-          ':',
-        default: false
-      }
-    )).result == false
+    (await prompt({
+      type: 'confirm',
+      name: 'result',
+      message:
+        `[${chalk.red('DANGER')}]` +
+        __('commands.remove.log.warn_confirm_del', {
+          repo: chalk.red(normalizePath(target.path, options))
+        }) +
+        ':',
+      ['default']: false
+    })).result == false
   ) {
     !options.nolog && info(__('global.tips.good_bye'));
     return process.exit(0);
@@ -101,7 +99,7 @@ export default async function remove(
 
   info(
     __('commands.remove.log.del', {
-      repo: normalizePath(target.path, options).green
+      repo: chalk.green(normalizePath(target.path, options))
     })
   );
 }

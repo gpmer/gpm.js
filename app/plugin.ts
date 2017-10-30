@@ -8,6 +8,7 @@ import * as fs from 'fs-extra';
 import * as globalPackageLoader from 'global-modules-path';
 import * as _ from 'lodash';
 import 'console.table';
+import chalk from 'chalk';
 
 import { camelcase } from './utils';
 
@@ -75,8 +76,8 @@ class Plugin extends EventEmitter {
     _.each(this.$, (v: any, name) => {
       const pkg = fs.readJsonSync(path.join(v.__gpm__path__, 'package.json'));
       table.push({
-        name: (pkg.name || '').yellow,
-        description: (pkg.description || '').gray,
+        name: chalk.yellow(pkg.name || ''),
+        description: chalk.gray(pkg.description || ''),
         homepage: pkg.homepage || ''
       });
     });
@@ -110,7 +111,7 @@ class Plugin extends EventEmitter {
       plugin.name = plugin.name || pluginName;
       if (_.isEmpty(plugin))
         throw new Error(
-          `Can not found ${pluginFullName}, Please make sure you have install it in global`
+          `Can not found ${chalk.green(pluginFullName)}, Please make sure you have install it in global`
         );
       container.push(plugin);
     }

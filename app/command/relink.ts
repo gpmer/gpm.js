@@ -3,7 +3,7 @@
  */
 
 const path = require('path');
-
+import chalk from 'chalk';
 const _ = require('lodash');
 const fs = require('fs-extra');
 const gitUrlParse = require('git-url-parse');
@@ -37,12 +37,6 @@ async function filterDir(files: string[]): Promise<string[]> {
   return output;
 }
 
-export interface Origin$ {
-  [key: string]: {
-    [subkey: string]: string;
-  };
-}
-
 async function loop(
   base: string,
   deepIndex: number = 0,
@@ -65,11 +59,14 @@ async function loop(
 
     !options.nolog &&
       console.info(
-        `${origin.url.green} >>> ${normalizePath(base, options).yellow}`
+        `${chalk.green(origin.url)} >>> ${chalk.yellow(
+          normalizePath(base, options)
+        )}`
       );
   } else {
-    const files: string[] = ((await fs.readdir(base)) || [])
-      .map(file => path.join(base, file));
+    const files: string[] = ((await fs.readdir(base)) || []).map(file =>
+      path.join(base, file)
+    );
     const dirs: string[] = await filterDir(files);
     if (dirs.length) {
       deepIndex = deepIndex + 1;

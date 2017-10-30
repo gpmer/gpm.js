@@ -1,4 +1,4 @@
-import { green, blue, yellow, red } from 'colors';
+import chalk from 'chalk';
 
 import * as moment from 'moment';
 
@@ -11,21 +11,21 @@ function generateTemplate(action: string, message: string): string {
 }
 
 export function log(message: string): void {
-  const tpl: string = generateTemplate('[LOG]'.green, message);
+  const tpl: string = generateTemplate(chalk.green('[LOG]'), message);
   process.stdout.write(tpl);
 }
 
 export function info(message: string): void {
-  const tpl: string = generateTemplate('[INFO]'.blue, message);
+  const tpl: string = generateTemplate(chalk.blue('[INFO]'), message);
   process.stdout.write(tpl);
 }
 
 export function warn(message: string): void {
-  const tpl: string = generateTemplate('[WARN]'.yellow, message);
+  const tpl: string = generateTemplate(chalk.yellow('[WARN]'), message);
   process.stdout.write(tpl);
 }
 
 export function error(message: string): void {
-  const tpl: string = generateTemplate('[ERROR]'.red, message);
+  const tpl: string = generateTemplate(chalk.red('[ERROR]'), message);
   process.stderr.write(tpl);
 }

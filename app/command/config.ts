@@ -1,15 +1,11 @@
 /**
  * Created by axetroy on 17-2-15.
  */
-
-
-const path = require('path');
-
+import chalk from 'chalk';
 const prettyjson = require('prettyjson');
-const fs = require('fs-extra');
 const __ = require('i18n').__;
 
-import {info,error} from "../logger"
+import { info, error } from '../logger';
 import config from '../config';
 import globalConfig from '../global-config';
 
@@ -51,30 +47,22 @@ async function configHandler(argv: Argv$, options: Options$): Promise<any> {
       break;
     case 'GET':
       if (!key)
-        return (
-          !options.nolog && error(__('commands.config.log.require_key'))
-        );
+        return !options.nolog && error(__('commands.config.log.require_key'));
       output = globalConfig.get(key);
       !options.nolog && info(`${key}: ${output}`);
       break;
     case 'SET':
       if (!key)
-        return (
-          !options.nolog && error(__('commands.config.log.require_key'))
-        );
+        return !options.nolog && error(__('commands.config.log.require_key'));
       if (!value)
-        return (
-          !options.nolog && error(__('commands.config.log.require_val'))
-        );
+        return !options.nolog && error(__('commands.config.log.require_val'));
       output = await globalConfig.set(key, value);
       !options.nolog &&
         process.stdout.write(prettyjson.render(globalConfig.entity) + '\n');
       break;
     case 'REMOVE':
       if (!key)
-        return (
-          !options.nolog && error(__('commands.config.log.require_key'))
-        );
+        return !options.nolog && error(__('commands.config.log.require_key'));
       output = await globalConfig.remove(key);
       !options.nolog &&
         process.stdout.write(prettyjson.render(globalConfig.entity) + '\n');
@@ -89,10 +77,11 @@ async function configHandler(argv: Argv$, options: Options$): Promise<any> {
       !options.nolog &&
         info(
           __('commands.config.log.help', {
-            cmd: (config.name +
+            cmd:
+              config.name +
               ' config ' +
-              'list|get|set|remove|reset'.yellow.underline +
-              ' [key] [value]').green
+              chalk.yellow.underline('list|get|set|remove|reset') +
+              chalk.green(' [key] [value]')
           })
         );
       break;

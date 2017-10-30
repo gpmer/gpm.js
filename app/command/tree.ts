@@ -35,7 +35,7 @@ async function ls(key: string, options: Options$) {
   if (_.isEmpty(repositories))
     return info(__('commands.list.log.err_not_found'));
 
-  const result = registry.toJson(null, options);
+  const result = registry.toJson(null);
 
   const basePath = path.join(
     config.paths.home,

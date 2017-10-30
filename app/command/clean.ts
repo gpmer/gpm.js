@@ -3,6 +3,7 @@
  */
 
 const fs = require('fs-extra');
+import chalk from 'chalk';
 import config from '../config';
 import { info } from '../logger';
 
@@ -30,5 +31,6 @@ export default async function clean(
   }
   // auto generate file again
   await relinkHandler(argv, { nolog: options.nolog });
-  !options.nolog && info(`clean ${config.paths.temp.green.underline} success`);
+  !options.nolog &&
+    info(`clean ${chalk.green.underline(config.paths.temp)} success`);
 }

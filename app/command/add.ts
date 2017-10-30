@@ -3,9 +3,7 @@
  */
 
 const path = require('path');
-
 const gitUrlParse = require('git-url-parse');
-const prettyjson = require('prettyjson');
 const fs = require('fs-extra');
 const _ = require('lodash');
 const inquirer = require('inquirer');
@@ -14,6 +12,7 @@ const observatory = require('observatory');
 const which = require('which');
 const uniqueString = require('unique-string');
 const clipboardy = require('clipboardy');
+import chalk from 'chalk';
 const __ = require('i18n').__;
 
 const cwd = process.cwd();
@@ -70,9 +69,9 @@ async function add(repo: string, options: Options$) {
         type: 'confirm',
         name: 'result',
         message: __('commands.add.log.confirm_cover', {
-          path: normalizePath(repoDir, options).yellow.underline
+          path: chalk.yellow.underline(normalizePath(repoDir, options))
         }).white,
-        default: false
+        ['default']: false
       })).result;
     }
     if (!confirmCover) {
@@ -91,7 +90,7 @@ async function add(repo: string, options: Options$) {
     if (!git) {
       return Promise.reject(
         new Error(
-          __('commands.add.log.make_sure_install', { bin: 'Git'.green })
+          __('commands.add.log.make_sure_install', { bin: chalk.green('Git') })
         )
       );
     }
@@ -145,13 +144,15 @@ async function add(repo: string, options: Options$) {
     let finallyPath = normalizePath(repoDir, options);
     info(
       __('commands.add.log.info_add_success', {
-        path: finallyPath.green.underline
+        path: chalk.green.underline(finallyPath)
       })
     );
     try {
       clipboardy.writeSync(finallyPath);
       info(
-        __('commands.add.log.info_copy_clipboard', { key: '<CTRL+V>'.green })
+        __('commands.add.log.info_copy_clipboard', {
+          key: chalk.green('<CTRL+V>')
+        })
       );
     } catch (err) {
       warn(__('commands.add.log.warn_copy_clipboard'));
@@ -167,7 +168,7 @@ async function add(repo: string, options: Options$) {
     const plugin: any = plugins.shift();
     const task = observatory.add(
       __('commands.add.log.info_run_plugin', {
-        name: ('gpm-plugin-' + plugin.name).green
+        name: chalk.green('gpm-plugin-' + plugin.name)
       })
     );
     await new Promise((resolve, reject) => {

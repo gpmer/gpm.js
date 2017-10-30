@@ -6,6 +6,7 @@ const fs = require('fs-extra');
 const spawn = require('cross-spawn');
 const parseGitConfig = require('parse-git-config');
 const _ = require('lodash');
+import chalk from 'chalk';
 
 /**
  * 判断是否存在该路径
@@ -159,8 +160,9 @@ export async function spawnShell(
         ? resolve()
         : reject(
             new Error(
-              `<${(command + ' ' + argv.join(' '))
-                .red}> Error Code: ${code}, Exist Signal: ${signal}`
+              `<${chalk.red(
+                command + ' ' + argv.join(' ')
+              )}> Error Code: ${code}, Exist Signal: ${signal}`
             )
           );
     });
@@ -187,7 +189,7 @@ export async function runShell(cmd: string, options = {}): Promise<void> {
       let command = (<string>subCmd.shift()).trim();
       let argv: string[] = subCmd || [];
       let full_command = command + ' ' + argv.join(' ');
-      console.log(`Running Command ${full_command.yellow}`);
+      console.info(`Running Command ${chalk.yellow(full_command)}`);
       await spawnShell(command, <never>argv, options);
     }
   }

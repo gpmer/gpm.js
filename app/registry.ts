@@ -5,6 +5,7 @@ import { EventEmitter } from 'events';
 const _ = require('lodash');
 const storage = require('node-persist');
 const fuzzy = require('fuzzy');
+import chalk from 'chalk';
 const { normalizePath } = require('./utils');
 const config = require('./config');
 
@@ -14,10 +15,6 @@ export interface Target$ {
   name: string;
   path: string;
   href: string;
-}
-
-export interface ToJsonOptions$ {
-  color: string;
 }
 
 export interface Json$ {
@@ -108,23 +105,20 @@ class Registry extends EventEmitter {
     await storage.set(this.key, this.repositories);
   }
 
-  toJson(
-    repositories,
-    options: ToJsonOptions$ | any = { color: '#fff' }
-  ): Json$ {
+  toJson(repositories): Json$ {
     const output: Json$ = {};
     repositories = (repositories || this.repositories).slice();
     while (repositories.length) {
       const repo: Target$ = repositories.shift();
-      const sourceKey: string = options.color ? repo.source.red : repo.source;
-      const ownerKey: string = options.color ? repo.owner.yellow : repo.owner;
-      const nameKey: string = options.color ? repo.name.green : repo.name;
+      const sourceKey: string = chalk.red(repo.source);
+      const ownerKey: string = chalk.yellow(repo.owner);
+      const nameKey: string = chalk.green(repo.name);
       const source: Source$ = (output[sourceKey] = output[sourceKey] || {});
       const owner: Owner$ = (source[ownerKey] = source[ownerKey] || {});
       const project: Project$ = owner[nameKey];
 
-      let projectPath: string = normalizePath(repo.path, options);
-      projectPath = options.color ? projectPath.white : projectPath;
+      let projectPath: string = normalizePath(repo.path);
+      projectPath = chalk.white(projectPath);
 
       if (!_.isEmpty(project)) {
         if (_.isString(project)) {

@@ -5,6 +5,7 @@
 const path = require('path');
 const axios = require('axios');
 const semver = require('semver');
+import chalk from 'chalk';
 
 const pkg = require(path.join(__dirname, '../package.json'));
 import { warn } from './logger';
@@ -20,12 +21,14 @@ export default async function checkNewVersion() {
     const remotePkg = res.data;
     if (semver.gt(remotePkg.version, pkg.version)) {
       warn(
-        `Your current version of ${pkg.name} is out of date. The latest version is ${remotePkg
-          .version.red} while you're on ${pkg.version.green}.`
+        `Your current version of ${pkg.name} is out of date. The latest version is ${chalk.red(
+          remotePkg.version
+        )} while you're on ${chalk.green(pkg.version)}.`
       );
       warn(
-        `Checkout change log here ${'https://github.com/gpmer/gpm.js/blob/master/CHANGELOG.md'
-          .green}`
+        `Checkout change log here ${chalk.green(
+          'https://github.com/gpmer/gpm.js/blob/master/CHANGELOG.md'
+        )}`
       );
     }
   } catch (err) {}

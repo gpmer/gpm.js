@@ -2,7 +2,7 @@
  * Created by axetroy on 2017/3/18.
  */
 
-const prettyjson = require('prettyjson');
+import chalk from 'chalk';
 const __ = require('i18n').__;
 
 import plugin from '../plugin';
@@ -39,7 +39,7 @@ export default async function configHandler(
         if (!options.nolog) {
           return error(
             __('commands.plugin.log.require_key', {
-              cmd: (config.name + ` config set ${key} [key]`).green
+              cmd: chalk.green(config.name + ` config set ${key} [key]`)
             })
           );
         }
@@ -49,10 +49,9 @@ export default async function configHandler(
       !options.nolog &&
         info(
           __('commands.plugin.log.info_help', {
-            cmd: (config.name +
-              ' plugin ' +
-              'list|delete'.yellow.underline +
-              ' [key]').green
+            cmd: `${config.name} plugin ${chalk.yellow.underline(
+              'list|delete'
+            )} ${chalk.green(' [key]')}`
           })
         );
       break;
