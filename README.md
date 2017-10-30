@@ -173,13 +173,6 @@ github.com:
     release: /home/axetroy/gpm/github.com/zeit/release
 ```
 
-## Uninstall
-
-```bash
-npm uninstall @axetroy/gpm -g
-rm -rf ~/.gpm      # all file, cache, contain in this dir
-```
-
 ## Contributing
 
 ```bash
