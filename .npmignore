@@ -64,13 +64,13 @@ test
 docs
 
 # others
+app
 .all-contributorsrc
 .editorconfig
 .gitattributes
 .gitignore
 .pullapprove.yml
 .travis.yml
-build
 contributing.md
 *.gif
 *.map
