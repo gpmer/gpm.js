@@ -1,3 +1,43 @@
+<a name="8.0.5"></a>
+## [8.0.5](https://github.com/gpmer/gpm.js/compare/v8.0.4...v8.0.5) (2017-10-31)
+
+
+### Bug Fixes
+
+* fix postinstall script not work install windows ([a1cbed2](https://github.com/gpmer/gpm.js/commit/a1cbed2))
+
+
+
+<a name="8.0.4"></a>
+## [8.0.4](https://github.com/gpmer/gpm.js/compare/v8.0.3...v8.0.4) (2017-10-31)
+
+
+
+<a name="8.0.3"></a>
+## [8.0.3](https://github.com/gpmer/gpm.js/compare/v8.0.2...v8.0.3) (2017-10-30)
+
+
+### Bug Fixes
+
+* fix invalid postinstall script ([48411ca](https://github.com/gpmer/gpm.js/commit/48411ca))
+
+
+
+<a name="8.0.2"></a>
+## [8.0.2](https://github.com/gpmer/gpm.js/compare/v8.0.1...v8.0.2) (2017-10-30)
+
+
+### Bug Fixes
+
+* fix invalid postuninstall ([959b8a2](https://github.com/gpmer/gpm.js/commit/959b8a2))
+
+
+
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/gpmer/gpm.js/compare/v8.0.0...v8.0.1) (2017-10-30)
+
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/gpmer/gpm.js/compare/v7.1.0...v8.0.0) (2017-10-30)
 
