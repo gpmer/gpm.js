@@ -3,7 +3,7 @@
   "engines": {
     "node": ">=7.6"
   },
-  "version": "8.0.6",
+  "version": "8.1.0",
   "description": "Git Package Manager, make you manage the repository easier",
   "scripts": {
     "dev": "tsc && cross-env GPM_ENV=development ./bin/gpm",
