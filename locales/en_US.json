@@ -82,6 +82,9 @@
     "clean": {
       "desc": "Clear the cache, locate in {{{tempPath}}}."
     },
+    "prune": {
+      "desc": "Remove the file or dir you don't really need id, like node_modules"
+    },
     "find": {
       "desc": "Find repository by a key, You can get all about the repository info.",
       "log": {

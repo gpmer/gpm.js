@@ -81,6 +81,9 @@
     "clean": {
       "desc": "清理缓存, 位于 {{{tempPath}}}"
     },
+    "prune": {
+      "desc": "移除不要的文件/目录，例如node_modules"
+    },
     "find": {
       "desc": "查找仓库，你可以获取到这个仓库的所有信息",
       "log": {

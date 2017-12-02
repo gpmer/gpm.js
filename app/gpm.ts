@@ -18,6 +18,7 @@ import addHandler from './command/add';
 import runtimeHandler from './command/runtime';
 import configHandler from './command/config';
 import cleanHandler from './command/clean';
+import pruneHandler from './command/prune';
 import findHandler from './command/find';
 import removeHandler from './command/remove';
 
@@ -184,6 +185,10 @@ class Gpm extends EventEmitter {
       ) {
         return cleanHandler(argv, options).catch(errorHandler);
       });
+
+    program.command('prune', __('commands.prune.desc')).action(function() {
+      return pruneHandler().catch(errorHandler);
+    });
 
     program
       .command('find', __('commands.find.desc'))
