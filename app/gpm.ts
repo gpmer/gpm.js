@@ -186,9 +186,12 @@ class Gpm extends EventEmitter {
         return cleanHandler(argv, options).catch(errorHandler);
       });
 
-    program.command('prune', __('commands.prune.desc')).action(function() {
-      return pruneHandler().catch(errorHandler);
-    });
+    program
+      .command('prune', __('commands.prune.desc'))
+      .alias('pr')
+      .action(function() {
+        return pruneHandler().catch(errorHandler);
+      });
 
     program
       .command('find', __('commands.find.desc'))
