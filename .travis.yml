@@ -13,11 +13,8 @@ cache:
   directories:
     - node_modules
 
-before_script:
-  - yarn run build
-
 script:
-  - yarn run test
+  - yarn run build && yarn run test
 
 after_script:
   - yarn run coverage
