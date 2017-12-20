@@ -3,10 +3,10 @@ sudo: false
 
 os:
   - linux
-#  - osx
 
 node_js:
-  - '6.10.0'
+  - 7.6.0
+  - 8.9.0
 
 cache:
   yarn: true
