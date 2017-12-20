@@ -62,8 +62,8 @@ export default async function remove(
           Promise.resolve(
             registry
               .find(input)
-              .map(decoratorIndex)
-              .map((repo: ExtendTarget$) => repo.__index__)
+              .map(v => decoratorIndex(v))
+              .map(repo => (<any>repo).__index__)
           )
       }
     ]);

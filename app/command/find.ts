@@ -30,13 +30,14 @@ export interface ExtendTarget$ extends Target$ {
 }
 
 export function decoratorIndex<T>(repo: any): T {
-  repo.__index__ = `${repo.source.red}:${chalk.yellow('@' + repo.owner)}/${repo
-    .name.green}(${path.relative(config.paths.home, repo.path)})`;
+  repo.__index__ = `${repo.source.red}:${chalk.yellow('@' + repo.owner)}/${
+    repo.name.green
+  }(${path.relative(config.paths.home, repo.path)})`;
   return repo;
 }
 
 export default async function search(argv: Argv$, options: Options$) {
-  let repositories = registry.repositories.map(decoratorIndex);
+  let repositories = registry.repositories.map(v => decoratorIndex(v));
 
   const answer = await inquirer.prompt([
     {
@@ -48,8 +49,8 @@ export default async function search(argv: Argv$, options: Options$) {
         Promise.resolve(
           registry
             .find(input)
-            .map(decoratorIndex)
-            .map((repo: ExtendTarget$) => repo.__index__)
+            .map(v => decoratorIndex(v))
+            .map(repo => (<any>repo).__index__)
         )
     }
   ]);
