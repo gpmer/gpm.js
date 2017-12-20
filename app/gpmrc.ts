@@ -1,5 +1,6 @@
 /**
  * Created by axetroy on 17-3-23.
+ * The parser for .gpmrc
  */
 import * as path from 'path';
 import * as fs from 'fs-extra';
@@ -25,7 +26,7 @@ class Gpmrc extends EventEmitter {
   }
 
   /**
-   * load .gpmrc file
+   * load .gpmrc file, found .gpmrc file in the dir
    * @param {string} dir
    * @returns {Promise<void>}
    */

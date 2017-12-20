@@ -48,6 +48,7 @@
   "preferGlobal": true,
   "homepage": "https://github.com/gpmer/gpm.js#readme",
   "dependencies": {
+    "@axetroy/graceful": "https://github.com/axetroy/graceful.js.git",
     "@axetroy/walk": "^0.1.0",
     "axios": "^0.17.1",
     "caporal": "^0.9.0",
@@ -79,6 +80,7 @@
     "@types/debug": "^0.0.30",
     "@types/fs-extra": "^5.0.0",
     "@types/i18n": "^0.8.3",
+    "@types/inquirer": "^0.0.36",
     "@types/lodash": "^4.14.91",
     "@types/node": "^8.5.1",
     "all-contributors-cli": "^4.10.1",

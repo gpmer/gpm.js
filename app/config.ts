@@ -8,7 +8,7 @@ const pkg = require('../package.json');
 
 export const name: string = <string>pkg.name.replace(/^\@[\w\-\_]+\//gim, '');
 
-const home =
+const home: string =
   process.env.GPM_ENV === 'development'
     ? path.join(__dirname, '..', '.home')
     : os.homedir();
@@ -35,11 +35,10 @@ export const paths = {
 };
 
 export const defaults = {
-  version: pkg.version,
-  owner: name,
-  base: name,
-  checkUpgrade: true,
-  locale: systemLocale
+  version: pkg.version, // 当前gpm版本
+  base: name, // gpm的跟目录
+  checkUpgrade: true, // 是否检查更新
+  locale: systemLocale // 当前系统语言
 };
 
 export default {

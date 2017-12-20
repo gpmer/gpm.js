@@ -1,13 +1,12 @@
 /**
-* Created by axetroy on 17-2-15.
-*/
+ * Created by axetroy on 17-2-15.
+ */
 
-const path = require('path');
 const axios = require('axios');
 const semver = require('semver');
 import chalk from 'chalk';
 
-const pkg = require(path.join(__dirname, '../package.json'));
+const pkg = require('../package.json');
 import { warn } from './logger';
 
 const npmRegistry = `http://registry.npm.taobao.org`;
@@ -21,7 +20,9 @@ export default async function checkNewVersion() {
     const remotePkg = res.data;
     if (semver.gt(remotePkg.version, pkg.version)) {
       warn(
-        `Your current version of ${pkg.name} is out of date. The latest version is ${chalk.red(
+        `Your current version of ${
+          pkg.name
+        } is out of date. The latest version is ${chalk.red(
           remotePkg.version
         )} while you're on ${chalk.green(pkg.version)}.`
       );
