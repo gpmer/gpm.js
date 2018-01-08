@@ -62,7 +62,7 @@
     "git-url-parse": "^7.0.1",
     "global-modules-path": "^2.0.0",
     "i18n": "^0.8.3",
-    "inquirer": "^4.0.0",
+    "inquirer": "^5.0.0",
     "inquirer-autocomplete-prompt": "^0.12.1",
     "json-toy": "^1.0.12",
     "lodash": "^4.17.4",
