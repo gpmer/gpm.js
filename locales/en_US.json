@@ -112,6 +112,9 @@
           "info_reset": "Has reset the config to default",
           "info_help": "Flow the command line: {{{cmd}}}"
         }
+      },
+      "log":{
+        "help": "Please follow the command: {{cmd}}"
       }
     },
     "runtime": {

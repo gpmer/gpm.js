@@ -113,7 +113,7 @@
         }
       },
       "log": {
-        "help": "commands.config.log.help"
+        "help": "请输入有效命令: {{cmd}}"
       }
     },
     "runtime": {
