@@ -104,7 +104,7 @@ test.serial('config list', async t => {
   const __CONFIG__ = await configCommand({ action: 'list' }, { nolog: true });
 
   t.deepEqual(__CONFIG__.version, pkg.version);
-  t.deepEqual(__CONFIG__.owner, CONFIG.name);
+  // t.deepEqual(__CONFIG__.owner, CONFIG.name);
   t.deepEqual(__CONFIG__.base, CONFIG.name);
 
   t.pass();
