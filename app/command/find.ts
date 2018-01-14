@@ -30,9 +30,9 @@ export interface ExtendTarget$ extends Target$ {
 }
 
 export function decoratorIndex<T>(repo: any): T {
-  repo.__index__ = `${repo.source.red}:${chalk.yellow("@" + repo.owner)}/${
-    repo.name.green
-  }(${path.relative(config.paths.home, repo.path)})`;
+  repo.__index__ = `${chalk.red(repo.source)}:${chalk.yellow(
+    "@" + repo.owner
+  )}/${chalk.green(repo.name)}(${path.relative(config.paths.home, repo.path)})`;
   return repo;
 }
 

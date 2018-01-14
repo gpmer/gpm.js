@@ -87,7 +87,7 @@
     "find": {
       "desc": "查找仓库，你可以获取到这个仓库的所有信息",
       "log": {
-        "info_type_to_search": "commands.find.log.info_type_to_search"
+        "info_type_to_search": "输入关键字搜索"
       }
     },
     "relink": {
