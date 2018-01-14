@@ -2,19 +2,19 @@
  * Created by axetroy on 17-2-14.
  */
 
-const path = require('path');
-const prettyjson = require('prettyjson');
-const inquirer = require('inquirer');
-const _ = require('lodash');
-const gitUrlParse = require('git-url-parse');
-const clipboardy = require('clipboardy');
-const __ = require('i18n').__;
-import chalk from 'chalk';
+const path = require("path");
+const prettyjson = require("prettyjson");
+const inquirer = require("inquirer");
+const _ = require("lodash");
+const gitUrlParse = require("git-url-parse");
+const clipboardy = require("clipboardy");
+const __ = require("i18n").__;
+import chalk from "chalk";
 
-import config from '../config';
-import registry, { Target$ } from '../registry';
-import { normalizePath } from '../utils';
-import { info, warn } from '../logger';
+import config from "../config";
+import registry, { Target$ } from "../registry";
+import { normalizePath } from "../utils";
+import { info, warn } from "../logger";
 
 interface Argv$ {}
 
@@ -30,8 +30,9 @@ export interface ExtendTarget$ extends Target$ {
 }
 
 export function decoratorIndex<T>(repo: any): T {
-  repo.__index__ = `${repo.source.red}:${chalk.yellow('@' + repo.owner)}/${repo
-    .name.green}(${path.relative(config.paths.home, repo.path)})`;
+  repo.__index__ = `${repo.source.red}:${chalk.yellow("@" + repo.owner)}/${
+    repo.name.green
+  }(${path.relative(config.paths.home, repo.path)})`;
   return repo;
 }
 
@@ -40,17 +41,18 @@ export default async function search(argv: Argv$, options: Options$) {
 
   const answer = await inquirer.prompt([
     {
-      name: 'repository',
-      message: __('commands.find.log.info_type_to_search') + ':',
-      type: 'autocomplete',
+      name: "repository",
+      message: __("commands.find.log.info_type_to_search") + ":",
+      type: "autocomplete",
       pageSize: 10,
-      source: (answers, input) =>
-        Promise.resolve(
+      source: async (answers, input) => {
+        return await Promise.resolve(
           registry
             .find(input)
             .map(decoratorIndex)
-            .map((repo: ExtendTarget$) => repo.__index__)
-        )
+            .map((repo: any) => repo.__index__)
+        );
+      }
     }
   ]);
 
@@ -67,12 +69,12 @@ export default async function search(argv: Argv$, options: Options$) {
   delete target.__search__;
   delete target.toString;
 
-  process.stdout.write(prettyjson.render(target) + '\n');
+  process.stdout.write(prettyjson.render(target) + "\n");
 
   try {
     clipboardy.writeSync(target.path);
-    info(__('global.tips.past', { key: chalk.green('<CTRL+V>') }));
+    info(__("global.tips.past", { key: chalk.green("<CTRL+V>") }));
   } catch (err) {
-    warn(__('global.tips.copy_fail'));
+    warn(__("global.tips.copy_fail"));
   }
 }

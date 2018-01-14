@@ -2,18 +2,18 @@
  * Created by axetroy on 17-2-14.
  */
 
-import chalk from 'chalk';
-const fs = require('fs-extra');
-const _ = require('lodash');
-const inquirer = require('inquirer');
-const __ = require('i18n').__;
+import chalk from "chalk";
+const fs = require("fs-extra");
+const _ = require("lodash");
+const inquirer = require("inquirer");
+const __ = require("i18n").__;
 
 export const prompt: any = inquirer.createPromptModule();
 
-import registry, { Target$ } from '../registry';
-import { normalizePath } from '../utils';
-import { decoratorIndex } from './find';
-import { info } from '../logger';
+import registry, { Target$ } from "../registry";
+import { normalizePath } from "../utils";
+import { decoratorIndex } from "./find";
+import { info } from "../logger";
 
 interface Argv$ {
   owner: string;
@@ -43,7 +43,7 @@ export default async function remove(
   if (argv.owner) {
     if (!argv.repo)
       return info(
-        __('commands.remove.log.err_missing_repo', { owner: argv.owner })
+        __("commands.remove.log.err_missing_repo", { owner: argv.owner })
       );
     target = _.find(
       repositories,
@@ -54,16 +54,16 @@ export default async function remove(
 
     const answer: Answer$ = await inquirer.prompt([
       {
-        name: 'repository',
-        message: __('commands.remove.log.info_type_to_search') + ':',
-        type: 'autocomplete',
+        name: "repository",
+        message: __("commands.remove.log.info_type_to_search") + ":",
+        type: "autocomplete",
         pageSize: 10,
         source: (answers, input) =>
           Promise.resolve(
             registry
               .find(input)
               .map(decoratorIndex)
-              .map((repo: ExtendTarget$) => repo.__index__)
+              .map((repo: any) => repo.__index__)
           )
       }
     ]);
@@ -76,18 +76,18 @@ export default async function remove(
 
   if (
     (await prompt({
-      type: 'confirm',
-      name: 'result',
+      type: "confirm",
+      name: "result",
       message:
-        `[${chalk.red('DANGER')}]` +
-        __('commands.remove.log.warn_confirm_del', {
+        `[${chalk.red("DANGER")}]` +
+        __("commands.remove.log.warn_confirm_del", {
           repo: chalk.red(normalizePath(target.path, options))
         }) +
-        ':',
-      ['default']: false
+        ":",
+      ["default"]: false
     })).result == false
   ) {
-    !options.nolog && info(__('global.tips.good_bye'));
+    !options.nolog && info(__("global.tips.good_bye"));
     return process.exit(0);
   }
 
@@ -98,7 +98,7 @@ export default async function remove(
   await registry.remove(target);
 
   info(
-    __('commands.remove.log.del', {
+    __("commands.remove.log.del", {
       repo: chalk.green(normalizePath(target.path, options))
     })
   );
