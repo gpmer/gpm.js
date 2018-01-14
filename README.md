@@ -44,7 +44,7 @@ npm install @axetroy/gpm -g
 ```bash
 $ gpm --help
 
-   gpm 7.1.0 - Git Package Manager, make you manage the repository easier
+   gpm 8.1.0 - Git Package Manager, make you manage the repository easier
      
    USAGE
 
@@ -56,6 +56,7 @@ $ gpm --help
      remove [owner] [repo]              Remove a repository from registry and disk.                                             
      list [key]                         Display the all repositories in registry.                                               
      clean                              Clear the cache, locate in /home/axetroy/.gpm/temp.                                     
+     prune                              Remove the file or dir you don't really need id, like node_modules                      
      find                               Find repository by a key, You can get all about the repository info.                    
      relink                             Relink the base directory and gpm registry, like Angular, trigger the $digest in manual.
      config <action> [key] [value]      A series handler of configurations.                                                     
@@ -68,7 +69,7 @@ $ gpm --help
      -V, --version      Display version                                   
      --no-color         Disable colors                                    
      --quiet            Quiet mode - only displays warn and error messages
-     -v, --verbose      Verbose mode - will also output debug messages 
+     -v, --verbose      Verbose mode - will also output debug messages
 
 ```
 

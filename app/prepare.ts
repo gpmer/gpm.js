@@ -3,7 +3,7 @@
  */
 const fs = require('fs-extra');
 import * as i18n from 'i18n';
-import { __ } from 'i18n';
+const { __ } = i18n;
 
 import { paths, defaults } from './config';
 import globalConfig from './global-config';
@@ -37,9 +37,10 @@ export default async function(): Promise<void> {
 
   const i18nConfig: I18nConfig$ = {
     locales: ['en_US', 'zh_CN'],
-    defaultLocale: supports.includes(currentLocale)
-      ? currentLocale
-      : defaults.locale,
+    defaultLocale:
+      supports.findIndex(v => v === currentLocale) >= 0
+        ? currentLocale
+        : defaults.locale,
     directory: paths.project + '/locales',
     extension: '.json',
     register: global,

@@ -8,12 +8,15 @@ const fs = require('fs-extra');
 const config = require('./config');
 
 class GlobalConfig extends EventEmitter {
-  private hasInit: boolean = false;
   public entity: any = {};
   constructor() {
     super();
   }
 
+  /**
+   * Init the global config
+   * @returns {Promise<void>}
+   */
   async init() {
     await fs.ensureFile(config.paths.config);
     const globalConfigRaw = await fs.readFile(config.paths.config, {
@@ -28,19 +31,34 @@ class GlobalConfig extends EventEmitter {
     } else {
       this.entity = globalConfigJson;
     }
-    this.hasInit = true;
   }
 
+  /**
+   * get config by a key
+   * @param key
+   * @returns {any}
+   */
   get(key) {
     return this.entity[key];
   }
 
+  /**
+   * set a key
+   * @param key
+   * @param value
+   * @returns {Promise<any>}
+   */
   async set(key, value) {
     this.entity[key] = value;
     await fs.writeJson(config.paths.config, this.entity);
     return this.entity;
   }
 
+  /**
+   * remove a key
+   * @param key
+   * @returns {Promise<any>}
+   */
   async remove(key) {
     this.entity[key] = null;
     delete this.entity[key];
@@ -48,6 +66,10 @@ class GlobalConfig extends EventEmitter {
     return this.entity;
   }
 
+  /**
+   * reset to default config
+   * @returns {Promise<any>}
+   */
   async reset() {
     this.entity = config.defaults;
     await fs.writeJson(config.paths.config, this.entity);
