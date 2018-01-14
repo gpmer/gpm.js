@@ -6,7 +6,7 @@ const path = require('path');
 import chalk from 'chalk';
 const _ = require('lodash');
 const prettyjson = require('prettyjson');
-import { i18n } from 'i18n';
+import * as i18n from 'i18n';
 const { __ } = i18n;
 
 import config from '../config';
