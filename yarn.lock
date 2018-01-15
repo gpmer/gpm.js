@@ -38,6 +38,12 @@
     imurmurhash "^0.1.4"
     slide "^1.1.5"
 
+"@axetroy/graceful@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@axetroy/graceful/-/graceful-0.3.0.tgz#b88b6d1bea1cf96953369cc8f922dcba1536a850"
+  dependencies:
+    tree-kill "^1.2.0"
+
 "@axetroy/walk@^0.1.0":
   version "0.1.0"
   resolved "https://registry.npmjs.org/@axetroy/walk/-/walk-0.1.0.tgz#38b21344d8cf0c3d23ead218b2dd5e29038db64c"
@@ -4427,6 +4433,10 @@ tough-cookie@~2.3.0:
   resolved "http://registry.npm.taobao.org/tough-cookie/download/tough-cookie-2.3.2.tgz#f081f76e4c85720e6c37a5faced737150d84072a"
   dependencies:
     punycode "^1.4.1"
+
+tree-kill@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.0.tgz#5846786237b4239014f05db156b643212d4c6f36"
 
 trim-newlines@^1.0.0:
   version "1.0.0"
