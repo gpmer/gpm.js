@@ -54,7 +54,7 @@
     "caporal": "^0.9.0",
     "chalk": "^2.3.0",
     "clipboardy": "^1.2.2",
-    "console.table": "^0.9.1",
+    "console.table": "^0.10.0",
     "cross-spawn": "^5.1.0",
     "debug": "^3.1.0",
     "fs-extra": "^5.0.0",
