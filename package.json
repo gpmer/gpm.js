@@ -69,7 +69,7 @@
     "moment": "^2.20.1",
     "node-persist": "^2.1.0",
     "os-locale": "^2.1.0",
-    "parse-git-config": "^1.1.1",
+    "parse-git-config": "^2.0.0",
     "prettyjson": "^1.2.1",
     "semver": "^5.4.1",
     "unique-string": "^1.0.0",
