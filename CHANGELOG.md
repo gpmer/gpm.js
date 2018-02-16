@@ -1,3 +1,67 @@
+<a name="8.2.0"></a>
+# [8.2.0](https://github.com/gpmer/gpm.js/compare/v8.1.2...v8.2.0) (2018-02-16)
+
+
+### Bug Fixes
+
+* **package:** update console.table to version 0.10.0 ([55dd59e](https://github.com/gpmer/gpm.js/commit/55dd59e))
+* **package:** update cross-spawn to version 6.0.0 ([10610b6](https://github.com/gpmer/gpm.js/commit/10610b6))
+* **package:** update git-url-parse to version 8.0.0 ([f32b1a0](https://github.com/gpmer/gpm.js/commit/f32b1a0))
+* **package:** update parse-git-config to version 2.0.0 ([a96ff8d](https://github.com/gpmer/gpm.js/commit/a96ff8d))
+
+
+
+<a name="8.1.2"></a>
+## [8.1.2](https://github.com/gpmer/gpm.js/compare/v8.1.1...v8.1.2) (2018-01-15)
+
+
+### Bug Fixes
+
+* add missing deps ([6449cd9](https://github.com/gpmer/gpm.js/commit/6449cd9))
+
+
+
+<a name="8.1.1"></a>
+## [8.1.1](https://github.com/gpmer/gpm.js/compare/v8.1.0...v8.1.1) (2018-01-14)
+
+
+### Bug Fixes
+
+* **package:** update caporal to version 0.9.0 ([d851798](https://github.com/gpmer/gpm.js/commit/d851798))
+* fix build fail ([3b77797](https://github.com/gpmer/gpm.js/commit/3b77797))
+* fix i18n translate ([f938b9e](https://github.com/gpmer/gpm.js/commit/f938b9e))
+* fix i18n translate ([60743e2](https://github.com/gpmer/gpm.js/commit/60743e2))
+* fix type error ([cab38d8](https://github.com/gpmer/gpm.js/commit/cab38d8))
+
+
+### Features
+
+* add alias "pr" for prune ([340323f](https://github.com/gpmer/gpm.js/commit/340323f))
+* Update deps ([31e88ea](https://github.com/gpmer/gpm.js/commit/31e88ea))
+
+
+
+<a name="8.1.0"></a>
+# [8.1.0](https://github.com/gpmer/gpm.js/compare/v8.0.6...v8.1.0) (2017-12-02)
+
+
+### Bug Fixes
+
+* **package:** update inquirer to version 4.0.0 ([85d5176](https://github.com/gpmer/gpm.js/commit/85d5176))
+* **package:** update inquirer-autocomplete-prompt to version 0.12.0 ([c17158c](https://github.com/gpmer/gpm.js/commit/c17158c))
+
+
+### Features
+
+* add command prune ([b469e12](https://github.com/gpmer/gpm.js/commit/b469e12))
+
+
+
+<a name="8.0.6"></a>
+## [8.0.6](https://github.com/gpmer/gpm.js/compare/v8.0.5...v8.0.6) (2017-10-31)
+
+
+
 <a name="8.0.5"></a>
 ## [8.0.5](https://github.com/gpmer/gpm.js/compare/v8.0.4...v8.0.5) (2017-10-31)
 
