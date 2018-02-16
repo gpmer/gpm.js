@@ -58,3 +58,4 @@ jspm_packages
 .home
 
 build
+.DS_Store

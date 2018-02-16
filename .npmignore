@@ -75,3 +75,4 @@ contributing.md
 *.gif
 *.map
 *.test.js
+.DS_Store
