@@ -86,7 +86,10 @@ class Gpm {
   async prune(options: IPruneOption = {}) {
     return pruneHandler(options);
   }
-  async list(key?: string, options: IListOption = {}): Promise<Json$ | void> {
+  async list(
+    key: string = "",
+    options: IListOption = {}
+  ): Promise<Json$ | void> {
     return listHandler(key, options);
   }
   async config(argv, options = {}) {

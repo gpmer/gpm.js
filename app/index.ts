@@ -90,7 +90,7 @@ async function main() {
     .option(FLAGS.force.flag, FLAGS.force.desc)
     .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
     .action(function(argv, options) {
-      return gpm.list(options).catch(errorHandler);
+      return gpm.list(argv.key, options).catch(errorHandler);
     });
 
   program

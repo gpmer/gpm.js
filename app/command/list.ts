@@ -15,7 +15,10 @@ import registry, { Target$, Json$ } from "../registry";
 import { warn, info } from "../logger";
 import { IListOption } from "../type";
 
-export default async function ls(key: string, options: IListOption): Promise<Json$ | void> {
+export default async function ls(
+  key: string,
+  options?: IListOption
+): Promise<Json$ | void> {
   if (registry.isEmpty)
     return warn(__("commands.list.log.warn_empty_registry"));
 
