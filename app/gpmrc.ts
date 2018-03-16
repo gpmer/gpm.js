@@ -21,8 +21,16 @@ export class Gpmrc extends EventEmitter {
   public name: string;
   public exist: boolean = false;
   public rc: Rc$ = { name: "gpm", hooks: {} };
-  constructor() {
-    super();
+
+  public async getRc(dir: string): Promise<Rc$> {
+    const rcPath = path.join(dir, ".gpmrc");
+    if (await isExistPath(rcPath)) {
+      this.rc = <Rc$>await fs.readJson(rcPath);
+      this.exist = true;
+      return this.rc;
+    } else {
+      return { name: "unkown", hooks: {} };
+    }
   }
 
   /**
@@ -31,11 +39,7 @@ export class Gpmrc extends EventEmitter {
    * @returns {Promise<void>}
    */
   async load(dir: string): Promise<void> {
-    const rcPath = path.join(dir, ".gpmrc");
-    if (await isExistPath(rcPath)) {
-      this.rc = <Rc$>await fs.readJson(rcPath);
-      this.exist = true;
-    }
+    await this.getRc(dir);
   }
 
   /**

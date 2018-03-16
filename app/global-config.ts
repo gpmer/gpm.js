@@ -1,11 +1,11 @@
 /**
  * Created by axetroy on 2017/3/23.
  */
-import { EventEmitter } from 'events';
-const _ = require('lodash');
-const fs = require('fs-extra');
+import { EventEmitter } from "events";
+const _ = require("lodash");
+const fs = require("fs-extra");
 
-const config = require('./config');
+const config = require("./config");
 
 export class GlobalConfig extends EventEmitter {
   public entity: any = {};
@@ -19,10 +19,19 @@ export class GlobalConfig extends EventEmitter {
    */
   async init() {
     await fs.ensureFile(config.paths.config);
+    await this.getConfig();
+  }
+
+  /**
+   * get global config
+   * @returns {Promise<any>}
+   * @memberof GlobalConfig
+   */
+  async getConfig(): Promise<any> {
     const globalConfigRaw = await fs.readFile(config.paths.config, {
-      encoding: 'utf8'
+      encoding: "utf8"
     });
-    let globalConfigJson = !_.isEmpty(globalConfigRaw)
+    const globalConfigJson = !_.isEmpty(globalConfigRaw)
       ? JSON.parse(globalConfigRaw)
       : {};
     if (_.isEmpty(globalConfigJson)) {

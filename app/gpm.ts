@@ -8,6 +8,8 @@ import checkUpdate from "./check-update";
 import globalConfig from "./global-config";
 import chalk from "chalk";
 import * as i18n from "i18n";
+import { paths } from "./config";
+import Gpmrc, { Rc$ } from "./gpmrc";
 const { __ } = i18n;
 
 // command handler
@@ -40,6 +42,7 @@ inquirer.registerPrompt(
 const pkg = require(path.join(__dirname, "../package.json"));
 
 class Gpm {
+  public paths = paths;
   public version: string = pkg.version;
   public description: string = pkg.description;
   private inited = false;
@@ -58,6 +61,12 @@ class Gpm {
       this.inited = true;
       throw err;
     }
+  }
+  async getGlobalConfig() {
+    return globalConfig.getConfig();
+  }
+  async getCurrentRc(dir: string = process.cwd()): Promise<Rc$> {
+    return new Gpmrc().getRc(dir);
   }
   async add(repo: string, options: IAddOption = {}) {
     return addHandler(repo, options);
