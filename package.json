@@ -5,6 +5,7 @@
   },
   "version": "8.2.0",
   "description": "Git Package Manager, make you manage the repository easier",
+  "main": "./build/gpm.js",
   "scripts": {
     "dev": "tsc && cross-env GPM_ENV=development ./bin/gpm",
     "test": "tsc && cross-env GPM_ENV=development ava",
@@ -12,20 +13,14 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "generate": "all-contributors generate",
     "docs": "docsify serve docs",
-    "build": "tsc",
+    "build": "tsc -d",
     "postuninstall": "node ./build/scripts/postuninstall.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gpmer/gpm.js.git"
   },
-  "keywords": [
-    "git",
-    "gpm",
-    "gpmx",
-    "github",
-    "manager"
-  ],
+  "keywords": ["git", "gpm", "gpmx", "github", "manager"],
   "author": "axetroy",
   "contributors": [
     {

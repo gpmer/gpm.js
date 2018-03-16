@@ -1,14 +1,15 @@
 /**
  * Created by axetroy on 17-2-14.
  */
-import chalk from 'chalk';
-const fs = require('fs-extra');
-const path = require('path');
-import globalConfig from '../global-config';
-import config from '../config';
-import * as Walker from '@axetroy/walk';
+import chalk from "chalk";
+const fs = require("fs-extra");
+const path = require("path");
+import globalConfig from "../global-config";
+import config from "../config";
+import * as Walker from "@axetroy/walk";
+import { IPruneOption } from "../type";
 
-export default async function prune(): Promise<void> {
+export default async function prune(options: IPruneOption): Promise<void> {
   const walker = new Walker(
     path.join(config.paths.home, globalConfig.entity.base)
   );
@@ -16,26 +17,26 @@ export default async function prune(): Promise<void> {
   let files = 0;
   let directory = 0;
 
-  walker.on('file', function(filepath: string, stat) {
+  walker.on("file", function(filepath: string, stat) {
     files++;
   });
 
   const done: Promise<any>[] = [];
   let removeDirCount = 0;
 
-  walker.on('directory', function(filepath: string, stat) {
+  walker.on("directory", function(filepath: string, stat) {
     directory++;
     const name = path.basename(filepath);
-    if (name === 'node_modules') {
+    if (name === "node_modules") {
       done.push(
         fs
           .remove(filepath)
           .then(() => {
-            console.log(`Remove ` + chalk.green(filepath));
+            !options.nolog && console.log(`Remove ` + chalk.green(filepath));
             removeDirCount++;
           })
           .catch(err => {
-            console.error(err + '');
+            !options.nolog && console.error(err + "");
             return Promise.resolve();
           })
       );

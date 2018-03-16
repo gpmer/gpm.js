@@ -2,25 +2,25 @@
  * Created by axetroy on 17-3-23.
  * The parser for .gpmrc
  */
-import * as path from 'path';
-import * as fs from 'fs-extra';
-import { EventEmitter } from 'events';
+import * as path from "path";
+import * as fs from "fs-extra";
+import { EventEmitter } from "events";
 
-import { isExistPath, runShell } from './utils';
+import { isExistPath, runShell } from "./utils";
 
-interface Rc$ {
+export interface Rc$ {
   name: string;
   hooks: PlainObject$;
 }
 
-interface PlainObject$ {
+export interface PlainObject$ {
   [s: string]: string;
 }
 
-class Gpmrc extends EventEmitter {
+export class Gpmrc extends EventEmitter {
   public name: string;
   public exist: boolean = false;
-  public rc: Rc$ = { name: 'gpm', hooks: {} };
+  public rc: Rc$ = { name: "gpm", hooks: {} };
   constructor() {
     super();
   }
@@ -31,7 +31,7 @@ class Gpmrc extends EventEmitter {
    * @returns {Promise<void>}
    */
   async load(dir: string): Promise<void> {
-    const rcPath = path.join(dir, '.gpmrc');
+    const rcPath = path.join(dir, ".gpmrc");
     if (await isExistPath(rcPath)) {
       this.rc = <Rc$>await fs.readJson(rcPath);
       this.exist = true;
@@ -47,7 +47,7 @@ class Gpmrc extends EventEmitter {
   async runHook(hookName: string, options: PlainObject$ = {}): Promise<void> {
     const hooks = this.rc.hooks || {};
     if (hooks[hookName]) {
-      await runShell(hooks.add, { ...{ stdio: 'inherit' }, ...options });
+      await runShell(hooks.add, { ...{ stdio: "inherit" }, ...options });
     }
   }
 }

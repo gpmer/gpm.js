@@ -2,43 +2,31 @@
  * Created by axetroy on 17-2-14.
  */
 
-const path = require('path');
-const gitUrlParse = require('git-url-parse');
-const fs = require('fs-extra');
-const _ = require('lodash');
-const inquirer = require('inquirer');
+const path = require("path");
+const gitUrlParse = require("git-url-parse");
+const fs = require("fs-extra");
+const _ = require("lodash");
+const inquirer = require("inquirer");
 const prompt = inquirer.createPromptModule();
-const which = require('which');
-const uniqueString = require('unique-string');
-const clipboardy = require('clipboardy');
-import chalk from 'chalk';
-const __ = require('i18n').__;
+const which = require("which");
+const uniqueString = require("unique-string");
+const clipboardy = require("clipboardy");
+import chalk from "chalk";
+const __ = require("i18n").__;
 
+import { isExistPath, isLink, normalizePath, runShell } from "../utils";
+import config from "../config";
+import registry from "../registry";
+import globalConfig from "../global-config";
+import Gpmrc from "../gpmrc";
+import { info, warn } from "../logger";
+import { IAddOption } from "../type";
 
-import { isExistPath, isLink, normalizePath, runShell } from '../utils';
-import config from '../config';
-import registry from '../registry';
-import globalConfig from '../global-config';
-import Gpmrc from '../gpmrc';
-import { info, warn } from '../logger';
-
-interface Argv$ {
-  repo: string;
-}
-
-interface Options$ {
-  nolog?: boolean;
-  unixify?: boolean;
-  force?: boolean;
-  name?: string;
-  ignoreRc?: boolean;
-}
-
-async function add(repo: string, options: Options$) {
+export default async function add(repo: string, options: IAddOption) {
   const gitInfo = gitUrlParse(repo);
 
   if (!gitInfo || !gitInfo.owner || !gitInfo.name) {
-    throw new Error(__('commands.add.log.invalid_url', { repo }));
+    throw new Error(__("commands.add.log.invalid_url", { repo }));
   }
 
   const randomTemp: string = path.join(config.paths.temp, uniqueString());
@@ -51,7 +39,7 @@ async function add(repo: string, options: Options$) {
   const ownerDir: string = path.join(sourceDir, gitInfo.owner);
   let repoDir: string = path.join(
     ownerDir,
-    typeof options.name === 'string' ? options.name : gitInfo.name
+    typeof options.name === "string" ? options.name : gitInfo.name
   );
 
   let confirmCover: boolean = false;
@@ -60,18 +48,18 @@ async function add(repo: string, options: Options$) {
       confirmCover = true;
     } else {
       confirmCover = (await prompt({
-        type: 'confirm',
-        name: 'result',
+        type: "confirm",
+        name: "result",
         message: chalk.white(
-          __('commands.add.log.confirm_cover', {
+          __("commands.add.log.confirm_cover", {
             path: chalk.yellow.underline(normalizePath(repoDir, options))
           })
         ),
-        ['default']: false
+        ["default"]: false
       })).result;
     }
     if (!confirmCover) {
-      !options.nolog && info(__('global.tips.good_bye'));
+      !options.nolog && info(__("global.tips.good_bye"));
       return process.exit(1);
     }
   }
@@ -82,11 +70,11 @@ async function add(repo: string, options: Options$) {
   await fs.ensureDir(randomTemp);
 
   try {
-    const git = which.sync('git');
+    const git = which.sync("git");
     if (!git) {
       return Promise.reject(
         new Error(
-          __('commands.add.log.make_sure_install', { bin: chalk.green('Git') })
+          __("commands.add.log.make_sure_install", { bin: chalk.green("Git") })
         )
       );
     }
@@ -96,7 +84,7 @@ async function add(repo: string, options: Options$) {
 
   await runShell(`git clone ${gitInfo.href}`, {
     cwd: randomTemp,
-    stdio: 'inherit'
+    stdio: "inherit"
   });
 
   // if it's a link, then unlink first
@@ -125,7 +113,7 @@ async function add(repo: string, options: Options$) {
         await fs.move(repoDir, newRepoDir);
         repoDir = newRepoDir;
       }
-      await gpmrc.runHook('add', { cwd: repoDir }).catch(err => {
+      await gpmrc.runHook("add", { cwd: repoDir }).catch(err => {
         console.error(err);
         return Promise.resolve();
       });
@@ -139,23 +127,19 @@ async function add(repo: string, options: Options$) {
   if (!options.nolog) {
     let finallyPath = normalizePath(repoDir, options);
     info(
-      __('commands.add.log.info_add_success', {
+      __("commands.add.log.info_add_success", {
         path: chalk.green.underline(finallyPath)
       })
     );
     try {
       clipboardy.writeSync(finallyPath);
       info(
-        __('commands.add.log.info_copy_clipboard', {
-          key: chalk.green('<CTRL+V>')
+        __("commands.add.log.info_copy_clipboard", {
+          key: chalk.green("<CTRL+V>")
         })
       );
     } catch (err) {
-      warn(__('commands.add.log.warn_copy_clipboard'));
+      warn(__("commands.add.log.warn_copy_clipboard"));
     }
   }
-}
-
-export default async function(argv: Argv$, options: Options$) {
-  return await add(argv.repo, options);
 }

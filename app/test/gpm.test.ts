@@ -1,23 +1,24 @@
 /**
  * Created by axetroy on 17-2-15.
  */
-const path = require('path');
-const os = require('os');
-import chalk from 'chalk';
-const test = require('ava');
-const _ = require('lodash');
-const fs = require('fs-extra');
-const gitUrlParse = require('git-url-parse');
+const path = require("path");
+const os = require("os");
+import chalk from "chalk";
+const test = require("ava");
+const _ = require("lodash");
+const fs = require("fs-extra");
+const gitUrlParse = require("git-url-parse");
 
-const pkg = require('../../package.json');
-import CONFIG from '../config';
-import prepare from '../prepare';
-import addCommand from '../command/add';
-import listCommand from '../command/list';
-import runtimeCommand from '../command/runtime';
-import configCommand, { Argv$ as ConfigArgv$ } from '../command/config';
-import cleanCommand from '../command/clean';
-import globalConfig from '../global-config';
+const pkg = require("../../package.json");
+import CONFIG from "../config";
+import prepare from "../prepare";
+import addCommand from "../command/add";
+import listCommand from "../command/list";
+import runtimeCommand from "../command/runtime";
+import configCommand from "../command/config";
+import cleanCommand from "../command/clean";
+import globalConfig from "../global-config";
+import { IConfigArgv } from "../type";
 
 const { home, root, temp, config } = CONFIG.paths;
 
@@ -41,7 +42,7 @@ test.serial.afterEach(async function(t) {
   t.pass();
 });
 
-test.serial('prepare', async t => {
+test.serial("prepare", async t => {
   await fs.readdir(home);
   const __root__ = await fs.readdir(root);
   const __temp__ = await fs.readdir(temp);
@@ -52,8 +53,8 @@ test.serial('prepare', async t => {
   t.pass();
 });
 
-test.serial('add & list', async t => {
-  const url = 'https://github.com/gpmer/gpm-empty-repository-for-test.git';
+test.serial("add & list", async t => {
+  const url = "https://github.com/gpmer/gpm-empty-repository-for-test.git";
   const argv = { repo: url },
     options: any = { force: true, nolog: true };
   const gitInfo = gitUrlParse(url);
@@ -64,21 +65,21 @@ test.serial('add & list', async t => {
   const ownerDir = path.join(sourceDir, gitInfo.owner);
   const repoDir = path.join(
     ownerDir,
-    typeof options.name === 'string' ? options.name : gitInfo.name
+    typeof options.name === "string" ? options.name : gitInfo.name
   );
 
-  await addCommand(argv, options);
+  await addCommand(url, options);
 
   await fs.ensureDir(baseDir);
   await fs.ensureDir(sourceDir);
   await fs.ensureDir(ownerDir);
   await fs.ensureDir(repoDir);
 
-  const result = await listCommand({ key: '' }, { nolog: true });
+  const result = await listCommand("", { nolog: true });
 
-  const source = chalk.red('github.com');
-  const owner = chalk.yellow('gpmer');
-  const name = chalk.green('gpm-empty-repository-for-test');
+  const source = chalk.red("github.com");
+  const owner = chalk.yellow("gpmer");
+  const name = chalk.green("gpm-empty-repository-for-test");
 
   t.deepEqual(_.keys(result), [source]);
   t.deepEqual(_.keys(result[source]), [owner]);
@@ -88,20 +89,20 @@ test.serial('add & list', async t => {
   t.pass();
 });
 
-test('runtime', async t => {
-  const info = await runtimeCommand({}, { nolog: true });
+test("runtime", async t => {
+  const info = await runtimeCommand({ nolog: true });
 
   t.deepEqual(info.node, process.version);
   t.deepEqual(info[CONFIG.name], pkg.version);
   t.deepEqual(info.arch, os.arch());
-  t.deepEqual(info.os, os.type() + ' ' + os.release());
+  t.deepEqual(info.os, os.type() + " " + os.release());
   t.deepEqual(info.platform, os.platform());
 
   t.pass();
 });
 
-test.serial('config list', async t => {
-  const __CONFIG__ = await configCommand({ action: 'list' }, { nolog: true });
+test.serial("config list", async t => {
+  const __CONFIG__ = await configCommand({ action: "list" }, { nolog: true });
 
   t.deepEqual(__CONFIG__.version, pkg.version);
   // t.deepEqual(__CONFIG__.owner, CONFIG.name);
@@ -110,17 +111,17 @@ test.serial('config list', async t => {
   t.pass();
 });
 
-test.serial('config get', async t => {
+test.serial("config get", async t => {
   const version = await configCommand(
-    { action: 'get', key: 'version' },
+    { action: "get", key: "version" },
     { nolog: true }
   );
   const owner = await configCommand(
-    { action: 'get', key: 'owner' },
+    { action: "get", key: "owner" },
     { nolog: true }
   );
   const base = await configCommand(
-    { action: 'get', key: 'base' },
+    { action: "get", key: "base" },
     { nolog: true }
   );
 
@@ -131,17 +132,17 @@ test.serial('config get', async t => {
   t.pass();
 });
 
-test.serial('config set', async t => {
+test.serial("config set", async t => {
   const actions = [
-    { action: 'set', key: 'version', value: 'test version' },
-    { action: 'set', key: 'owner', value: 'test owner' },
-    { action: 'set', key: 'base', value: 'test base' }
+    { action: "set", key: "version", value: "test version" },
+    { action: "set", key: "owner", value: "test owner" },
+    { action: "set", key: "base", value: "test base" }
   ];
 
   const __actions__ = actions.slice();
 
   while (actions.length) {
-    const action: ConfigArgv$ = <ConfigArgv$>actions.shift();
+    const action: IConfigArgv = <IConfigArgv>actions.shift();
     await configCommand(action, { nolog: true });
   }
 
@@ -152,15 +153,15 @@ test.serial('config set', async t => {
   t.pass();
 });
 
-test.serial('config remove', async t => {
+test.serial("config remove", async t => {
   const actions = [
-    { action: 'remove', key: 'version' },
-    { action: 'remove', key: 'owner' },
-    { action: 'remove', key: 'base' }
+    { action: "remove", key: "version" },
+    { action: "remove", key: "owner" },
+    { action: "remove", key: "base" }
   ];
 
   while (actions.length) {
-    const action: ConfigArgv$ = <ConfigArgv$>actions.shift();
+    const action: IConfigArgv = <IConfigArgv>actions.shift();
     await configCommand(action, { nolog: true });
     t.deepEqual(globalConfig.entity[<string>action.key], void 0);
   }
@@ -168,8 +169,8 @@ test.serial('config remove', async t => {
   t.pass();
 });
 
-test.serial('config reset', async t => {
-  const __config__ = await configCommand({ action: 'reset' }, { nolog: true });
+test.serial("config reset", async t => {
+  const __config__ = await configCommand({ action: "reset" }, { nolog: true });
 
   const configJSON = await fs.readJson(config);
 

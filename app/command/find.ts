@@ -15,14 +15,7 @@ import config from "../config";
 import registry, { Target$ } from "../registry";
 import { normalizePath } from "../utils";
 import { info, warn } from "../logger";
-
-interface Argv$ {}
-
-interface Options$ {
-  nolog?: boolean;
-  unixify?: boolean;
-  force?: boolean;
-}
+import { IFindOption } from "../type";
 
 export interface ExtendTarget$ extends Target$ {
   __index__: string;
@@ -36,7 +29,7 @@ export function decoratorIndex<T>(repo: any): T {
   return repo;
 }
 
-export default async function search(argv: Argv$, options: Options$) {
+export default async function search(options: IFindOption) {
   let repositories = registry.repositories.map(decoratorIndex);
 
   const answer = await inquirer.prompt([

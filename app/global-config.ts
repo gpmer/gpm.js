@@ -7,7 +7,7 @@ const fs = require('fs-extra');
 
 const config = require('./config');
 
-class GlobalConfig extends EventEmitter {
+export class GlobalConfig extends EventEmitter {
   public entity: any = {};
   constructor() {
     super();

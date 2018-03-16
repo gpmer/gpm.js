@@ -1,13 +1,13 @@
 /**
  * Created by axetroy on 17-3-23.
  */
-import { EventEmitter } from 'events';
-const _ = require('lodash');
-const storage = require('node-persist');
-const fuzzy = require('fuzzy');
-import chalk from 'chalk';
-const { normalizePath } = require('./utils');
-const config = require('./config');
+import { EventEmitter } from "events";
+const _ = require("lodash");
+const storage = require("node-persist");
+const fuzzy = require("fuzzy");
+import chalk from "chalk";
+const { normalizePath } = require("./utils");
+const config = require("./config");
 
 export interface Target$ {
   source: string;
@@ -44,8 +44,8 @@ export interface Config$ {
   forgiveParseErrors: boolean;
 }
 
-class Registry extends EventEmitter {
-  private key = 'repositories';
+export class Registry extends EventEmitter {
+  private key = "repositories";
   public repositories: Target$[] = [];
   constructor(private config: Config$) {
     super();
@@ -113,13 +113,13 @@ class Registry extends EventEmitter {
    * @param {string} key
    * @returns {Target$[]}
    */
-  find(key: string = ''): Target$[] {
+  find(key: string = ""): Target$[] {
     if (!key) return this.repositories;
     const searchResult = fuzzy
-      .filter(key, this.repositories.map(repo => repo.owner + '/' + repo.name))
+      .filter(key, this.repositories.map(repo => repo.owner + "/" + repo.name))
       .map(v => v.string);
     return this.repositories
-      .filter(repo => _.includes(searchResult, repo.owner + '/' + repo.name))
+      .filter(repo => _.includes(searchResult, repo.owner + "/" + repo.name))
       .map(v => v);
   }
 
@@ -170,7 +170,7 @@ export default new Registry({
   dir: config.paths.storage,
   stringify: JSON.stringify,
   parse: JSON.parse,
-  encoding: 'utf8',
+  encoding: "utf8",
   logging: false, // can also be custom logging function
   continuous: true, // continously persist to disk
   interval: false, // milliseconds, persist to disk on an interval

@@ -2,20 +2,13 @@
  * Created by axetroy on 17-2-15.
  */
 
-const os = require('os');
+const os = require("os");
 
-const prettyjson = require('prettyjson');
+const prettyjson = require("prettyjson");
 
-const pkg = require('../../package.json');
-const config = require('../config');
-
-interface Argv$ {}
-
-interface Options$ {
-  nolog?: boolean;
-  unixify?: boolean;
-  force?: boolean;
-}
+const pkg = require("../../package.json");
+const config = require("../config");
+import { IRuntimeOption } from "../type";
 
 export interface RuntimeInfo$ {
   node: string;
@@ -26,17 +19,16 @@ export interface RuntimeInfo$ {
 }
 
 export default async function runtime(
-  argv: Argv$,
-  options: Options$
+  options: IRuntimeOption
 ): Promise<RuntimeInfo$> {
   const info: RuntimeInfo$ = {
     node: process.version,
     [config.name]: pkg.version,
     arch: os.arch(),
-    os: os.type() + ' ' + os.release(),
+    os: os.type() + " " + os.release(),
     platform: os.platform()
   };
 
-  !options.nolog && process.stdout.write(prettyjson.render(info) + '\n');
+  !options.nolog && process.stdout.write(prettyjson.render(info) + "\n");
   return info;
 }

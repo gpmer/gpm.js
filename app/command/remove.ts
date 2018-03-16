@@ -14,17 +14,7 @@ import registry, { Target$ } from "../registry";
 import { normalizePath } from "../utils";
 import { decoratorIndex } from "./find";
 import { info } from "../logger";
-
-interface Argv$ {
-  owner: string;
-  repo: string;
-}
-
-interface Options$ {
-  nolog?: boolean;
-  unixify?: boolean;
-  force?: boolean;
-}
+import { IRemoveOption } from "../type";
 
 export interface ExtendTarget$ extends Target$ {
   __index__: string;
@@ -35,19 +25,18 @@ export interface Answer$ {
 }
 
 export default async function remove(
-  argv: Argv$,
-  options: Options$
+  owner: string,
+  repo: string,
+  options: IRemoveOption
 ): Promise<void> {
   let repositories: Target$[] = registry.repositories.slice();
   let target: Target$;
-  if (argv.owner) {
-    if (!argv.repo)
-      return info(
-        __("commands.remove.log.err_missing_repo", { owner: argv.owner })
-      );
+  if (owner) {
+    if (!repo)
+      return info(__("commands.remove.log.err_missing_repo", { owner: owner }));
     target = _.find(
       repositories,
-      repo => repo.owner === argv.owner.trim() && repo.name === argv.repo.trim()
+      repo => repo.owner === owner.trim() && repo.name === repo.trim()
     );
   } else {
     repositories = _.map(repositories, decoratorIndex);

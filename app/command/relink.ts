@@ -2,14 +2,14 @@
  * Created by axetroy on 17-2-14.
  */
 
-const path = require('path');
-import chalk from 'chalk';
-const _ = require('lodash');
-const fs = require('fs-extra');
-const gitUrlParse = require('git-url-parse');
-import globalConfig from '../global-config';
-import registry from '../registry';
-import config from '../config';
+const path = require("path");
+import chalk from "chalk";
+const _ = require("lodash");
+const fs = require("fs-extra");
+const gitUrlParse = require("git-url-parse");
+import globalConfig from "../global-config";
+import registry from "../registry";
+import config from "../config";
 import {
   isGitRepoDir,
   parseGitConfigAsync,
@@ -17,15 +17,8 @@ import {
   isExistPath,
   normalizePath,
   GitConfig$
-} from '../utils';
-
-interface Argv$ {}
-
-interface Options$ {
-  nolog?: boolean;
-  unixify?: boolean;
-  force?: boolean;
-}
+} from "../utils";
+import { IRelinkOption } from "../type";
 
 async function filterDir(files: string[]): Promise<string[]> {
   let output: string[] = [];
@@ -40,14 +33,14 @@ async function filterDir(files: string[]): Promise<string[]> {
 async function loop(
   base: string,
   deepIndex: number = 0,
-  options: Options$
+  options: IRelinkOption
 ): Promise<void> {
   if (!await isExistPath(base)) return;
   if (deepIndex >= 3) {
     if (!await isGitRepoDir(base)) return;
     let gitConfig: GitConfig$ = await parseGitConfigAsync({
       cwd: base,
-      path: path.join('.git', 'config')
+      path: path.join(".git", "config")
     });
     const origin = gitConfig[`remote "origin"`] || {};
 
@@ -75,15 +68,11 @@ async function loop(
   }
 }
 
-async function relink(argv: Argv$, options: Options$): Promise<void> {
+export default async function relink(options: IRelinkOption): Promise<void> {
   const basePath: string = path.join(
     config.paths.home,
     globalConfig.entity.base
   );
   await registry.clean();
   await loop(basePath, 0, options);
-}
-
-export default async function(argv: Argv$, options: Options$): Promise<void> {
-  return await relink(argv, options);
 }
