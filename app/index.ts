@@ -67,7 +67,7 @@ async function main() {
     .option(FLAGS.nolog.flag, FLAGS.nolog.desc)
     .option(FLAGS.ignoreRc.flag, FLAGS.ignoreRc.desc)
     .action(function(argv, options) {
-      return gpm.add(<any>argv, options).catch(errorHandler);
+      return gpm.add(argv.repo, options).catch(errorHandler);
     });
 
   program
