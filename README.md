@@ -156,6 +156,10 @@ github.com:
     release: /home/axetroy/gpm/github.com/zeit/release
 ```
 
+## Related
+
+[https://github.com/axetroy/vscode-gpm](https://github.com/axetroy/vscode-gpm)
+
 ## Contributing
 
 ```bash
