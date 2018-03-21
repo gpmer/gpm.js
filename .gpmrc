@@ -1,5 +1,7 @@
 {
   "hooks": {
-    "add": "yarn"
+    "add": "yarn",
+    "preremove": "echo 'pre remove hook'",
+    "postremove": "echo 'post remove hook'"
   }
 }
