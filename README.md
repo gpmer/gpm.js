@@ -1,3 +1,5 @@
+> The project is no longer maintained, moved to [axetroy/gpm.rs](https://github.com/axetroy/gpm.rs)
+
 # gpm.js 
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/gpmer/gpm.js.svg)](https://greenkeeper.io/)
